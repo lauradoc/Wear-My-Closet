@@ -17,6 +17,10 @@ def homepage():
 
     return render_template('home.html')
 
+#def init function to create users
+
+#def init function to create items
+
 
 if __name__ == '__main__':
     connect_to_db(app)
