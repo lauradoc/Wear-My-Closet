@@ -66,3 +66,4 @@ def create_community_member(community_id, user_id):
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
+    
