@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
 
-db = SQLAlchemy
+db = SQLAlchemy()
 
 class User(db.Model):
     """A user."""
@@ -18,7 +18,7 @@ class User(db.Model):
     lat = db.Column(db.Integer, nullable=True)
     lon = db.Column(db.Integer, nullable=True)
     phone = db.Column(db.Integer)
-    community_member_id = db.Column(db.Integer, db.ForeignKey('communitiy_members.community_member_id'))
+    community_member_id = db.Column(db.Integer, db.ForeignKey('community_members.community_member_id'))
 
     community_member = db.relationship('Community_member', backref='users')
 
@@ -46,13 +46,13 @@ class Checkout(db.Model):
 
     __tablename__ = 'checkouts'
 
-    checkout_id = db.Column(db.autoincrement=True, primary_key=True)
+    checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     checkout_date = db.Column(db.DateTime)
     due = db.Column(db.DateTime)
     return_date = db.Column(db.DateTime)
-    checkout_status = db.Column(db.varchar, db.ForeignKey('statuses.checkout_status'))
+    checkout_status = db.Column(db.String, db.ForeignKey('statuses.checkout_status'))
 
     item = db.relationship('Item', backref='checkouts')
     user = db.relationship('User', backref='checkouts')
@@ -98,7 +98,17 @@ class Community_member(db.Model):
     def __repr__(self):
         return f'<Community Member member_id={self.community_member_id} user={self.user_id}>'
 
-def connect_to_db(flask_app, )
+def connect_to_db(flask_app, db_uri='postgresql:///closets', echo=True):
+    """connect to database"""
+
+    flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+    flask_app.config['SQLALCHEMY_ECHO'] = echo
+    flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print('Connected to the db!')
 
 if __name__ == '__main__':
     from server import app
