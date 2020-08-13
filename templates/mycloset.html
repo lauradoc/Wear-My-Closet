@@ -3,17 +3,18 @@
 {% block title %}Wear my Closet{% endblock %}
 
 {% block body %}
+<h3> Upload your closet</h3>
 
-  <h3> Upload your clothes</h3>
-
-  <div class="container-form-share">
-        <form method="POST"/ action="/demo" enctype="multipart/form-data" autocomplete="off">
-         <input type=file name="image-upload" class="form-control" id="image-upload" placeholder="Image">
-        <br>
-        <button type="submit" id="image-submit" value="submit" action="/image">Submit</button>
-        <br>  
-        </form>
-    <img src="{{ image }}" >
-    </div>
+<div>
+  <form method="POST" action="/mycloset" enctype="multipart/form-data">
+    <input type=file name="file" id="image" >
+    <input type="submit" value="Upload">
+  </form>
+<img src="{{ image }}">
+</div>
 
 {% endblock %}
+
+
+
+

@@ -11,18 +11,16 @@ class User(db.Model):
 
     __tablename__ = 'users'
 
-    email = db.Column(db.String, primary_key=True)
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     city = db.Column(db.String)
     lat = db.Column(db.Integer, nullable=True)
     lon = db.Column(db.Integer, nullable=True)
     phone = db.Column(db.Integer)
-    community_member_id = db.Column(db.Integer, db.ForeignKey('community_members.community_member_id'))
-
-    community_member = db.relationship('Community_member', backref='users')
 
     def __repr__(self):
-        return f'<User email={self.email}>'
+        return f'<User user_id={self.user_id}>'
 
 class Item(db.Model):
     """An item in a user's closet"""
@@ -30,7 +28,7 @@ class Item(db.Model):
     __tablename__ = 'items'
 
     item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.email'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     item_name = db.Column(db.String)
     image_name = db.Column(db.String)
     category = db.Column(db.String)
@@ -38,7 +36,7 @@ class Item(db.Model):
     user = db.relationship('User', backref='items')
 
     def __repr__(self):
-        return f'<Item item_id={self.item_id} user={self.email} name={self.item_name}>'
+        return f'<Item item_id={self.item_id} user={self.user_id} name={self.item_name}>'
 
 class Checkout(db.Model):
     """A checkout for a user to borrow items"""
@@ -47,7 +45,7 @@ class Checkout(db.Model):
 
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.email'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     checkout_date = db.Column(db.DateTime)
     due = db.Column(db.DateTime)
     return_date = db.Column(db.DateTime)
@@ -58,7 +56,7 @@ class Checkout(db.Model):
     status = db.relationship('Status', backref='checkouts')
 
     def __repr__(self):
-        return f'<Checkout checkout_id={self.checkout_id} user={self.email} item={self.item_id}>'
+        return f'<Checkout checkout_id={self.checkout_id} user={self.user_id} item={self.item_id}>'
 
 class Status(db.Model):
     """The status of an item out for checkout"""
@@ -89,13 +87,13 @@ class Community_member(db.Model):
 
     community_member_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     community_id = db.Column(db.Integer, db.ForeignKey('communities.community_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.email'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
     community = db.relationship('Community', backref='community_members')
     user = db.relationship('User', backref='community_members')
 
     def __repr__(self):
-        return f'<Community Member member_id={self.community_member_id} user={self.email}>'
+        return f'<Community Member member_id={self.community_member_id} user={self.user_id}>'
 
 def connect_to_db(flask_app, db_uri='postgresql:///closets', echo=True):
     """connect to database"""
