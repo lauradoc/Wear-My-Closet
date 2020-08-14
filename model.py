@@ -2,7 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy 
 
-from datetime import datetime
+from datetime import date
 
 db = SQLAlchemy()
 
@@ -17,7 +17,7 @@ class User(db.Model):
     city = db.Column(db.String)
     lat = db.Column(db.Integer, nullable=True)
     lon = db.Column(db.Integer, nullable=True)
-    phone = db.Column(db.Integer)
+    phone = db.Column(db.String)
 
     def __repr__(self):
         return f'<User user_id={self.user_id}>'
@@ -31,12 +31,22 @@ class Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     item_name = db.Column(db.String)
     image_name = db.Column(db.String)
-    category = db.Column(db.String)
+    category = db.Column(db.String, db.ForeignKey('categories.category_id'))
+    size = db.Column(db.String)
 
     user = db.relationship('User', backref='items')
+    category = db.relationship('Category', backref='items')
 
     def __repr__(self):
         return f'<Item item_id={self.item_id} user={self.user_id} name={self.item_name}>'
+
+class Category(db.Model):
+    """A category for a user's item"""
+
+    __tablename__ = 'categories'
+
+    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    category_name = db.Column(db.String)
 
 class Checkout(db.Model):
     """A checkout for a user to borrow items"""
@@ -46,9 +56,9 @@ class Checkout(db.Model):
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    checkout_date = db.Column(db.DateTime)
-    due = db.Column(db.DateTime)
-    return_date = db.Column(db.DateTime)
+    checkout_date = db.Column(db.Date)
+    due = db.Column(db.Date)
+    return_date = db.Column(db.Date)
     checkout_status = db.Column(db.String, db.ForeignKey('statuses.checkout_status'))
 
     item = db.relationship('Item', backref='checkouts')
@@ -95,7 +105,7 @@ class Community_member(db.Model):
     def __repr__(self):
         return f'<Community Member member_id={self.community_member_id} user={self.user_id}>'
 
-def connect_to_db(flask_app, db_uri='postgresql:///closets', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///closets', echo=False):
     """connect to database"""
 
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

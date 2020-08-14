@@ -14,19 +14,30 @@ def create_user(email, password, city, phone):
     return user
 
 
-def create_item(user_id, category, item_name, image_name):
+def create_item(user_id, item_name, image_name, category, size):
     """Create and return a new item."""
 
-    item = Item(user_id=user_id, category=category, item_name=item_name, image_name=image_name)
+    item = Item(user_id=user_id, item_name=item_name, image_name=image_name, category=category, size=size)
 
     db.session.add(item)
     db.session.commit()
 
     return item
 
+def create_category(category_name):
+    """Create and return a new category."""
+
+    db.session.add(category)
+    db.session.commit()
+
+    return category_name
+
 
 def create_status(status):
     """Create and return checkout status"""
+
+    db.session.add(status)
+    db.session.commit()
 
     return status
 
