@@ -1,6 +1,6 @@
 """CRUD operations. Utility functions for creating data"""
 
-from model import db, User, Item, Checkout, Status, Community, Community_member, connect_to_db
+from model import db, User, Category, Item, Checkout, Status, Community, CommunityMember, connect_to_db
 
 
 def create_user(email, password, city, phone):
@@ -13,33 +13,38 @@ def create_user(email, password, city, phone):
 
     return user
 
+def create_category(category_name):
+    """Create and return a new category."""
 
-def create_item(user_id, item_name, image_name, category, size):
+    category = Category(category_name=category_name) 
+    
+    db.session.add(category)
+    db.session.commit()
+
+    return category
+
+def create_item(user_id, item_name, image_name, category_name):
     """Create and return a new item."""
 
-    item = Item(user_id=user_id, item_name=item_name, image_name=image_name, category=category, size=size)
+    item = Item(user_id=user_id, item_name=item_name, image_name=image_name, category_name=category_name)
 
     db.session.add(item)
     db.session.commit()
 
     return item
 
-def create_category(category_name):
-    """Create and return a new category."""
 
-    db.session.add(category)
-    db.session.commit()
-
-    return category_name
-
-
-def create_status(status):
+def create_status(checkout_status):
     """Create and return checkout status"""
 
+    status = Status(checkout_status=checkout_status)
+
+   
     db.session.add(status)
     db.session.commit()
 
     return status
+
 
 def create_checkout(item_id, user_id, checkout_date, due, return_date, checkout_status):
     """Create and return checkout for item"""
@@ -66,7 +71,7 @@ def create_community(community_name, location):
 def create_community_member(community_id, user_id):
     """Create and return members of community"""
 
-    community_member = Community_member(community_id=community_id, user_id=user_id)
+    community_member = CommunityMember(community_id=community_id, user_id=user_id)
 
     db.session.add(community_member)
     db.session.commit()

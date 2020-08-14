@@ -14,9 +14,16 @@ app.jinja_env.undefined = StrictUndefined
 
 
 @app.route('/')
+def login():
+
+    return render_template('login.html')
+
+
+@app.route('/home')
 def homepage():
 
-    return render_template('home.html')
+    return render_template('homepage.html')
+
 
 @app.route('/mycloset')
 def my_closet():
@@ -31,6 +38,14 @@ def upload_image():
     image_url = api.upload_image(filename)
 
     return render_template('mycloset.html', image_url=image_url)
+
+
+@app.route('/communitycloset')
+
+
+
+@app.route('profile')
+
 
 
 if __name__ == '__main__':

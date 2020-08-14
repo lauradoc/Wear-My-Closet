@@ -20,7 +20,17 @@ class User(db.Model):
     phone = db.Column(db.String)
 
     def __repr__(self):
-        return f'<User user_id={self.user_id}>'
+        return f'<User user_id={self.user_id} email={self.email}>'
+
+
+class Category(db.Model):
+    """A category for a user's item"""
+
+    __tablename__ = 'categories'
+
+    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    category_name = db.Column(db.String, unique=True)
+
 
 class Item(db.Model):
     """An item in a user's closet"""
@@ -31,8 +41,8 @@ class Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     item_name = db.Column(db.String)
     image_name = db.Column(db.String)
-    category = db.Column(db.String, db.ForeignKey('categories.category_id'))
-    size = db.Column(db.String)
+    category_name = db.Column(db.String, db.ForeignKey('categories.category_name'))
+    # size = db.Column(db.String)
 
     user = db.relationship('User', backref='items')
     category = db.relationship('Category', backref='items')
@@ -40,13 +50,6 @@ class Item(db.Model):
     def __repr__(self):
         return f'<Item item_id={self.item_id} user={self.user_id} name={self.item_name}>'
 
-class Category(db.Model):
-    """A category for a user's item"""
-
-    __tablename__ = 'categories'
-
-    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    category_name = db.Column(db.String)
 
 class Checkout(db.Model):
     """A checkout for a user to borrow items"""
@@ -90,7 +93,7 @@ class Community(db.Model):
     def __repr__(self):
         return f'<Community community_id={self.community_id} name={self.community_name}>'
 
-class Community_member(db.Model):
+class CommunityMember(db.Model):
     """Identifies what community a user is in"""
 
     __tablename__ = 'community_members'
