@@ -1,6 +1,6 @@
 """CRUD operations. Utility functions for creating data"""
 
-from model import db, User, Item, Checkout, Status, Community, Community_member, connect_to_db
+from model import db, User, Category, Item, Checkout, Status, Community, Community_member, connect_to_db
 
 
 def create_user(email, password, city, phone):
@@ -12,6 +12,17 @@ def create_user(email, password, city, phone):
     db.session.commit()
 
     return user
+
+
+def create_category(category_name):
+    """Create and return category name."""
+
+    category_name = Category(category_name=category_name)
+
+    db.session.add(category_name)
+    db.session.commit()
+
+    return category_name
 
 
 def create_item(user_id, category, item_name, image_name):

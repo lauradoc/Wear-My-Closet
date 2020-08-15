@@ -1,0 +1,57 @@
+
+[
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "tops"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "bottoms"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "jackets & coats"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "sweaters"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "shoes"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "dresses"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "accessories"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "tops"
+    },
+    {
+        "user_id": [1,2,3,4,5,6,7,8,9,10],
+        "item_name": "TBD",
+        "image_name": "TBD",
+        "category_name": "bottoms"
+    }
+]

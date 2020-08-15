@@ -1,0 +1,12 @@
+
+[
+    {
+        "checkout_status": "In"
+    },
+    {
+        "checkout_status": "Out"
+    },
+    {
+        "checkout_status": "Late"
+    },
+]
