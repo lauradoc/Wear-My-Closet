@@ -11,18 +11,28 @@ class User(db.Model):
 
     __tablename__ = 'users'
 
-    email = db.Column(db.String, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key, autoincrement=True)
+    email = db.Column(db.String)
     password = db.Column(db.String)
     city = db.Column(db.String)
     lat = db.Column(db.Integer, nullable=True)
     lon = db.Column(db.Integer, nullable=True)
     phone = db.Column(db.Integer)
-    community_member_id = db.Column(db.Integer, db.ForeignKey('community_members.community_member_id'))
-
-    community_member = db.relationship('Community_member', backref='users')
+    community_member_id = db.Column(db.Integer)
 
     def __repr__(self):
-        return f'<User email={self.email}>'
+        return f'<User user_id={self.user_id} email={self.email}>'
+
+
+class Category(db.Model):
+    """A category to organize items by"""
+
+    __tablename__ = 'categories'
+
+    category_name = db.Column(db.String, primary_key=True)
+
+    def __repr__(self):
+        return f'<Category category_name={self.category_name}>'
 
 class Item(db.Model):
     """An item in a user's closet"""
@@ -30,12 +40,13 @@ class Item(db.Model):
     __tablename__ = 'items'
 
     item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.email'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     item_name = db.Column(db.String)
     image_name = db.Column(db.String)
-    category = db.Column(db.String)
+    category = db.Column(db.String, db.ForeignKey('categories.category_name'))
 
     user = db.relationship('User', backref='items')
+    category = db.relationship('Category', backref='items')
 
     def __repr__(self):
         return f'<Item item_id={self.item_id} user={self.email} name={self.item_name}>'
@@ -47,10 +58,10 @@ class Checkout(db.Model):
 
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.email'))
-    checkout_date = db.Column(db.DateTime)
-    due = db.Column(db.DateTime)
-    return_date = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    checkout_date = db.Column(db.Date)
+    due = db.Column(db.Date)
+    return_date = db.Column(db.Date)
     checkout_status = db.Column(db.String, db.ForeignKey('statuses.checkout_status'))
 
     item = db.relationship('Item', backref='checkouts')
@@ -89,7 +100,7 @@ class Community_member(db.Model):
 
     community_member_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     community_id = db.Column(db.Integer, db.ForeignKey('communities.community_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.email'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
     community = db.relationship('Community', backref='community_members')
     user = db.relationship('User', backref='community_members')
