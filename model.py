@@ -11,13 +11,13 @@ class User(db.Model):
 
     __tablename__ = 'users'
 
-    user_id = db.Column(db.Integer, primary_key, autoincrement=True)
+    user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String)
     password = db.Column(db.String)
     city = db.Column(db.String)
     lat = db.Column(db.Integer, nullable=True)
     lon = db.Column(db.Integer, nullable=True)
-    phone = db.Column(db.Integer)
+    phone = db.Column(db.String)
     community_member_id = db.Column(db.Integer)
 
     def __repr__(self):
@@ -29,7 +29,7 @@ class Category(db.Model):
 
     __tablename__ = 'categories'
 
-    category_name = db.Column(db.String, primary_key=True)
+    category_name = db.Column(db.String, primary_key=True, unique=True)
 
     def __repr__(self):
         return f'<Category category_name={self.category_name}>'
@@ -43,7 +43,7 @@ class Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     item_name = db.Column(db.String)
     image_name = db.Column(db.String)
-    category = db.Column(db.String, db.ForeignKey('categories.category_name'))
+    category_name = db.Column(db.String, db.ForeignKey('categories.category_name'))
 
     user = db.relationship('User', backref='items')
     category = db.relationship('Category', backref='items')
@@ -76,7 +76,7 @@ class Status(db.Model):
 
     __tablename__ = 'statuses'
 
-    checkout_status = db.Column(db.String, primary_key=True)
+    checkout_status = db.Column(db.String, primary_key=True, unique=True)
 
     def __repr__(self):
         return f'<Status checkout_status={self.checkout_status}>'

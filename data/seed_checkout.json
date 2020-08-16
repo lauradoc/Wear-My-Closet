@@ -1,12 +1,18 @@
 
 [
     {
+        "item_id": 1,
+        "user_id": 1,
         "checkout_status": "In"
     },
     {
+        "item_id": 2,
+        "user_id": 2,
         "checkout_status": "Out"
     },
     {
+        "item_id": 3,
+        "user_id": 3,
         "checkout_status": "Late"
     }
 ]

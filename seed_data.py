@@ -45,15 +45,16 @@ def seed_category():
 
 seed_category()
 
+
 def seed_status():
 
     with open('data/seed_status.json') as f:
         status_data = json.loads(f.read())
 
     for status in status_data:
-        status_name = status['checkout_status']
+        checkout_status = status['checkout_status']
 
-        new_status = crud.create_status(status_name)
+        new_status = crud.create_status(checkout_status)
 
 seed_status()
 
@@ -67,7 +68,7 @@ def seed_items():
         user_id = choice(item['user_id'])
         item_name = item['item_name']
         image_name = item['image_name']
-        category_name = item['category']
+        category_name = item['category_name']
 
         new_item = crud.create_item(user_id, item_name, image_name, category_name)
 

@@ -25,10 +25,10 @@ def create_category(category_name):
     return category_name
 
 
-def create_item(user_id, category, item_name, image_name):
+def create_item(user_id, item_name, image_name, category_name):
     """Create and return a new item."""
 
-    item = Item(user_id=user_id, category=category, item_name=item_name, image_name=image_name)
+    item = Item(user_id=user_id, item_name=item_name, image_name=image_name, category_name=category_name)
 
     db.session.add(item)
     db.session.commit()
@@ -36,10 +36,15 @@ def create_item(user_id, category, item_name, image_name):
     return item
 
 
-def create_status(status):
+def create_status(checkout_status):
     """Create and return checkout status"""
 
-    return status
+    checkout_status = Status(checkout_status=checkout_status)
+
+    db.session.add(checkout_status)
+    db.session.commit()
+
+    return checkout_status
 
 def create_checkout(item_id, user_id, checkout_date, due, return_date, checkout_status):
     """Create and return checkout for item"""
