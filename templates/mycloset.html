@@ -7,11 +7,23 @@
   <h3> Upload your clothes</h3>
 
   <div class="container-form-share">
-        <form method="POST"/ action="/mycloset" enctype="multipart/form-data" autocomplete="off">
-         <input type=file name="file" class="form-control" id="image-upload" placeholder="Image">
-        <br>
-        <button type="submit" id="upload-image" value="submit" action="/mycloset">Upload</button>
-        <br>  
+        <form method="POST"/ action="/mycloset" enctype="multipart/form-data">
+          <input type=file name="file" class="form-control" id="image-upload">
+          <br>
+          <label>Item Name </label><input method="POST" type="text" name="item_name">
+          <br>
+          Select a category:
+          <select name="category">
+            <option value="tops">Tops</option>
+            <option value="bottoms">Bottoms</option>
+            <option value="dresses">Dresses</option>
+            <option value="jackets & coats">Jackets & Coats</option>
+            <option value="sweaters">Sweaters</option>
+            <option value="shoes">Shoes</option>
+            <option value="accessories">Accessories</option>
+          </select>
+          <button type="submit" id="upload-image" value="submit" action="/mycloset">Upload</button>
+          <br>  
         </form>
     <img src="{{ image_url }}" >
     </div>

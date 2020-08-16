@@ -32,9 +32,6 @@ def upload_image():
 
     return render_template('mycloset.html', image_url=image_url)
 
-#def init function to create users
-
-#def init function to create items
 
 
 if __name__ == '__main__':
