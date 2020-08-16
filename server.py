@@ -3,7 +3,7 @@
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
 import crud
-# import api
+import api
 
 from jinja2 import StrictUndefined
 
@@ -15,7 +15,22 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def homepage():
 
-    return render_template('home.html')
+    return render_template('login.html')
+
+
+@app.route('/mycloset')
+def my_closet():
+
+    return render_template('mycloset.html')
+
+
+@app.route('/mycloset', methods=['POST'])
+def upload_image():
+    filename = request.files.get('file')
+    if filename:
+        image_url = api.upload_closet_image(filename)
+
+    return render_template('mycloset.html', image_url=image_url)
 
 #def init function to create users
 

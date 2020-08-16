@@ -1,3 +1,4 @@
+
 from flask import (Flask, render_template, request, flash, session, redirect, url_for)
 import requests
 import os
@@ -19,13 +20,14 @@ cloudinary.config(
 )
 
 @app.route('/mycloset', methods=['POST'])
-def my_closet():
-    filename = request.files.get('image-upload')
+def upload_closet_image(file):
+
+    filename = request.files.get('file')
     if filename:
         response = cloudinary.uploader.upload(filename) 
-        image = response['secure_url']
+        image_url = response['secure_url']
 
-    return render_template('mycloset.html', image=image)
+    return render_template('mycloset.html', image_url=image_url)
 
 
 if __name__ == '__main__':

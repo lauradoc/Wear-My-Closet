@@ -7,13 +7,19 @@
   <h3> Upload your clothes</h3>
 
   <div class="container-form-share">
-        <form method="POST"/ action="/demo" enctype="multipart/form-data" autocomplete="off">
-         <input type=file name="image-upload" class="form-control" id="image-upload" placeholder="Image">
+        <form method="POST"/ action="/mycloset" enctype="multipart/form-data" autocomplete="off">
+         <input type=file name="file" class="form-control" id="image-upload" placeholder="Image">
         <br>
-        <button type="submit" id="image-submit" value="submit" action="/image">Submit</button>
+        <button type="submit" id="upload-image" value="submit" action="/mycloset">Upload</button>
         <br>  
         </form>
-    <img src="{{ image }}" >
+    <img src="{{ image_url }}" >
     </div>
+
+  <h3> What's in your closet: </h3>
+
+  <div class="image-library">
+    <img src="https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg">
+    <img src="https://res.cloudinary.com/lowdock/image/upload/v1597343686/axubpvppdrxrb0crikt8.jpg">
 
 {% endblock %}
