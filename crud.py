@@ -41,6 +41,11 @@ def create_item(user_id, item_name, image_name, category_name):
 
     return item
 
+def get_item_by_item_name(item_name):
+    """takes in item name and return item if exists, otherwise returns none"""
+
+    return Item.query.filter_by(item_name = item_name).first()
+
 
 def create_status(checkout_status):
     """Create and return checkout status"""
