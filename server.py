@@ -70,22 +70,22 @@ def my_closet():
 @app.route('/mycloset', methods=['POST'])
 def upload_item():
 
-    item_name = request.form.get('item_name') 
     category_name = request.form.get('category')   
-    image_name = request.files.get('file')
+    item_name = request.files.get('file')
+    print(item_name)
 
-    new_item = crud.create_item(item_name, image_name, category_name)
+    if item_name:
+        item_upload = api.upload_closet_image(item_name)
 
-    if image_name:
-        image_url = api.upload_closet_image(image_name)
+        # new_item = crud.create_item(user_id, item_name, image_url, category_name)
 
     return render_template('mycloset.html', image_url=image_url)
 
 
-# @app.route('/communitycloset')
-# def community_closet():
+@app.route('/communitycloset')
+def community_closet():
 
-#     return render_template('communitycloset.html')
+    return render_template('communitycloset.html')
 
 @app.route("/logout")
 def logout_user():

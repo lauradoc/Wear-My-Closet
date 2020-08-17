@@ -42,7 +42,7 @@ class Item(db.Model):
     item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     item_name = db.Column(db.String)
-    image_name = db.Column(db.String)
+    image_url = db.Column(db.String)
     category_name = db.Column(db.String, db.ForeignKey('categories.category_name'))
 
     user = db.relationship('User', backref='items')

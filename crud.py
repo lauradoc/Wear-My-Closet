@@ -31,10 +31,10 @@ def create_category(category_name):
     return category_name
 
 
-def create_item(user_id, item_name, image_name, category_name):
+def create_item(user_id, item_name, image_url, category_name):
     """Create and return a new item."""
 
-    item = Item(user_id=user_id, item_name=item_name, image_name=image_name, category_name=category_name)
+    item = Item(user_id=user_id, item_name=item_name, image_url=image_url, category_name=category_name)
 
     db.session.add(item)
     db.session.commit()

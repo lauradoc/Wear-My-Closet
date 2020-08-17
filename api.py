@@ -22,14 +22,15 @@ cloudinary.config(
 @app.route('/mycloset', methods=['POST'])
 def upload_closet_image(file):
 
-    image_name = request.files.get('file')
+    item_name = request.files.get('file')
     # item_name = request.form.get('item_name')
     # if item_name is None:
     #     pass
     # public_id = item_name.replace(' ', '')
-    if image_name:
-        response = cloudinary.uploader.upload(image_name) 
+    if item_name:
+        response = cloudinary.uploader.upload(item_name) 
         image_url = response['secure_url']
+        print(image_url)
 
     return render_template('mycloset.html', image_url=image_url)
 
