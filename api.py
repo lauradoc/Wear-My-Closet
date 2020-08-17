@@ -2,6 +2,7 @@
 from flask import (Flask, render_template, request, flash, session, redirect, url_for)
 import requests
 import os
+import crud
 
 import cloudinary 
 import cloudinary.uploader
@@ -32,6 +33,14 @@ def upload_closet_image(file):
         image_url = response['secure_url']
 
     return image_url
+
+@app.route('/mycloset', methods=['POST'])
+def view_closet():
+    
+    user = session.get('user_id')
+    all_items = crud.get_items_by_user(user)
+
+    return all_items
 
 
 if __name__ == '__main__':

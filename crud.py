@@ -44,8 +44,15 @@ def create_item(user_id, item_name, image_url, category_name):
 def get_item_by_item_name(item_name):
     """takes in item name and return item if exists, otherwise returns none"""
 
-    return Item.query.filter_by(item_name = item_name).first()
+    return Item.query.filter_by(item_name=item_name).first()
 
+def get_items_by_user(user_id):
+    """takes in user_id and returns urls of all items under that user"""
+
+    all_item_urls = db.session.query(Item.image_url)
+    user_items = all_item_urls.filter(Item.user_id==user_id)
+
+    return user_items.all()
 
 def create_status(checkout_status):
     """Create and return checkout status"""

@@ -64,8 +64,12 @@ def show_homepage():
 
 @app.route('/mycloset')
 def my_closet():
-
-    return render_template('mycloset.html')
+    
+    if 'email' in session:
+        return render_template('mycloset.html')
+    else:
+        flash(u'Need to be logged in to view "My Closet" page', 'login-error')
+        return redirect('/')
 
 
 @app.route('/mycloset', methods=['POST'])
@@ -80,8 +84,10 @@ def upload_item():
         image_url = api.upload_closet_image(item)
         item_name = request.form.get('item_name')
         new_item = crud.create_item(user_id, item_name, image_url, category_name)
+    
+    closet = api.view_closet()
 
-    return render_template('mycloset.html', image_url=image_url)
+    return render_template('mycloset.html', image_url=image_url, closet=closet)
 
 
 @app.route('/communitycloset')

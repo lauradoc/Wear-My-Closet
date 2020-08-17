@@ -9,17 +9,7 @@
   <form action="/home" method="POST">
     <p>
       Email <input type="text" name="email">
-      {% with errors = get_flashed_messages(category_filter=["email-success"]) %}
-      {% if errors %}
-      <div class="alert-message block-message error">
-        {%- for msg in errors %}
-          <div> <b> {{ msg }}</b></div>
-          {% endfor -%}
-      </div>
-      {% endif %}
-      {% endwith %}
     </p>
-
     <p> 
       Password <input type="password" name="password">
       {% with errors = get_flashed_messages(category_filter=["password-error"]) %}
@@ -31,8 +21,16 @@
       </div>
       {% endif %}
       {% endwith %}
+      {% with errors = get_flashed_messages(category_filter=["login-error"]) %}
+      {% if errors %}
+      <div class="alert-message block-message error">
+        {%- for msg in errors %}
+          <div> <b> {{ msg }}</b></div>
+          {% endfor -%}
+      </div>
+      {% endif %}
+      {% endwith %}
     </p>
-
     <p>
       <input type="submit">
     </p>

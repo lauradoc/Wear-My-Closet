@@ -34,6 +34,11 @@
   <h3> What's in your closet: </h3>
 
   <div class="image-library">
+    <p>
+    {% for item in closet %}
+      <img src={{ item }}>
+    <p>
+    {% endfor %}
     <img src="https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg">
     <img src="https://res.cloudinary.com/lowdock/image/upload/v1597343686/axubpvppdrxrb0crikt8.jpg">
 
