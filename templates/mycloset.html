@@ -7,26 +7,31 @@
   <h3> Upload your clothes</h3>
 
   <div class="container-form-share">
-        <form method="POST"/ action="/mycloset" enctype="multipart/form-data">
-          <input type=file name="file" class="form-control" id="image-upload">
-          <br>
-          <label>Item Name </label><input method="POST" type="text" name="item_name">
-          <br>
-          Select a category:
-          <select name="category">
-            <option value="tops">Tops</option>
-            <option value="bottoms">Bottoms</option>
-            <option value="dresses">Dresses</option>
-            <option value="jackets & coats">Jackets & Coats</option>
-            <option value="sweaters">Sweaters</option>
-            <option value="shoes">Shoes</option>
-            <option value="accessories">Accessories</option>
-          </select>
-          <button type="submit" id="upload-image" value="submit" action="/mycloset">Upload</button>
-          <br>  
-        </form>
-    <img src="{{ image_url }}" >
+    <form method="POST"/ action="/mycloset" enctype="multipart/form-data">
+      <input type=file name="file" class="form-control" id="image-upload">
+      <br>
+      <label>Item Name </label><input method="POST" type="text" name="item_name">
+      <br>
+      Select a category:
+      <select name="category">
+        <option value="tops">Tops</option>
+        <option value="bottoms">Bottoms</option>
+        <option value="dresses">Dresses</option>
+        <option value="jackets & coats">Jackets & Coats</option>
+        <option value="sweaters">Sweaters</option>
+        <option value="shoes">Shoes</option>
+        <option value="accessories">Accessories</option>
+      </select>
+      <br>
+      <button type="submit" id="upload-item" action="/mycloset">Upload</button>
+      <br>  
+      
+    </form>
+<!--     <div method="POST" action="/mycloset" name="mycloset">
+
+ -->
     </div>
+  </div>
 
   <h3> What's in your closet: </h3>
 
@@ -34,4 +39,5 @@
     <img src="https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg">
     <img src="https://res.cloudinary.com/lowdock/image/upload/v1597343686/axubpvppdrxrb0crikt8.jpg">
 
+  <script src="/static/js/uploadPhotos.js"></script>
 {% endblock %}

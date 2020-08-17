@@ -23,6 +23,10 @@ cloudinary.config(
 def upload_closet_image(file):
 
     filename = request.files.get('file')
+    # item_name = request.form.get('item_name')
+    # if item_name is None:
+    #     pass
+    # public_id = item_name.replace(' ', '')
     if filename:
         response = cloudinary.uploader.upload(filename) 
         image_url = response['secure_url']

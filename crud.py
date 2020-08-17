@@ -14,6 +14,12 @@ def create_user(email, password, city, phone):
     return user
 
 
+def get_user_by_email(email):
+    """takes in email and returns user if exists, otherwise returns none"""
+
+    return User.query.filter_by(email = email).first()
+
+
 def create_category(category_name):
     """Create and return category name."""
 
