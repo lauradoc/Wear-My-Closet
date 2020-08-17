@@ -21,7 +21,7 @@ def homepage():
     return render_template('login.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def user_home():
 
     email = request.form.get('email')
@@ -39,7 +39,7 @@ def user_home():
         flash(u'Log in failed. Try again.', 'password-error')
         return redirect('/')
 
-@app.route('/register', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def create_account():
 
     email = request.form.get('new_email')
@@ -70,14 +70,15 @@ def my_closet():
 @app.route('/mycloset', methods=['POST'])
 def upload_item():
 
+    # import pdb; pdb.set_trace()
     category_name = request.form.get('category')   
-    item_name = request.files.get('file')
-    print(item_name)
+    item = request.files.get('file')
+    user_id = session.get('user_id')
 
-    if item_name:
-        item_upload = api.upload_closet_image(item_name)
-
-        # new_item = crud.create_item(user_id, item_name, image_url, category_name)
+    if item:
+        image_url = api.upload_closet_image(item)
+        item_name = request.form.get('item_name')
+        new_item = crud.create_item(user_id, item_name, image_url, category_name)
 
     return render_template('mycloset.html', image_url=image_url)
 
