@@ -6,9 +6,18 @@
   <h1>Welcome!</h1>
 
   <h3>Log In</h3>
-  <form action="/login" method="POST">
+  <form action="/home" method="POST">
     <p>
       Email <input type="text" name="email">
+      {% with errors = get_flashed_messages(category_filter=["email-success"]) %}
+      {% if errors %}
+      <div class="alert-message block-message error">
+        {%- for msg in errors %}
+          <div> <b> {{ msg }}</b></div>
+          {% endfor -%}
+      </div>
+      {% endif %}
+      {% endwith %}
     </p>
 
     <p> 
@@ -31,7 +40,7 @@
 
   <h2>Don't have an account yet?</h2>
   <h3> Fill out this form to get started!</h3>
-  <form action="/register" method="POST">
+  <form action="/" method="POST">
     <p>
       Email <input type="text" name="new_email">
     </p>

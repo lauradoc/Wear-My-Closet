@@ -12,34 +12,7 @@ app.secret_key = "closet"
 app.jinja_env.undefined = StrictUndefined
 
 
-@app.route('/')
-def homepage():
-
-    if 'email' in session:
-        return redirect('/home')
-
-    return render_template('login.html')
-
-
-@app.route('/home', methods=['POST'])
-def user_home():
-
-    email = request.form.get('email')
-    password = request.form.get('password')
-    user = crud.get_user_by_email(email)
-    
-    if password in user.password:
-        flash(u'Logged in!', 'email-success')
-        session['email'] = user.email
-        session['user_id'] = user.user_id
-        print(session['email'], session['user_id'])
-        return redirect('/home')
-
-    else:
-        flash(u'Log in failed. Try again.', 'password-error')
-        return redirect('/')
-
-@app.route('/home', methods=['POST'])
+@app.route('/', methods=['POST'])
 def create_account():
 
     email = request.form.get('new_email')
@@ -53,7 +26,35 @@ def create_account():
     session['user_id'] = user.user_id
     print(session['email'], session['user_id'])
 
-    return redirect('/home')
+    return redirect('/')
+
+@app.route('/')
+def login():
+    # email = request.form.get('email')
+
+    # if email in session:
+    #     return redirect('/home', email=email)
+    
+    return render_template('login.html')
+
+@app.route('/home', methods=['POST'])
+def user_home():
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+    user = crud.get_user_by_email(email)
+    
+    if password in user.password:
+        flash(u'Logged in!', 'email-success')
+        session['email'] = user.email
+        session['user_id'] = user.user_id
+        print(session['email'], session['user_id'])
+        return render_template('home.html', email=email)
+
+    else:
+        flash(u'Log in failed. Try again.', 'password-error')
+        return redirect('/')
+
 
 @app.route('/home')
 def show_homepage():
