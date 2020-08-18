@@ -13,7 +13,6 @@ def create_user(email, password, city, phone):
 
     return user
 
-
 def get_user_by_email(email):
     """takes in email and returns user if exists, otherwise returns none"""
     

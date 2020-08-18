@@ -79,8 +79,6 @@ def my_closet():
 def upload_item():
     # import pdb; pdb.set_trace()  
     item = request.files.get('file')
-    print(item)
-    print(request)
     closet = crud.get_items_by_user(session['user_id'])
     if item:
         image_url = api.upload_closet_image(item)
@@ -104,9 +102,17 @@ def community_closet():
 
 
 @app.route('/myaccount')
-def checkout():
+def account_details():
+    user = crud.get_user_by_email(session['email'])
+    user_id = user.user_id
+    email = user.email
+    city = user.city
+    phone = user.phone
 
-    return render_template('profile.html')
+    return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone)
+
+# @app.route('/myaccount')
+# def 
 
 @app.route("/logout")
 def logout_user():
