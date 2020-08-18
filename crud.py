@@ -54,6 +54,7 @@ def get_items_by_user(user_id):
 
     return user_items.all()
 
+
 def create_status(checkout_status):
     """Create and return checkout status"""
 

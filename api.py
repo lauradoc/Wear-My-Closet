@@ -20,10 +20,9 @@ cloudinary.config(
   api_secret = cloudinary_api_secret  
 )
 
-@app.route('/mycloset', methods=['POST'])
-def upload_closet_image(file):
+def upload_closet_image(item):
 
-    item = request.files.get('file')
+    # item = request.files.get('file')
     # item_name = request.form.get('item_name')
     # if item_name is None:
     #     pass
@@ -33,14 +32,6 @@ def upload_closet_image(file):
         image_url = response['secure_url']
 
     return image_url
-
-@app.route('/mycloset', methods=['POST'])
-def view_closet():
-    
-    user = session.get('user_id')
-    all_items = crud.get_items_by_user(user)
-
-    return all_items
 
 
 if __name__ == '__main__':

@@ -8,5 +8,16 @@
 <body>
   <h1>Wear My Closet</h1>
   {% block body %} {% endblock %}
+  <p>
+  {% with errors = get_flashed_messages(category_filter=["password-error"]) %}
+      {% if errors %}
+      <div class="alert-message block-message error">
+        {%- for msg in errors %}
+          <div> <b> {{ msg }}</b></div>
+        {% endfor -%}
+      </div>
+      {% endif %}
+  {% endwith %}
+  </p>
 </body>
 </html>

@@ -65,12 +65,12 @@ def seed_items():
         items_data = json.loads(f.read())
 
     for item in items_data:
-        user_id = choice(item['user_id'])
+        user_id = item['user_id']
         item_name = item['item_name']
-        image_name = item['image_name']
+        image_url = item['image_url']
         category_name = item['category_name']
 
-        new_item = crud.create_item(user_id, item_name, image_name, category_name)
+        new_item = crud.create_item(user_id, item_name, image_url, category_name)
 
 seed_items()
 
