@@ -7,4 +7,28 @@
 
 {% endblock %}
 
+<h2></h2>
+<form action="/communitycloset" method="POST">
+    Select your community!
+    <select name="communities">
+        {% for community in communities %}
+        <option value="{{ community }}">{{ community }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <button type="submit" id="upload-item" action="/mycloset">Upload</button>
+    <br> 
+</form>
 
+<h2>Create a community here:</h2>
+  <form action="/communitycloset" method="POST">
+    <p>
+      Community Name <input type="text" name="community_name">
+    </p>
+    <p>
+      Location <input type="password" name="location">
+    </p>
+    <p>
+      <input type="submit">
+    </p>
+  </form>

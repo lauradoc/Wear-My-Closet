@@ -85,6 +85,11 @@ def create_community(community_name, location):
 
     return community
 
+def get_all_communities(community):
+    """Return all communities in db"""
+
+    return Community.query.all()
+
 
 def create_community_member(community_id, user_id):
     """Create and return members of community"""

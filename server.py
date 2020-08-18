@@ -94,11 +94,10 @@ def upload_item():
 
     return redirect('/mycloset')
 
-@app.route('/communitycloset')
-def community_closet():
+# @app.route('/communitycloset')
+# def community_closet():
 
-
-    return render_template('communitycloset.html')
+#     return render_template('communitycloset.html')
 
 
 @app.route('/myaccount')
@@ -111,8 +110,27 @@ def account_details():
 
     return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone)
 
+@app.route('/communitycloset', methods=['POST'])
+def create_community():
+    community_name = request.form.get('community_name')
+    location = request.form.get('location')
+    communities = crud.get_all_communities()
+
+    if community_name:
+        new_community = crud.create_community(community_name, location)
+        communities.append(new_community)
+
+    return render_template('communitycloset.html', communities=communities)
+
+
 # @app.route('/myaccount')
-# def 
+# def my_items():
+#     closet = crud.get_items_by_user(session['user_id'])
+
+#     return render_template('account.html', closet=closet)
+
+# @app.route('/myaccount')
+# def my_checkouts():
 
 @app.route("/logout")
 def logout_user():
