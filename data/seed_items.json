@@ -26,32 +26,32 @@
     },
     {
         "user_id": 5,
-        "item_name": "TBD",
-        "image_url": "TBD",
+        "item_name": "pinterest_sandals",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597689897/fmt7irnj7u9kxcwl8svx.jpg",
         "category_name": "shoes"
     },
     {
         "user_id": 6,
-        "item_name": "TBD",
-        "image_url": "TBD",
+        "item_name": "yellow_dress",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597343686/axubpvppdrxrb0crikt8.jpg",
         "category_name": "dresses"
     },
     {
         "user_id": 7,
-        "item_name": "TBD",
-        "image_url": "TBD",
+        "item_name": "pinterest_earrings",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597758473/gjqag3r1mjejh1wa4dlb.jpg",
         "category_name": "accessories"
     },
     {
         "user_id": 8,
-        "item_name": "TBD",
-        "image_url": "TBD",
-        "category_name": "tops"
+        "item_name": "pinterest_dress",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539755/px0lvkqib72itzpok0uo.jpg",
+        "category_name": "dresses"
     },
     {
         "user_id": 9,
-        "item_name": "TBD",
-        "image_url": "TBD",
+        "item_name": "colorful_pants",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg",
         "category_name": "bottoms"
     },
     {

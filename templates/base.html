@@ -6,8 +6,14 @@
   <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 <body>
-  <h1>Wear My Closet</h1>
-  {% block body %} {% endblock %}
+  {% block body %} 
+  <h3>Wear My Closet</h3>
+  <br>
+  <a type="buttom" id="mycloset-buttom" href="/mycloset">My Closet</a>
+  <br>
+  <a type="button" id="checkout-button" href="/checkout">Checkout</a>
+  <br>
+  <a type="button" id="logout-button" href="/logout">Logout</a>
   <p>
   {% with errors = get_flashed_messages(category_filter=["password-error"]) %}
       {% if errors %}
@@ -19,5 +25,8 @@
       {% endif %}
   {% endwith %}
   </p>
+  <a></a>
+  <script src="/static/js/uploadPhotos.js"></script>
+  {% endblock %}
 </body>
 </html>

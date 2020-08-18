@@ -10,7 +10,7 @@
     <form method="POST"/ action="/mycloset" id="upload-item-form" enctype="multipart/form-data">
       <input type=file name="file" class="form-control" id="image-upload">
       <br>
-      <input type=text name="item_name">Item Name
+      <input type=text name="item_name" id="item-field">Item Name
       <br>
       Select a category:
       <select name="category">
@@ -26,19 +26,17 @@
       <button type="submit" id="upload-item" action="/mycloset">Upload</button>
       <br> 
     </form>
-<!--     <div method="POST" action="/mycloset" name="mycloset">
-
- -->
   </div>
 
   <h3> What's in your closet: </h3>
-
   <div class="image-library">
     <p>
-      {% for url in closet %}
-        <img src={{ url }}>
+      {% for item in closet %}
+        {% for url in item %}
+          <img src={{ url }}>
+        {% endfor %}
       {% endfor %}
     </p>
-
+  </div>
   <script src="/static/js/uploadPhotos.js"></script>
 {% endblock %}

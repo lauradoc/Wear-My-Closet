@@ -19,9 +19,10 @@
 $('#upload-item-form').on('submit', (evt) => {
     evt.preventDefault();
 
-    const formValues = $('#upload-item-form').serialize();
-
+    const formValues = {
+        item_name: $('#item-field').val()
+    };
     $.post('/mycloset', formValues, (res) => {
-        alert(`${response.item_name} has been added to your closet`);
+        alert(`${res.item_name} has been added to your closet`);
     });
 });

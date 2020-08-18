@@ -12,6 +12,12 @@ app.secret_key = "closet"
 app.jinja_env.undefined = StrictUndefined
 
 
+@app.route('/')
+def login():
+    
+    return render_template('login.html')
+
+
 @app.route('/newuser', methods=['POST'])
 def create_account():
 
@@ -19,46 +25,35 @@ def create_account():
     password = request.form.get('new_password')
     city = request.form.get('city')
     phone = request.form.get('phone')
+    user = crud.get_user_by_email(email)
 
-    user = crud.create_user(email, password, city, phone)
+    if user:
+        flash('Email already exists. Please make an account with a different email')
 
-    session['email'] = user.email
-    session['user_id'] = user.user_id
-    print(session['email'], session['user_id'])
+    else:
+        user = crud.create_user(email, password, city, phone)
+        session['email'] = user.email
+        session['user_id'] = user.user_id
+        flash('Your account was created successfully! You can now log in.')
 
     return redirect('/')
 
-@app.route('/')
-def login():
-    # email = request.form.get('email')
 
-    # if email in session:
-    #     return redirect('/home', email=email)
-    
-    return render_template('login.html')
-
-@app.route('/login', methods=['POST'])
+@app.route('/login')
 def handle_login():
+    """Check to see if password matches and log user in"""
 
-    email = request.form.get('email')
-    password = request.form.get('password')
+    email = request.args.get('email')
+    password = request.args.get('password')
     user = crud.get_user_by_email(email)
-    
-    if email in user.email:
-        flash(u'Logged in!', 'email-success')
-        session['email'] = user.email
-        session['user_id'] = user.user_id
-        print(session['email'], session['user_id'])
-        return render_template('home.html', email=email)
 
     if password in user.password:
         flash(u'Logged in!', 'email-success')
         session['email'] = user.email
         session['user_id'] = user.user_id
-        print(session['email'], session['user_id'])
         return render_template('home.html', email=email)
 
-    else:
+    else:        
         flash(u'Log in failed. Try again.', 'password-error')
         return redirect('/')
 
@@ -69,37 +64,37 @@ def show_homepage():
     return render_template('home.html')
 
 
-@app.route('/mycloset')
-def my_closet():
+# @app.route('/mycloset')
+# def my_closet():
     
-    if 'user_id' in session:
-        closet = crud.get_items_by_user(session['user_id'])
-        return render_template('mycloset.html', closet=closet)
+#     if 'user_id' in session:
+#         closet = crud.get_items_by_user(session['user_id'])
+#         return render_template('mycloset.html', closet=closet)
 
-    else:
-        flash(u'Need to be logged in to view "My Closet" page', 'login-error')
-        return redirect('/')
+#     else:
+#         flash(u'Need to be logged in to view "My Closet" page', 'login-error')
+#         return redirect('/')
 
-@app.route('/mycloset', methods=['POST'])
+@app.route('/mycloset', methods=['GET', 'POST'])
 def upload_item():
-
     # import pdb; pdb.set_trace()  
     item = request.files.get('file')
+    print(item)
     closet = crud.get_items_by_user(session['user_id'])
-
+    print(closet)
     if item:
         image_url = api.upload_closet_image(item)
         item_name = request.form.get('item_name')
         category_name = request.form.get('category') 
         user_id = session.get('user_id')
         closet.append(image_url)
-
+        
         new_item = crud.create_item(user_id, item_name, image_url, category_name)
     
     else:
         image_url = None
-        
-    return render_template('mycloset.html', item_name=item_name, image_url=image_url, closet=closet)
+
+    return render_template('mycloset.html', closet=closet)
 
 @app.route('/communitycloset')
 def community_closet():
