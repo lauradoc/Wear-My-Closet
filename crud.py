@@ -85,7 +85,7 @@ def create_community(community_name, location):
 
     return community
 
-def get_all_communities(community):
+def get_all_communities():
     """Return all communities in db"""
 
     return Community.query.all()

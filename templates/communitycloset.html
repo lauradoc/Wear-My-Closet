@@ -5,18 +5,16 @@
 
 {% block body %}
 
-{% endblock %}
-
 <h2></h2>
 <form action="/communitycloset" method="POST">
-    Select your community!
+    Select your community:
     <select name="communities">
         {% for community in communities %}
-        <option value="{{ community }}">{{ community }}</option>
+        <option value="{{ community.community_name }}">{{ community.community_name }}</option>
         {% endfor %}
     </select>
     <br>
-    <button type="submit" id="upload-item" action="/mycloset">Upload</button>
+    <button type="submit" id="upload-item" action="/communitycloset">Select</button>
     <br> 
 </form>
 
@@ -32,3 +30,5 @@
       <input type="submit">
     </p>
   </form>
+
+  {% endblock %}
