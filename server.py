@@ -64,24 +64,24 @@ def show_homepage():
     return render_template('home.html')
 
 
-# @app.route('/mycloset')
-# def my_closet():
+@app.route('/mycloset')
+def my_closet():
     
-#     if 'user_id' in session:
-#         closet = crud.get_items_by_user(session['user_id'])
-#         return render_template('mycloset.html', closet=closet)
+    if 'user_id' in session:
+        closet = crud.get_items_by_user(session['user_id'])
+        return render_template('mycloset.html', closet=closet)
 
-#     else:
-#         flash(u'Need to be logged in to view "My Closet" page', 'login-error')
-#         return redirect('/')
+    else:
+        flash(u'Need to be logged in to view "My Closet" page', 'login-error')
+        return redirect('/')
 
-@app.route('/mycloset', methods=['GET', 'POST'])
+@app.route('/mycloset', methods=['POST'])
 def upload_item():
     # import pdb; pdb.set_trace()  
     item = request.files.get('file')
     print(item)
+    print(request)
     closet = crud.get_items_by_user(session['user_id'])
-    print(closet)
     if item:
         image_url = api.upload_closet_image(item)
         item_name = request.form.get('item_name')
@@ -94,12 +94,19 @@ def upload_item():
     else:
         image_url = None
 
-    return render_template('mycloset.html', closet=closet)
+    return redirect('/mycloset')
 
 @app.route('/communitycloset')
 def community_closet():
 
+
     return render_template('communitycloset.html')
+
+
+@app.route('/myaccount')
+def checkout():
+
+    return render_template('profile.html')
 
 @app.route("/logout")
 def logout_user():

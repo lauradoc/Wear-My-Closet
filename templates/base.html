@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{% block title %}Wear my Closet{% endblock %}</title>
+  <title>Wear my Closet{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="/static/css">
   <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 <body>
-  {% block body %} 
+  
   <h3>Wear My Closet</h3>
   <br>
-  <a type="buttom" id="mycloset-buttom" href="/mycloset">My Closet</a>
+  <a type="button" id="community-closet" href="/communitycloset">Community Closet</a>
   <br>
-  <a type="button" id="checkout-button" href="/checkout">Checkout</a>
+  <a type="button" id="mycloset-buttom" href="/mycloset">My Closet</a>
+  <br>
+  <a type="button" id="account-button" href="/myaccount">Checkout</a>
   <br>
   <a type="button" id="logout-button" href="/logout">Logout</a>
   <p>
@@ -25,8 +27,7 @@
       {% endif %}
   {% endwith %}
   </p>
-  <a></a>
+  {% block body %} HERE IS THE BODY {% endblock %}
   <script src="/static/js/uploadPhotos.js"></script>
-  {% endblock %}
 </body>
 </html>

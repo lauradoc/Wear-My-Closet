@@ -16,13 +16,12 @@
 
 // })
 
-$('#upload-item-form').on('submit', (evt) => {
-    evt.preventDefault();
+// $('#upload-item-form').on('submit', (evt) => {
+//     evt.preventDefault();
 
-    const formValues = {
-        item_name: $('#item-field').val()
-    };
-    $.post('/mycloset', formValues, (res) => {
-        alert(`${res.item_name} has been added to your closet`);
-    });
-});
+//     const formValues = $('#upload-item-form').serialize();
+//     console.log(formValues)
+//     $.post('/mycloset', formValues, (res) => {
+//         alert(`${res.item_name} has been added to your closet`);
+//     });
+// });

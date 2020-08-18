@@ -22,7 +22,6 @@ cloudinary.config(
 
 def upload_closet_image(item):
     """upload new file to cloudinary and return url"""
-    print(item)
     if item:
         response = cloudinary.uploader.upload(item) 
         image_url = response['secure_url']
