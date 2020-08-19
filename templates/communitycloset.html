@@ -1,46 +1,8 @@
-
 {% extends 'base.html' %}
 
 {% block title %}Wear my Closet{% endblock %}
 
 {% block body %}
 
-<h2></h2>
-<form action="/communitycloset" method="POST" id="my-community-form">
-    Select your community:
-    <select name="communities">
-        {% for community in communities %}
-        <option id="select-community" value="{{ community.community_name }}">{{ community.community_name }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <button type="submit" id="upload-item" action="/communitycloset">Select</button>
-    <br> 
-</form>
+{% endblock %}
 
-<h2>Create a community here:</h2>
-  <form action="/community" method="POST">
-    <p>
-      Community Name <input type="text" name="community_name">
-    </p>
-    <p>
-      Location <input type="password" name="location">
-    </p>
-    <p>
-      <input type="submit">
-    </p>
-  </form>
-
-<h2>Join a community:</h2>
-<form action="/community" method="POST" id="my-community-form">
-  Select your community:
-  <select name="communities">
-      {% for community in communities %}
-      <option id="select-community" value="{{ community.community_name }}">{{ community.community_name }}</option>
-      {% endfor %}
-  </select>
-  <br>
-  <button type="submit" id="upload-item" action="/community">Select</button>
-  <br> 
-</form>
-  {% endblock %}

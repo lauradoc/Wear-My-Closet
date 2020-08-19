@@ -18,6 +18,10 @@ def get_user_by_email(email):
     
     return User.query.filter_by(email = email).first()
 
+def get_user_by_user_id(user_id):
+
+    return User.query.get(user_id)
+
 
 def create_category(category_name):
     """Create and return category name."""
@@ -105,13 +109,26 @@ def create_community_member(community_id, user_id):
 
     return community_member
 
-def get_community_users(community_name):
+def get_community_by_user(user_id):
 
-    communities = db.session.query(Community, CommunityMember).join(CommunityMember).all()
+    user_communities = []
+    communities = db.session.query(CommunityMember, Community).join(Community)
+    for commem, com in communities:
+        if commem.user_id == user_id:
+            user_communities.append(com.community_name)
 
-    for community, community_member in communities:
-        if community.community_name == community_name:
-            print(CommunityMember.user_id)
+    return user_communities
+
+def get_users_by_community(community):
+
+    community_users = []
+    users = db.session.query(CommunityMember, Community).join(Community)
+    for commem, com in users:
+        if com.community_name == community:
+            community_users.append(commem.user_id)
+
+    return community_users
+
 
 if __name__ == '__main__':
     from server import app

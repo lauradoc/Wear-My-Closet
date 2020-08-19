@@ -14,6 +14,11 @@
     </ul>
 
 <h3> My Communities </h3>
+    <ul>
+    {% for community in communities%}
+    <li> {{ community }}</li>
+    {% endfor %}
+</ul>
 
 <h3> My Items </h3>
     <ul>
@@ -25,7 +30,7 @@
 <h3> My checkouts </h3>
     <ul>
         {% for checkout in checkouts %}
-        <li> {{ checkout }}</li>
+        <li> {{ checkout.item_id }}</li>
         {% endfor %}
     </ul>
 
