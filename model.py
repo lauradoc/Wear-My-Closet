@@ -93,7 +93,7 @@ class Community(db.Model):
     def __repr__(self):
         return f'<Community community_id={self.community_id} name={self.community_name}>'
 
-class Community_member(db.Model):
+class CommunityMember(db.Model):
     """Identifies what community a user is in"""
 
     __tablename__ = 'community_members'

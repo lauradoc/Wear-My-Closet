@@ -60,8 +60,9 @@ def handle_login():
 
 @app.route('/home')
 def show_homepage():
-
-    return render_template('home.html')
+    if 'email' in session:
+        email = request.args.get('email')
+        return render_template('home.html', email=email)
 
 
 @app.route('/mycloset')
@@ -130,9 +131,9 @@ def create_community():
 
 @app.route('/communitycloset')
 def view_community_closet():
-    community = request.form.get("communities")
+    community = request.args.get("communities")
     if community:
-        print()
+        return render_template('mycloset.html')
 
 # @app.route('/myaccount')
 # def my_checkouts():

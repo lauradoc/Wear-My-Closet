@@ -1,6 +1,6 @@
 """CRUD operations. Utility functions for creating data"""
 
-from model import db, User, Category, Item, Checkout, Status, Community, Community_member, connect_to_db
+from model import db, User, Category, Item, Checkout, Status, Community, CommunityMember, connect_to_db
 
 
 def create_user(email, password, city, phone):
@@ -98,13 +98,20 @@ def get_all_communities():
 def create_community_member(community_id, user_id):
     """Create and return members of community"""
 
-    community_member = Community_member(community_id=community_id, user_id=user_id)
+    community_member = CommunityMember(community_id=community_id, user_id=user_id)
 
     db.session.add(community_member)
     db.session.commit()
 
     return community_member
 
+def get_community_users(community_name):
+
+    communities = db.session.query(Community, CommunityMember).join(CommunityMember).all()
+
+    for community, community_member in communities:
+        if community.community_name == community_name:
+            print(CommunityMember.user_id)
 
 if __name__ == '__main__':
     from server import app

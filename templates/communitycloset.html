@@ -31,4 +31,16 @@
     </p>
   </form>
 
+<h2>Join a community:</h2>
+<form action="/community" method="POST" id="my-community-form">
+  Select your community:
+  <select name="communities">
+      {% for community in communities %}
+      <option id="select-community" value="{{ community.community_name }}">{{ community.community_name }}</option>
+      {% endfor %}
+  </select>
+  <br>
+  <button type="submit" id="upload-item" action="/community">Select</button>
+  <br> 
+</form>
   {% endblock %}
