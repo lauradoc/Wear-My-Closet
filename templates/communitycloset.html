@@ -6,11 +6,11 @@
 {% block body %}
 
 <h2></h2>
-<form action="/communitycloset" method="POST">
+<form action="/communitycloset" method="POST" id="my-community-form">
     Select your community:
     <select name="communities">
         {% for community in communities %}
-        <option value="{{ community.community_name }}">{{ community.community_name }}</option>
+        <option id="select-community" value="{{ community.community_name }}">{{ community.community_name }}</option>
         {% endfor %}
     </select>
     <br>
@@ -19,7 +19,7 @@
 </form>
 
 <h2>Create a community here:</h2>
-  <form action="/communitycloset" method="POST">
+  <form action="/community" method="POST">
     <p>
       Community Name <input type="text" name="community_name">
     </p>

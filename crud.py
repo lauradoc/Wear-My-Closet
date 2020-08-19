@@ -74,6 +74,10 @@ def create_checkout(item_id, user_id, checkout_date, due, return_date, checkout_
 
     return checkout
 
+def get_checkout_by_user(user_id):
+    """Return all checkouts from user"""
+
+    return Checkout.query.filter(Checkout.user_id==user_id)
 
 def create_community(community_name, location):
     """Create and return new community"""

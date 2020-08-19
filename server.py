@@ -101,10 +101,12 @@ def account_details():
     email = user.email
     city = user.city
     phone = user.phone
+    closet = crud.get_items_by_user(session['user_id'])
+    checkouts = crud.get_checkout_by_user(session['user_id'])
 
-    return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone)
+    return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkouts=checkouts)
 
-@app.route('/communitycloset')
+@app.route('/community')
 def community_closet():
 
     if 'user_id' in session:
@@ -115,24 +117,22 @@ def community_closet():
         flash(u'Need to be logged in to view "My Closet" page', 'login-error')
         return redirect('/')
 
-@app.route('/communitycloset', methods=['POST'])
+@app.route('/community', methods=['POST'])
 def create_community():
     community_name = request.form.get('community_name')
     location = request.form.get('location')
     communities = crud.get_all_communities()
-    print(communities)
     if community_name:
         new_community = crud.create_community(community_name, location)
         communities.append(new_community)
 
     return render_template('communitycloset.html', communities=communities)
 
-
-# @app.route('/myaccount')
-# def my_items():
-#     closet = crud.get_items_by_user(session['user_id'])
-
-#     return render_template('account.html', closet=closet)
+@app.route('/communitycloset')
+def view_community_closet():
+    community = request.form.get("communities")
+    if community:
+        print()
 
 # @app.route('/myaccount')
 # def my_checkouts():
