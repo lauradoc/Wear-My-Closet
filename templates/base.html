@@ -3,14 +3,17 @@
 <head>
   <title>Wear my Closet{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="/static/css">
-  <script src="http://code.jquery.com/jquery.js"></script>
+  <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
 </head>
 <body>
   
   <h3>Wear My Closet</h3>
   <a type="button" id="home-button" href="/home">Home</a>
   <br>
-  <a type="button" id="community-closet" href="/community">Community Closet</a>
+  <a type="button" id="community-closet" href="/community">My Community</a>
   <br>
   <a type="button" id="mycloset-buttom" href="/mycloset">My Closet</a>
   <br>
@@ -29,5 +32,6 @@
   {% endwith %}
   </p>
   {% block body %} HERE IS THE BODY {% endblock %}
+  <script src="/static/js/myCommunity.js"></script>
 </body>
 </html>

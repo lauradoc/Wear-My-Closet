@@ -49,7 +49,11 @@ def get_item_by_item_name(item_name):
 
     return Item.query.filter_by(item_name=item_name).first()
 
-def get_items_by_user(user_id):
+def get_items_by_community(community_name):
+
+    
+
+def get_image_urls_by_user(user_id):
     """takes in user_id and returns urls of all items under that user"""
 
     all_item_urls = db.session.query(Item.image_url)
@@ -93,6 +97,13 @@ def create_community(community_name, location):
 
     return community
 
+def get_community_id_by_community_name(community_name):
+    """return community_id from community_name"""
+
+    name = Community.query.filter_by(community_name=community_name).first()
+
+    return name.community_id
+
 def get_all_communities():
     """Return all communities in db"""
 
@@ -119,16 +130,24 @@ def get_community_by_user(user_id):
 
     return user_communities
 
-def get_users_by_community(community):
+def get_users_by_community(community_name):
 
     community_users = []
     users = db.session.query(CommunityMember, Community).join(Community)
     for commem, com in users:
-        if com.community_name == community:
+        if com.community_name == community_name:
             community_users.append(commem.user_id)
 
+    # return users.filter_by(community_name=community_name).all()
+
+    # members = Community.query.filter_by(community_name=community_name).all()
+    # member_members = []
+    # for member in members:
+    #     member_members.append(member.members)
+    
     return community_users
 
+    # return Community.query.filter_by(community_name=community_name)
 
 if __name__ == '__main__':
     from server import app

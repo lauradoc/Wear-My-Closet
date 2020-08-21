@@ -4,5 +4,24 @@
 
 {% block body %}
 
+<h1>Hello</h1>
+<p>
+    <form action="/myaccount" id="checkout-items"></form>
+    <ul>
+    {% for user in community_users %}
+        <li>{{ user }}</li>
+        <input type="radio" name="community" value="{ user_items[user] }}">
+        {% for item in user_items%}
+        <label><img src={{ user_items[user] }}></label>
+        <br> 
+        <button type="submit" id="community-buttons" action="/myaccount">Select</button>
+        {% endfor %}
+    {% endfor %}
+    
+    </ul>
+    </form>
+</p>
+
 {% endblock %}
+    
 

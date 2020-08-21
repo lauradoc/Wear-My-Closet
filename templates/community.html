@@ -5,11 +5,17 @@
 
 {% block body %}
 
-<h1>{{ community }} Community Closet</h1> 
-{% for user in community_users %}
-<ul>{{ user }}</ul>
-    {% for item, unit in user_items.items() %} 
-      <li>{{ unit }}</li>
+<form action="/communitycloset" id="my-community-form">
+    Select your community:
+    {% for community in user_communities %}
+    <input type="radio" name="community" value="{{ community }}">
+    <label>{{ community }}</label>
     {% endfor %}
-{% endfor %}
+    <br>
+    <button type="submit" id="community-buttons" action="/communitycloset">Select</button>
+    <br> 
+</form>
+
+
+
 {% endblock %}

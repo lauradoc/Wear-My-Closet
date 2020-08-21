@@ -14,12 +14,14 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def login():
+    """Login page for user"""
     
     return render_template('login.html')
 
 
 @app.route('/newuser', methods=['POST'])
 def create_account():
+    """Form on login page to create a new account"""
 
     email = request.form.get('new_email')
     password = request.form.get('new_password')
@@ -59,8 +61,11 @@ def handle_login():
         flash(u'Log in failed. Try again.', 'password-error')
         return redirect('/')
 
+
 @app.route('/home')
 def view_home():
+    """Load home page once user is logged in"""
+
     email = session.get('email')
     if email:
         communities = crud.get_all_communities()
@@ -68,8 +73,11 @@ def view_home():
     else:
         return redirect('/')
 
+
 @app.route('/createcommunity', methods=['POST'])
 def create_community():
+    """Create a new community"""
+
     community_name = request.form.get('community_name')
     location = request.form.get('location')
     if community_name:
@@ -77,42 +85,84 @@ def create_community():
 
     return render_template('home.html')
 
-@app.route('/', methods=['POST'])
 
-# @app.route('/home')
-# def show_homepage():
-#     if 'email' in session:
-#         email = request.args.get('email')
-#         return render_template('home.html', email=email)
+@app.route('/joincommunity')
+def join_community():
+    """Join an existing community"""
 
-# @app.route('/home')
-# def community_closet():
+    user_id = session.get('user_id')
+    community_name = request.args.get('{{ community.community_name }}')
+    community_id = crud.get_community_id_by_community_name(community_name)
+    new_member = crud.create_community_member(community_id, user_id)
+    user_communities = crud.get_community_by_user(user_id) 
 
-#     if 'user_id' in session:
-#         communities = crud.get_all_communities()
-#         return render_template('home.html', communities=communities)
+    return render_template('community.html', user_communities=user_communities)
 
-#     else:
-#         flash(u'Need to be logged in to view this page', 'login-error')
-#         return redirect('/')
 
+@app.route('/community')
+def view_my_community():
+    """view communities based on user logged in"""
+
+    user_id = session.get('user_id')
+    user_communities = crud.get_community_by_user(user_id) 
+
+    return render_template('community.html', user_communities=user_communities)
+    
+
+@app.route('/communitycloset')
+def view_community_closet():
+    community_name = request.args.get("community")
+    community_users = crud.get_users_by_community(community_name)
+    user_items = {}
+    for user in community_users:
+        closet = crud.get_image_urls_by_user(user)
+        user_items[user] = closet
+    return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
+
+
+# @app.route('/communitycloset')
+# def view_community_closet():
+#     community_name = request.args.get("community")
+#     community_users = crud.get_users_by_community(community_name)
+#     user_items = {}
+#     for user in community_users:
+#         closet = crud.get_items_by_user(user)
+#         user_items[user] = closet
+#     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
+
+
+# @app.route('/commmunity_items')
+# def view_items_by_community():
+
+#     community_users = crud.get_users_by_community(community)
+#     user_items = {}
+#     for user in community_users:
+#         closet = crud.get_items_by_user(user)
+#         user_items[user] = closet
+#     return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
+
+@app.route('/checkout')
+def checkout_items():
+
+    return render_template('account.html')
 
 @app.route('/mycloset')
 def my_closet():
     
     if 'user_id' in session:
-        closet = crud.get_items_by_user(session['user_id'])
+        closet = crud.get_image_urls_by_user(session['user_id'])
         return render_template('mycloset.html', closet=closet)
 
     else:
         flash(u'Need to be logged in to view this page', 'login-error')
         return redirect('/')
 
+
 @app.route('/mycloset', methods=['POST'])
 def upload_item():
     # import pdb; pdb.set_trace()  
     item = request.files.get('file')
-    closet = crud.get_items_by_user(session['user_id'])
+    closet = crud.get_image_urls_by_user(session['user_id'])
     if item:
         image_url = api.upload_closet_image(item)
         item_name = request.form.get('item_name')
@@ -127,6 +177,7 @@ def upload_item():
 
     return redirect('/mycloset')
 
+
 @app.route('/myaccount')
 def account_details():
     user = crud.get_user_by_email(session['email'])
@@ -134,31 +185,12 @@ def account_details():
     email = user.email
     city = user.city
     phone = user.phone
-    closet = crud.get_items_by_user(session['user_id'])
+    closet = crud.get_image_urls_by_user(session['user_id'])
     checkouts = crud.get_checkout_by_user(session['user_id'])
     communities = crud.get_community_by_user(session['user_id'])
 
     return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkouts=checkouts, communities=communities)
 
-
-# @app.route('/home')
-# def view_community_closet():
-#     community = request.args.get("communities")
-#     if community:
-#         return render_template('mycloset.html')
-
-# @app.route('/myaccount')
-# def my_checkouts():
-
-@app.route('/community')
-def view_community_closet():
-    community = request.args.get("communities")
-    community_users = crud.get_users_by_community(community)
-    user_items = {}
-    for user in community_users:
-        closet = crud.get_items_by_user(user)
-        user_items[user] = closet
-    return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
 
 @app.route("/logout")
 def logout_user():
