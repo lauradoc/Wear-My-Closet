@@ -6,20 +6,20 @@
 
 <h1>Hello</h1>
 <p>
-    <form action="/myaccount" id="checkout-items"></form>
+    <form action="/checkout" id="checkout-items"></form>
     <ul>
     {% for user in community_users %}
-        <li>{{ user.first_name, user.last_name }}</li>
-        {% for item in user_items[user.user_id] %}
-        <input type="radio" name="community" value="{{ user_items[user.user_id][0].item_name }}">
-        <label>{{ user_items[user.user_id][0].item_name }}</label>
+        <li>{{ user.first_name + ' ' + user.last_name }}</li>
+        {% for user, item in user_items.items() %}
+        <input type="checkbox" name="community-item" value="{{ item.item_name }}">
+        <label>{{ item.item_name }}</label>
         <br>
-        <p>{{ user_items[user.user_id][0].category }}</p>
-        <img src="{{ user_items[user.user_id][0].image_url }}">
+        <p>{{ item.category }}</p>
+        <img src="{{ item.image_url }}">
         <br> 
-        <button type="submit" id="community-buttons" action="/myaccount">Select</button>
         {% endfor %}
     {% endfor %}
+    <button type="submit" name="checkout-item" action="/checkout">Borrow!</button>
     
     </ul>
     </form>

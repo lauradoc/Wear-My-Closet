@@ -6,7 +6,7 @@
   <p>About</p>
 
 <h2>Create a community here:</h2>
-  <form action="/community" method="POST">
+  <form action="/createcommunity" method="POST">
     <p>
       Community Name <input type="text" name="community_name">
     </p>
@@ -19,7 +19,7 @@
   </form>
 
 <h2>Join a community:</h2>
-<form action="/community" id="my-community-form">
+<form action="/joincommunity" id="my-community-form">
   Select your community:
   <select name="join-community">
       {% for community in communities %}

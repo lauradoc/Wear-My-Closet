@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Wear my Closet{% endblock %}
+
+{% block body %}
+<h3>My Checkout</h3>
+{% for item in checkout_items %}
+<p>{{ item }}</p>
+<form>
+    <p>checkout date</p>
+    <p>due date</p>
+</form>
+
+{% endblock %}

@@ -1,27 +1,15 @@
 "use strict";
 
-// const imageLibrary = document.querySelectorAll('img')
 
-// for (const img of imageLibrary)
-//     imageLibrary.setAttribute('src', )
+$('#upload-item-form').on('submit', (evt) => {
+    evt.preventDefault();
 
+    const formValue = {
+        'item_name': $('#item-field').val()
+    };
+        console.log('*****************', formValue)
 
-// const itemForm = document.querySelector('form');
-
-// itemForm.addEventListener('submit', (evt) => {
-//     const newFile = document.querySelector('input[name="file"]')
-//     const newItemName = document.querySelector('input[name="item_name"]')
-//     const newCategory = document.querySelector('input[name="category"]');
-
-
-// })
-
-// $('#upload-item-form').on('submit', (evt) => {
-//     evt.preventDefault();
-
-//     const formValues = $('#upload-item-form').serialize();
-//     console.log(formValues)
-//     $.post('/mycloset', formValues, (res) => {
-//         alert(`${res.item_name} has been added to your closet`);
-//     });
-// });
+    $.post('/mycloset', formValue, (res) => {
+        alert(res);
+    });
+});

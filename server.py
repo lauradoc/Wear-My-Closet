@@ -93,7 +93,7 @@ def join_community():
     """Join an existing community"""
 
     user_id = session.get('user_id')
-    community_name = request.args.get('{{ community.community_name }}')
+    community_name = request.args.get('join-community')
     community_id = crud.get_community_id_by_community_name(community_name)
     new_member = crud.create_community_member(community_id, user_id)
     user_communities = crud.get_community_by_user(user_id) 
@@ -110,21 +110,6 @@ def view_my_community():
 
     return render_template('community.html', user_communities=user_communities)
     
-
-# @app.route('/communitycloset')
-# def view_community_closet():
-#     community_name = request.args.get("community")
-#     community_users = crud.get_users_by_community(community_name)
-
-
-
-  
-    # user_items = {}
-    # for user in community_users:
-    #     closet = crud.get_image_urls_by_user(user)
-    #     user_items[user] = closet
-    # return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
-
 
 @app.route('/communitycloset')
 def view_community_closet():
@@ -148,9 +133,17 @@ def view_items_by_community():
     return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
 
 @app.route('/checkout')
-def checkout_items():
+def add_to_checkout():
 
-    return render_template('account.html')
+    checkout_item = request.args.get('community-item')
+
+    return render_template('checkout.html', checkout_item=checkout_item)
+
+
+@app.route('/checkout')
+def checkout_item():
+
+    checkout = Checkout(item_id=item_id, user_id=user_id, checkout_date=checkout_date, due=due, return_date=return_date, checkout_status=checkout_status)
 
 @app.route('/mycloset')
 def my_closet():
