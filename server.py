@@ -109,37 +109,41 @@ def view_my_community():
     return render_template('community.html', user_communities=user_communities)
     
 
+# @app.route('/communitycloset')
+# def view_community_closet():
+#     community_name = request.args.get("community")
+#     community_users = crud.get_users_by_community(community_name)
+
+
+
+  
+    # user_items = {}
+    # for user in community_users:
+    #     closet = crud.get_image_urls_by_user(user)
+    #     user_items[user] = closet
+    # return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
+
+
 @app.route('/communitycloset')
 def view_community_closet():
     community_name = request.args.get("community")
     community_users = crud.get_users_by_community(community_name)
     user_items = {}
     for user in community_users:
-        closet = crud.get_image_urls_by_user(user)
-        user_items[user] = closet
+        closet = crud.get_items_by_user(user.user_id)
+        user_items[user.user_id] = closet
     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
 
 
-# @app.route('/communitycloset')
-# def view_community_closet():
-#     community_name = request.args.get("community")
-#     community_users = crud.get_users_by_community(community_name)
-#     user_items = {}
-#     for user in community_users:
-#         closet = crud.get_items_by_user(user)
-#         user_items[user] = closet
-#     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
+@app.route('/commmunity_items')
+def view_items_by_community():
 
-
-# @app.route('/commmunity_items')
-# def view_items_by_community():
-
-#     community_users = crud.get_users_by_community(community)
-#     user_items = {}
-#     for user in community_users:
-#         closet = crud.get_items_by_user(user)
-#         user_items[user] = closet
-#     return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
+    community_users = crud.get_users_by_community(community)
+    user_items = {}
+    for user in community_users:
+        closet = crud.get_items_by_user(user)
+        user_items[user] = closet
+    return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
 
 @app.route('/checkout')
 def checkout_items():

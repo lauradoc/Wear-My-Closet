@@ -9,10 +9,12 @@
     <form action="/myaccount" id="checkout-items"></form>
     <ul>
     {% for user in community_users %}
-        <li>{{ user }}</li>
-        <input type="radio" name="community" value="{ user_items[user] }}">
-        {% for item in user_items%}
-        <label><img src={{ user_items[user] }}></label>
+        <li>{{ user.email }}</li>
+        {% for item in user_items %}
+        <input type="radio" name="community" value="{{ user_items[user.user_id][0].item_name }}">
+        <label>{{ user_items[user.user_id][0].item_name }}</label>
+        <br>
+            <p> {{ user_items[user.user_id][0].image_url }} </p>
         <br> 
         <button type="submit" id="community-buttons" action="/myaccount">Select</button>
         {% endfor %}

@@ -109,7 +109,7 @@ class CommunityMember(db.Model):
     def __repr__(self):
         return f'<Community Member member_id={self.community_member_id} user={self.user_id}>'
 
-def connect_to_db(flask_app, db_uri='postgresql:///closets', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///closets', echo=False):
     """connect to database"""
 
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri

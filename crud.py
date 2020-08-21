@@ -48,9 +48,6 @@ def get_item_by_item_name(item_name):
     """takes in item name and return item if exists, otherwise returns none"""
 
     return Item.query.filter_by(item_name=item_name).first()
-
-def get_items_by_community(community_name):
-
     
 
 def get_image_urls_by_user(user_id):
@@ -60,6 +57,11 @@ def get_image_urls_by_user(user_id):
     user_items = all_item_urls.filter(Item.user_id==user_id)
 
     return user_items.all()
+
+
+def get_items_by_user(user_id):
+
+    return Item.query.filter(Item.user_id==user_id).all()
 
 
 def create_status(checkout_status):
@@ -136,7 +138,7 @@ def get_users_by_community(community_name):
     users = db.session.query(CommunityMember, Community).join(Community)
     for commem, com in users:
         if com.community_name == community_name:
-            community_users.append(commem.user_id)
+            community_users.append(commem.user)
 
     # return users.filter_by(community_name=community_name).all()
 
