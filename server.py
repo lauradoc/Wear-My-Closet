@@ -23,6 +23,8 @@ def login():
 def create_account():
     """Form on login page to create a new account"""
 
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
     email = request.form.get('new_email')
     password = request.form.get('new_password')
     city = request.form.get('city')
@@ -33,7 +35,7 @@ def create_account():
         flash('Email already exists. Please make an account with a different email')
 
     else:
-        user = crud.create_user(email, password, city, phone)
+        user = crud.create_user(first_name, last_name, email, password, city, phone)
         session['email'] = user.email
         session['user_id'] = user.user_id
         flash('Your account was created successfully! You can now log in.')

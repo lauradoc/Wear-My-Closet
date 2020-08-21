@@ -22,15 +22,17 @@ fake = Faker()
 def seed_users():
 
     for n in range(10):
-        name = fake.name().replace(" ", "")
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        name = f'{first_name + last_name}'
         email = f'{name}@test.com'
         password = 'test'
         phone = '6517264495'
         city = 'Saint Paul'
 
-        new_user = crud.create_user(email, password, city, phone)
+        new_user = crud.create_user(first_name, last_name, email, password, city, phone)
     
-    crud.create_user('laurahdocherty@gmail.com', 'test', 'STP', '6517264495')
+    crud.create_user('Laura', 'Docherty', 'laurahdocherty@gmail.com', 'test', 'STP', '6517264495')
 
 seed_users()
 
@@ -71,7 +73,6 @@ def seed_items():
         item_name = item['item_name']
         image_url = item['image_url']
         category_name = item['category_name']
-        print(image_url)
 
         new_item = crud.create_item(user_id, item_name, image_url, category_name)
 

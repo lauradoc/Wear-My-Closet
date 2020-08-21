@@ -4,8 +4,8 @@
 //     alert('Heading to {{ community }} closet');
 // })
 
-// $('.community_buttons').on('click', (evt) => {
-//     $.get('/api/items', {'item_id': evt.target.id} (res) => {
+// $('#community-buttons').on('submit', (evt) => {
+//     $.get('/', {'item_id': evt.target.id} (res) => {
 //         const itemDetails =(
 //             <div class="item-details">
 //                 <div class="item-thumbnail">
@@ -26,3 +26,17 @@
 //     )
 // }
 // )
+// {/* <form action="/myaccount" id="checkout-items"></form>
+// <ul>
+// {% for user in community_users %}
+//     <li>{{ user }}</li>
+//     <input type="radio" name="community" value="{ user_items[user] }}">
+//     {% for item in user_items%}
+//     <label><img src={{ user_items[user] }}></label>
+//     <br> 
+//     <button type="submit" id="community-buttons" action="/myaccount">Select</button>
+//     {% endfor %}
+// {% endfor %}
+
+// </ul>
+// </form> */}

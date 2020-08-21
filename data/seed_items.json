@@ -2,26 +2,26 @@
 [
     {
         "user_id": 1,
-        "item_name": "TBD",
-        "image_url": "TBD",
-        "category_name": "tops"
+        "item_name": "flowy-dress",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597787169/o2lriwdxjxcxxxhquczu.jpg",
+        "category_name": "dresses"
     },
     {
         "user_id": 2,
-        "item_name": "TBD",
-        "image_url": "TBD",
-        "category_name": "bottoms"
+        "item_name": "bucket-purse",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597876991/t8hjro6ehaalfnvvol5y.jpg",
+        "category_name": "accessories"
     },
     {
         "user_id": 3,
-        "item_name": "TBD",
-        "image_url": "TBD",
+        "item_name": "olive-raincoat",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598038546/zkpaplviftbqxga5buv5.jpg",
         "category_name": "jackets & coats"
     },
     {
         "user_id": 4,
-        "item_name": "TBD",
-        "image_url": "TBD",
+        "item_name": "patchwork-sweater",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598038724/afpscfglykjz3c2gvt55.jpg",
         "category_name": "sweaters"
     },
     {

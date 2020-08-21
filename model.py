@@ -12,13 +12,15 @@ class User(db.Model):
     __tablename__ = 'users'
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    first_name = db.Column(db.String)
+    last_name = db.Column(db.String)
     email = db.Column(db.String)
     password = db.Column(db.String)
     city = db.Column(db.String)
     lat = db.Column(db.Integer, nullable=True)
     lon = db.Column(db.Integer, nullable=True)
     phone = db.Column(db.String)
-    community_member_id = db.Column(db.Integer)
+    community_member_id = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'

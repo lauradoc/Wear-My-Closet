@@ -3,10 +3,10 @@
 from model import db, User, Category, Item, Checkout, Status, Community, CommunityMember, connect_to_db
 
 
-def create_user(email, password, city, phone):
+def create_user(first_name, last_name, email, password, city, phone):
     """Create and return a new user."""
 
-    user = User(email=email, password=password, city=city, phone=phone)
+    user = User(first_name=first_name, last_name=last_name, email=email, password=password, city=city, phone=phone)
 
     db.session.add(user)
     db.session.commit()
@@ -16,7 +16,7 @@ def create_user(email, password, city, phone):
 def get_user_by_email(email):
     """takes in email and returns user if exists, otherwise returns none"""
     
-    return User.query.filter_by(email = email).first()
+    return User.query.filter(User.email==email).first()
 
 def get_user_by_user_id(user_id):
 
