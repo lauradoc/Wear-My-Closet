@@ -132,18 +132,20 @@ def view_items_by_community():
         user_items[user] = closet
     return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
 
-@app.route('/checkout')
+@app.route('/addtocheckout')
 def add_to_checkout():
 
-    checkout_item = request.args.get('community-item')
+    checkout_items = []
+    item = request.args.get('checkout-item')
+    print('********', item)
 
-    return render_template('checkout.html', checkout_item=checkout_item)
+    return render_template('checkout.html', checkout_items=checkout_items)
 
 
 @app.route('/checkout')
 def checkout_item():
 
-    checkout = Checkout(item_id=item_id, user_id=user_id, checkout_date=checkout_date, due=due, return_date=return_date, checkout_status=checkout_status)
+    return render_template('checkout.html')
 
 @app.route('/mycloset')
 def my_closet():

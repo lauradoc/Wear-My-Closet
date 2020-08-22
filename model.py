@@ -51,7 +51,7 @@ class Item(db.Model):
     category = db.relationship('Category', backref='items')
 
     def __repr__(self):
-        return f'<Item item_id={self.item_id} user={self.email} name={self.item_name}>'
+        return f'<Item item_id={self.item_id} user_id={self.user_id} name={self.item_name}>'
 
 class Checkout(db.Model):
     """A checkout for a user to borrow items"""
@@ -71,7 +71,7 @@ class Checkout(db.Model):
     status = db.relationship('Status', backref='checkouts')
 
     def __repr__(self):
-        return f'<Checkout checkout_id={self.checkout_id} user={self.user_id} item={self.item_id}>'
+        return f'<Checkout checkout_id={self.checkout_id} user_id={self.user_id} item={self.item_id}>'
 
 class Status(db.Model):
     """The status of an item out for checkout"""
@@ -109,7 +109,7 @@ class CommunityMember(db.Model):
     user = db.relationship('User', backref='community_members')
 
     def __repr__(self):
-        return f'<Community Member member_id={self.community_member_id} user={self.user_id}>'
+        return f'<Community Member member_id={self.community_member_id} user_id={self.user_id}>'
 
 def connect_to_db(flask_app, db_uri='postgresql:///closets', echo=False):
     """connect to database"""
