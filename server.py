@@ -32,7 +32,7 @@ def create_account():
     user = crud.get_user_by_email(email)
 
     if user:
-        flash('Email already exists. Please make an account with a different email')
+        flash(u'Email already exists. Please make an account with a different email')
 
     else:
         user = crud.create_user(first_name, last_name, email, password, city, phone)
@@ -132,20 +132,27 @@ def view_items_by_community():
         user_items[user] = closet
     return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
 
-@app.route('/addtocheckout')
-def add_to_checkout():
+# @app.route('/addtocheckout', methods=['POST'])
+# def add_to_checkout():
 
-    checkout_items = []
-    item = request.args.get('checkout-item')
-    print('********', item)
+#     checkout_items = []
+#     print('********', item)
 
-    return render_template('checkout.html', checkout_items=checkout_items)
+#     return render_template('/checkout')
+    
 
-
-@app.route('/checkout')
+@app.route('/checkout', methods=['GET', 'POST'])
 def checkout_item():
 
-    return render_template('checkout.html')
+    checkout = crud.get_checkout_by_user(session['user_id'])
+    item = request.form.get('checkout-items')
+
+    if checkout:
+        return render_template('checkout.html')
+    else:
+        flash(u'No item in checkout')
+        return redirect('/mycommunity')
+    
 
 @app.route('/mycloset')
 def my_closet():

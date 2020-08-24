@@ -4,26 +4,24 @@
 
 {% block body %}
 
-<h1>Hello</h1>
+<h1>Welcome to {{ community_name }} closet</h1>
 <p>
-    <form action="/checkout" id="checkout-items"></form>
-    <ul>
-    {% for user in community_users %}
-        <li>Owner: {{ user.first_name + ' ' + user.last_name }}</li>
-        {% for item in user_items[user.user_id] %}
-        <li>Item name: {{ item.item_name }}</li>
-        <li>Category: {{ item.category_name }}</li>
-        <li>Checkout status: </li>
-        <input type="checkbox" name="community-item" value="{{ item.item_name }}">
-        <label>Borrow this item!</label>
-        <br>
-        <img src="{{ item.image_url }}">
-        
+    <form method="POST" action="/checkout" id="checkout-item"> </form>
+        <ul>
+        {% for user in community_users %}
+            <li>Owner: {{ user.first_name + ' ' + user.last_name }}</li>
+            {% for item in user_items[user.user_id] %}
+            <li>Item name: {{ item.item_name }}</li>
+            <li>Category: {{ item.category_name }}</li>
+            <li>Checkout status: </li>
+            <input type="checkbox" name="community-item" value="{{ item.item_name }}">
+            <label>Borrow this item!</label>
+            <br>
+            <img src="{{ item.image_url }}">
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-    <button type="submit" name="checkout-item" action="/checkout">Add items to checkout</button>
-    
-    </ul>
+            <button type="submit" name="checkout-item" action="/checkout">Add items to checkout</button>
+        </ul>
     </form>
 </p>
 
