@@ -132,6 +132,17 @@ def get_community_by_user(user_id):
 
     return user_communities
 
+
+def get_community_by_user_json(user_id):
+
+    user_communities_json = []
+    communities = db.session.query(CommunityMember, Community).join(Community)
+    for commem, com in communities:
+        if commem.user_id == user_id:
+            user_communities_json.append(com.community_name)
+
+    return user_communities_json
+
 def get_users_by_community(community_name):
 
     community_users = []
@@ -150,6 +161,27 @@ def get_users_by_community(community_name):
     return community_users
 
     # return Community.query.filter_by(community_name=community_name)
+
+
+def community_details_json(community_name, user_id):
+    """Return community details as JSON"""
+
+    user_items_json = []
+    community_users = get_users_by_community(community_name)
+    for user in community_users: 
+        closet = get_items_by_user(user_id)
+        for item in closet:
+            item_dict = {
+                "id": item.item_id,
+                "user": item.user_id,
+                "item_name": item.item_name,
+                "image_url": item.image_url,
+                "category": item.category_name,
+            }
+            user_items_json.append(item_dict)
+
+    return user_items_json
+
 
 if __name__ == '__main__':
     from server import app

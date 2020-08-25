@@ -78,7 +78,7 @@ def view_home():
 
 @app.route('/createcommunity', methods=['POST'])
 def create_community():
-    """Create a new community"""
+    """Form to create a new community"""
 
     community_name = request.form.get('community_name')
     location = request.form.get('location')
@@ -90,7 +90,7 @@ def create_community():
 
 @app.route('/joincommunity')
 def join_community():
-    """Join an existing community"""
+    """Form to join an existing community"""
 
     user_id = session.get('user_id')
     community_name = request.args.get('join-community')
@@ -103,16 +103,28 @@ def join_community():
 
 @app.route('/community')
 def view_my_community():
-    """view communities based on user logged in"""
+    """View communities based on user logged in"""
 
     user_id = session.get('user_id')
     user_communities = crud.get_community_by_user(user_id) 
 
     return render_template('community.html', user_communities=user_communities)
+
+
+@app.route('/community.json')
+def view_my_community_json():
+    """View communities based on user logged in using json"""
+
+    user_id = session.get('user_id')
+    user_communities_json = crud.get_community_by_user_json(user_id)
+
+    return jsonify(user_communities_json)
     
 
-@app.route('/communitycloset')
+@app.route('/communitycloset.json')
 def view_community_closet():
+    """Return all items of users within selected community"""
+
     community_name = request.args.get("community")
     community_users = crud.get_users_by_community(community_name)
     user_items = {}
@@ -122,16 +134,18 @@ def view_community_closet():
     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
 
 
-# @app.route('/commmunity_items')
-# def view_items_by_community():
+@app.route('/commmunitycloset.json')
+def get_items_by_community_json():
+    """Return items for users in selected community as json"""
 
-#     community_users = crud.get_users_by_community(community)
-#     user_items = {}
-#     for user in community_users:
-#         closet = crud.get_items_by_user(user)
-#         user_items[user] = closet
-#     return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
+    community_name = request.args.get("community")
+    user_id = session.get('user_id')
+    community_items = crud.community_details_json(community_name, user_id)
+    print(community_items)
 
+    return jsonify(community_items)
+
+    
 @app.route('/checkout')
 def add_to_checkout():
 
@@ -153,6 +167,7 @@ def checkout_item():
 
 @app.route('/mycloset')
 def my_closet():
+    """View closet of user logged in. else return to login page"""
     
     if 'user_id' in session:
         closet = crud.get_image_urls_by_user(session['user_id'])
@@ -165,6 +180,8 @@ def my_closet():
 
 @app.route('/mycloset', methods=['POST'])
 def upload_item():
+    """Upload new item to user's closet"""
+
     # import pdb; pdb.set_trace()  
     item = request.files.get('file')
     closet = crud.get_image_urls_by_user(session['user_id'])
@@ -185,6 +202,8 @@ def upload_item():
 
 @app.route('/myaccount')
 def account_details():
+    """View user's account details"""
+
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
     email = user.email

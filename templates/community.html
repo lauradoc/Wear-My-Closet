@@ -5,14 +5,14 @@
 
 {% block body %}
 
-<form action="/communitycloset" id="my-community-form">
+<form action="/communitycloset.json" id="my-community-form">
     Select your community:
     {% for community in user_communities %}
-    <input type="radio" name="community" value="{{ community }}" id="{{ community }}">
+    <input type="radio" name="community" value="{{ community }}" id="community-field">
     <label>{{ community }}</label>
     {% endfor %}
     <br>
-    <button type="submit" id="community-buttons" action="/communitycloset">Select</button>
+    <button type="submit" id="community-buttons" action="/communitycloset.json">Select</button>
     <br> 
 </form>
 
