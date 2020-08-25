@@ -1,8 +1,10 @@
-// "use strict";
+"use strict";
 
-// $('#community-buttons').on('click', (evt) => {
-//     alert('Heading to {{ community }} closet');
-// })
+$('#community-buttons').on('click', (evt) => {
+    console.log(evt.target.id);
+    evt.preventDefault();
+    alert('Heading to {{ community }} closet');
+})
 
 // $('#community-buttons').on('submit', (evt) => {
 //     $.get('/', {'item_id': evt.target.id} (res) => {

@@ -122,33 +122,30 @@ def view_community_closet():
     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
 
 
-@app.route('/commmunity_items')
-def view_items_by_community():
+# @app.route('/commmunity_items')
+# def view_items_by_community():
 
-    community_users = crud.get_users_by_community(community)
-    user_items = {}
-    for user in community_users:
-        closet = crud.get_items_by_user(user)
-        user_items[user] = closet
-    return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
+#     community_users = crud.get_users_by_community(community)
+#     user_items = {}
+#     for user in community_users:
+#         closet = crud.get_items_by_user(user)
+#         user_items[user] = closet
+#     return render_template('community.html', community=community, community_users=community_users, user_items=user_items)
 
-# @app.route('/addtocheckout', methods=['POST'])
-# def add_to_checkout():
+@app.route('/checkout')
+def add_to_checkout():
 
-#     checkout_items = []
-#     print('********', item)
-
-#     return render_template('/checkout')
+    return render_template('checkout.html')
     
 
-@app.route('/checkout', methods=['GET', 'POST'])
+@app.route('/checkout', methods=['POST'])
 def checkout_item():
 
     checkout = crud.get_checkout_by_user(session['user_id'])
     item = request.form.get('checkout-items')
 
     if checkout:
-        return render_template('checkout.html')
+        return render_template('checkout.html', item=item)
     else:
         flash(u'No item in checkout')
         return redirect('/mycommunity')

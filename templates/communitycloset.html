@@ -4,9 +4,9 @@
 
 {% block body %}
 
-<h1>Welcome to {{ community_name }} closet</h1>
+<h1>Welcome to {{ community_name }} closet!</h1>
 <p>
-    <form method="POST" action="/checkout" id="checkout-item"> </form>
+    <form method="POST" action="/checkout" id="checkout-item">
         <ul>
         {% for user in community_users %}
             <li>Owner: {{ user.first_name + ' ' + user.last_name }}</li>

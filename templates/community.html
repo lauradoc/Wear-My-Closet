@@ -8,7 +8,7 @@
 <form action="/communitycloset" id="my-community-form">
     Select your community:
     {% for community in user_communities %}
-    <input type="radio" name="community" value="{{ community }}">
+    <input type="radio" name="community" value="{{ community }}" id="{{ community }}">
     <label>{{ community }}</label>
     {% endfor %}
     <br>
