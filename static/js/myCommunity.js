@@ -1,54 +1,34 @@
 "use strict";
 
-$('#community-buttons').on('click', (evt) => { 
+$('#community-button').on('click', (evt) => {
     evt.preventDefault();
-    
-    const formData = $('#my-community-form').serialize();
 
-    $.get('/community.json', formData, (res) => {
-        console.log(formData)
-        alert(`Heading to ${formData} closet`);
+    const formData = $('#my-community-form').serialize();
+    console.log(formData)
+    alert(`Heading to ${formData.community} closet`);
+
+    $.get('/communitycloset.json', formData, (community_items) => {
+        for (const item of community_items) {
+            console.log(item);
+            const itemDetails = (
+                `<div class="item-details">
+                    <div class="item-thumbnail">
+                    </div>
+                    <form method="POST" action="/checkout" id="checkout-item">
+                        <ul class="item-info">
+                            <li><b>Owner: </b>${item.username}</li>
+                            <li><b>Item Name: </b>${item.item_name}</li>
+                            <li><b>Category: </b>${item.category}</li>
+                            <input type="checkbox" name="community-item" value="{{ item.item_name }}">
+                            <label>Borrow this item!</label>
+                            <br>
+                            <img src="${item.image_url}">
+                            <button type="submit" name="checkout-item" action="/checkout">Add items to checkout</button>
+                        </ul>
+                    </form>
+                </div>`
+            );
+            $('#community-items').append(itemDetails);
+        };
     });
 });
-
-$('#community-buttons').on('click', (evt) => {
-    evt.preventDefault();
-
-    const formData = {
-
-    }
-    $.get('/community', {'item_id': evt.target.id} (res) => {
-        const itemDetails =(
-            <div class="item-details">
-                <div class="item-thumbnail">
-                    <img src="item.image_url"
-                    />
-                </div>
-
-                <ul class="item-info">
-                    <li><b>Item Name: </b>${item.item_name}</li>
-                    <li><b>Item Name: </b>${item.item_name}</li>
-                    <li><b>Item Name: </b>${item.item_name}</li>
-                    <li><b>Item Name: </b>${item.item_name}</li>
-                    <li><b>Item Name: </b>${item.item_name}</li>
-                </ul>
-            </div>
-        );
-    }
-    )
-}
-)
-// {/* <form action="/myaccount" id="checkout-items"></form>
-// <ul>
-// {% for user in community_users %}
-//     <li>{{ user }}</li>
-//     <input type="radio" name="community" value="{ user_items[user] }}">
-//     {% for item in user_items%}
-//     <label><img src={{ user_items[user] }}></label>
-//     <br> 
-//     <button type="submit" id="community-buttons" action="/myaccount">Select</button>
-//     {% endfor %}
-// {% endfor %}
-
-// </ul>
-// </form> */}

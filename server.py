@@ -121,25 +121,39 @@ def view_my_community_json():
     return jsonify(user_communities_json)
     
 
+# @app.route('/communitycloset.json')
+# def view_community_closet():
+#     """Return all items of users within selected community"""
+
+#     community_name = request.args.get("community")
+#     community_users = crud.get_users_by_community(community_name)
+#     user_items = {}
+#     for user in community_users:
+#         closet = crud.get_items_by_user(user.user_id)
+#         user_items[user.user_id] = closet
+#     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
+
+
+# @app.route('/communitycloset.json')
+# def view_community_closet():
+#     """Return all items of users within selected community"""
+
+#     community_name = request.args.get("community")
+#     community_users = crud.get_users_by_community(community_name)
+#     user_items = {}
+#     for user in community_users:
+#         closet = crud.get_items_by_user(user.user_id)
+#         user_items[user.user_id] = closet
+#     return jsonify(community_users)
+
 @app.route('/communitycloset.json')
-def view_community_closet():
-    """Return all items of users within selected community"""
-
-    community_name = request.args.get("community")
-    community_users = crud.get_users_by_community(community_name)
-    user_items = {}
-    for user in community_users:
-        closet = crud.get_items_by_user(user.user_id)
-        user_items[user.user_id] = closet
-    return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
-
-
-@app.route('/commmunitycloset.json')
 def get_items_by_community_json():
     """Return items for users in selected community as json"""
 
     community_name = request.args.get("community")
+    print(request.args)
     user_id = session.get('user_id')
+    print(session)
     community_items = crud.community_details_json(community_name, user_id)
     print(community_items)
 

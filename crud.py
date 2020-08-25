@@ -144,23 +144,12 @@ def get_community_by_user_json(user_id):
     return user_communities_json
 
 def get_users_by_community(community_name):
-
-    community_users = []
-    users = db.session.query(CommunityMember, Community).join(Community)
-    for commem, com in users:
-        if com.community_name == community_name:
-            community_users.append(commem.user)
-
-    # return users.filter_by(community_name=community_name).all()
-
-    # members = Community.query.filter_by(community_name=community_name).all()
-    # member_members = []
-    # for member in members:
-    #     member_members.append(member.members)
-    
-    return community_users
-
-    # return Community.query.filter_by(community_name=community_name)
+#could change to community_id
+    community = Community.query.filter(Community.community_name==community_name).first()
+    if community:
+        return community.members
+    else:
+        return []
 
 
 def community_details_json(community_name, user_id):
@@ -169,9 +158,10 @@ def community_details_json(community_name, user_id):
     user_items_json = []
     community_users = get_users_by_community(community_name)
     for user in community_users: 
-        closet = get_items_by_user(user_id)
+        closet = user.items
         for item in closet:
             item_dict = {
+                "username": user.first_name + user.last_name,
                 "id": item.item_id,
                 "user": item.user_id,
                 "item_name": item.item_name,
