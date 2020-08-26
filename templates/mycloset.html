@@ -23,20 +23,21 @@
         <option value="accessories">Accessories</option>
       </select>
       <br>
-      <button type="submit" id="upload-item" action="/mycloset">Upload</button>
+      <button type="submit" action="/mycloset">Upload</button>
       <br> 
     </form>
+    <div id="upload-item"></div>
   </div>
 
   <h3> What's in your closet: </h3>
+  <div id="image-library"></div>
   <div class="image-library">
     <p>
       {% for item in closet %}
         {% for url in item %}
-          <img src={{ url }}>
+          <img src={{ url }}>  
         {% endfor %}
       {% endfor %}
     </p>
   </div>
-  <script src="/static/js/uploadPhotos.js"></script>
 {% endblock %}

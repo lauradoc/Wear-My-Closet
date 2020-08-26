@@ -64,6 +64,23 @@ def get_items_by_user(user_id):
     return Item.query.filter(Item.user_id==user_id).all()
 
 
+def get_items_by_user_json(user_id):
+
+    item_details_json = []
+    closet = Item.query.filter(Item.user_id==user_id).all()
+    for item in closet:
+        item_dict = {
+                "id": item.item_id,
+                "user": item.user_id,
+                "item_name": item.item_name,
+                "image_url": item.image_url,
+                "category": item.category_name,
+            }
+        item_details_json.append(item_dict)
+
+    return item_details_json
+
+
 def create_status(checkout_status):
     """Create and return checkout status"""
 
@@ -161,7 +178,7 @@ def community_details_json(community_name, user_id):
         closet = user.items
         for item in closet:
             item_dict = {
-                "username": user.first_name + user.last_name,
+                "username": user.first_name + ' ' + user.last_name,
                 "id": item.item_id,
                 "user": item.user_id,
                 "item_name": item.item_name,

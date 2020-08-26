@@ -55,7 +55,7 @@ def handle_login():
         flash(u'Logged in!', 'email-success')
         session['email'] = user.email
         session['user_id'] = user.user_id
-        communities = crud.get_community_by_user(session['user_id'])
+        # communities = crud.get_community_by_user(session['user_id'])
 
         return redirect('/home')
 
@@ -134,18 +134,6 @@ def view_my_community_json():
 #     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
 
 
-# @app.route('/communitycloset.json')
-# def view_community_closet():
-#     """Return all items of users within selected community"""
-
-#     community_name = request.args.get("community")
-#     community_users = crud.get_users_by_community(community_name)
-#     user_items = {}
-#     for user in community_users:
-#         closet = crud.get_items_by_user(user.user_id)
-#         user_items[user.user_id] = closet
-#     return jsonify(community_users)
-
 @app.route('/communitycloset.json')
 def get_items_by_community_json():
     """Return items for users in selected community as json"""
@@ -179,13 +167,27 @@ def checkout_item():
         return redirect('/mycommunity')
     
 
+# @app.route('/mycloset')
+# def my_closet():
+#     """View closet of user logged in. else return to login page"""
+    
+    
+
+#     else:
+#         flash(u'Need to be logged in to view this page', 'login-error')
+#         return redirect('/')
+
 @app.route('/mycloset')
-def my_closet():
+def my_closet_json():
     """View closet of user logged in. else return to login page"""
     
     if 'user_id' in session:
         closet = crud.get_image_urls_by_user(session['user_id'])
         return render_template('mycloset.html', closet=closet)
+
+    if 'user_id' in session:
+        item_details = crud.get_items_by_user_json(session['user_id'])
+        return jsonify(item_details)
 
     else:
         flash(u'Need to be logged in to view this page', 'login-error')

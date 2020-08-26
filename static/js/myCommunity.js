@@ -5,7 +5,7 @@ $('#community-button').on('click', (evt) => {
 
     const formData = $('#my-community-form').serialize();
     console.log(formData)
-    alert(`Heading to ${formData.community} closet`);
+    alert(`Heading to ${formData} closet`);
 
     $.get('/communitycloset.json', formData, (community_items) => {
         for (const item of community_items) {
@@ -23,7 +23,7 @@ $('#community-button').on('click', (evt) => {
                             <label>Borrow this item!</label>
                             <br>
                             <img src="${item.image_url}">
-                            <button type="submit" name="checkout-item" action="/checkout">Add items to checkout</button>
+                            <br>
                         </ul>
                     </form>
                 </div>`
