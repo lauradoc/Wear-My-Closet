@@ -7,7 +7,7 @@
   <h3> Upload your clothes</h3>
 
   <div class="container-form-share">
-    <form method="POST" action="/mycloset" id="upload-item-form" enctype="multipart/form-data">
+    <form method="POST" id="upload-item-form" enctype="multipart/form-data">
       <input type=file name="file" class="form-control">
       <br>
       <input type=text name="item_name" id="item-field">Item Name
@@ -23,10 +23,9 @@
         <option value="accessories">Accessories</option>
       </select>
       <br>
-      <button type="submit" action="/mycloset">Upload</button>
+      <button type="submit" >Upload</button>
       <br> 
     </form>
-    <div id="upload-item"></div>
   </div>
 
   <h3> What's in your closet: </h3>

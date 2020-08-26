@@ -3,9 +3,11 @@
 $('#community-button').on('click', (evt) => {
     evt.preventDefault();
 
-    const formData = $('#my-community-form').serialize();
+    const formData = {
+        community: $('#community-field').val()
+    };
     console.log(formData)
-    alert(`Heading to ${formData} closet`);
+    alert(`Heading to ${formData.community} closet`);
 
     $.get('/communitycloset.json', formData, (community_items) => {
         for (const item of community_items) {

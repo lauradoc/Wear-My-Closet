@@ -9,3 +9,5 @@ $('#checkout-button').on('submit', (evt) => {
 }
 
 )
+
+// add condition to turn checkout button (disabled) is false
