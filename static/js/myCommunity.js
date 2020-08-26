@@ -4,7 +4,7 @@ $('#community-button').on('click', (evt) => {
     evt.preventDefault();
 
     const formData = {
-        community: $('#community-field').val()
+        'community': $('#community-field').val()
     };
     console.log(formData)
     alert(`Heading to ${formData.community} closet`);
