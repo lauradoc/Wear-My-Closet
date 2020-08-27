@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wear my Closet{% block title %}{% endblock %}</title>
+  <title>{% block title %}Wear my Closet{% endblock %}</title>
   <link rel="stylesheet" href="/static/css">
   <script
       src="https://code.jquery.com/jquery-3.4.1.js"
@@ -36,8 +36,9 @@
   {% endwith %}
   </p>
   {% block body %} HERE IS THE BODY {% endblock %}
-  <script src="/static/js/uploadPhotos.js"></script>
   <script src="/static/js/myCommunity.js"></script>
   <script src="/static/js/myCheckout.js"></script>
+  <script src="/static/js/uploadPhotos.js"></script>
+  <script src="/static/js/viewCloset.js"></script>
 </body>
 </html>

@@ -178,23 +178,24 @@ def checkout_item():
 #         return redirect('/')
 
 @app.route('/mycloset')
-def my_closet_json():
+def get_closet_form():
+
+    return render_template('mycloset.html')
+
+@app.route('/myclosetjson')
+def get_closet_data():
     """View closet of user logged in. else return to login page"""
     
     if 'user_id' in session:
-        closet = crud.get_image_urls_by_user(session['user_id'])
-        return render_template('mycloset.html', closet=closet)
-
-    # if 'user_id' in session:
-    #     item_details = crud.get_items_by_user_json(session['user_id'])
-    #     return jsonify(item_details)
+        closet = crud.get_items_by_user_json(session['user_id'])
+        return jsonify(closet)
 
     else:
         flash(u'Need to be logged in to view this page', 'login-error')
         return redirect('/')
 
 
-@app.route('/mycloset', methods=['POST'])
+@app.route('/addnewitem', methods=['POST'])
 def upload_item():
     """Upload new item to user's closet"""
 
@@ -209,10 +210,10 @@ def upload_item():
         closet.append(image_url)
         
         new_item = crud.create_item(user_id, item_name, image_url, category_name)
-        return jsonify(new_item)
+        return redirect('/mycloset')
 
-    else:
-        image_url = None
+    # else:
+    #     image_url = None
 
 
 @app.route('/myaccount')

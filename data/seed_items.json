@@ -43,19 +43,19 @@
         "category_name": "accessories"
     },
     {
-        "user_id": 8,
+        "user_id": 11,
         "item_name": "pinterest_dress",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539755/px0lvkqib72itzpok0uo.jpg",
         "category_name": "dresses"
     },
     {
-        "user_id": 9,
+        "user_id": 11,
         "item_name": "colorful_pants",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg",
         "category_name": "bottoms"
     },
     {
-        "user_id": 10,
+        "user_id": 11,
         "item_name": "pinterest_jacket",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597706004/azag6omanmuh3t7rjz9v.jpg",
         "category_name":"jackets & coats"

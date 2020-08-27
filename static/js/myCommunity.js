@@ -26,6 +26,7 @@ $('#community-button').on('click', (evt) => {
                             <br>
                             <img src="${item.image_url}">
                             <br>
+                            <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add item to checkout</button>
                         </ul>
                     </form>
                 </div>`

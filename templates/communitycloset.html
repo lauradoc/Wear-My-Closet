@@ -14,14 +14,14 @@
             <li>Item name: {{ item.item_name }}</li>
             <li>Category: {{ item.category_name }}</li>
             <li>Checkout status: </li>
-            <input type="checkbox" name="community-item" value="{{ item.item_name }}">
+            <input type="checkbox" name="community-item" id= "select-item" value="{{ item.item_name }}">
             <label>Borrow this item!</label>
             <br>
             <img src="{{ item.image_url }}">
             {% endfor %}
         {% endfor %}
-            <button type="submit" name="checkout-item" action="/checkout">Add items to checkout</button>
-        </ul>
+        <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add item to checkout</button>
+    </ul>
     </form>
 </p>
 

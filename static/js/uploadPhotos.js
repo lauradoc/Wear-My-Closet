@@ -3,25 +3,25 @@
 $('#upload-item-form').on('submit', (evt) => {
     evt.preventDefault();
 
-    const formData = {
-        'item_name': $('#name-field').val(),
-        'file': document.getElementById('image-field').files[0],
-        'category_name': $('#category-field').val()
-    };
-
-    const jsonFormData = JSON.stringify(formData)
-    // let formData = new FormData();
-
-    // formData.append('item_name', $('#name-field').val());
-    // formData.append('file', document.getElementById('image-field').files[0]);
-    // formData.append('category_name', $('#category-field').val());
-    console.log(jsonFormData)
+    const formData = new FormData();
+    formData.append('item_name', $('#name-field').val());
+    formData.append('file', $('#image-field').prop('files')[0]);
+    formData.append('category', $('#category-field').val());
+    console.log(formData)
     alert(`Uploading ${formData.item_name} to your closet`);
 
-    $.post('/mycloset', jsonFormData, (new_item) => {
-        console.log(new_item);
-
-        for (const item of new_item) {
+    $.ajax({
+        type: 'POST',
+        url: '/addnewitem',
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: (res) => {
+            const new_item = res;
+            console.log('*************', new_item)
+            for (const item of new_item) {
+                console.log('*************', item)
             const itemDetails = (`
                 <div>
                     <form method="POST" id="upload-item">
@@ -35,7 +35,7 @@ $('#upload-item-form').on('submit', (evt) => {
                     </form>
                 </div>
             `);
-            $('#image-library').append(itemDetails);
-        };
+            $('#item-library').prepend(itemDetails)};
+        },
     });
 });

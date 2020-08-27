@@ -44,6 +44,27 @@ def create_item(user_id, item_name, image_url, category_name):
 
     return item
 
+# def create_item_json(user_id, item_name, image_url, category_name):
+#     """Create item and return new item as json"""
+
+#     new_item_json = []
+
+#     item = Item(user_id=user_id, item_name=item_name, image_url=image_url, category_name=category_name)
+
+#     db.session.add(item)
+#     db.session.commit()
+
+#     item_dict = {
+#             "user": item.user_id,
+#             "item_name": item.item_name,
+#             "image_url": item.image_url,
+#             "category": item.category_name,
+#         }
+#     new_item_json.append(item_dict)
+
+#     return new_item_json
+
+
 def get_item_by_item_name(item_name):
     """takes in item name and return item if exists, otherwise returns none"""
 

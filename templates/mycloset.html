@@ -27,16 +27,8 @@
       <br> 
     </form>
   </div>
-
   <h3> What's in your closet: </h3>
-  <div id="image-library"></div>
-  <div class="image-library">
-    <p>
-      {% for item in closet %}
-        {% for url in item %}
-          <img src={{ url }}>  
-        {% endfor %}
-      {% endfor %}
-    </p>
-  </div>
+  <div id="item-library"></div>
+  <script src="/static/js/uploadPhotos.js"></script>
+  <script src="/static/js/viewCloset.js"></script>
 {% endblock %}
