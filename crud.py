@@ -45,6 +45,19 @@ def create_item(user_id, item_name, image_url, category_name):
     return item
 
 
+def jsonify_item(item):
+
+    json_item = {
+            "id": item.item_id,
+            "user": item.user_id,
+            "item_name": item.item_name,
+            "image_url": item.image_url,
+            "category": item.category_name,
+        }
+
+    return json_item
+
+
 def get_item_by_item_name(item_name):
     """takes in item name and return item if exists, otherwise returns none"""
 

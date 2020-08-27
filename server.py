@@ -201,19 +201,17 @@ def upload_item():
 
     # import pdb; pdb.set_trace()  
     item = request.files.get('file')
-    closet = crud.get_image_urls_by_user(session['user_id'])
+    # closet = crud.get_image_urls_by_user(session['user_id'])
     if item:
         image_url = api.upload_closet_image(item)
         item_name = request.form.get('item_name')
         category_name = request.form.get('category') 
         user_id = session.get('user_id')
-        closet.append(image_url)
+        # closet.append(image_url)
         
         new_item = crud.create_item(user_id, item_name, image_url, category_name)
-        return redirect('/mycloset')
 
-    # else:
-    #     image_url = None
+        return jsonify(crud.jsonify_item(new_item))
 
 
 @app.route('/myaccount')

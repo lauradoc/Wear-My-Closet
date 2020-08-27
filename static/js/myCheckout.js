@@ -18,9 +18,6 @@
 //     document.getElementById('checkout-button').disabled = false;
 // });
 
-
-// }
-// )
 // function enableCheckoutButton() {
 //     let checkoutButton = document.getElementById('checkout-button');
 //     if (select-item.value = true) {
