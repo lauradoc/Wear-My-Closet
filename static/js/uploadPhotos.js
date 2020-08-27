@@ -3,17 +3,17 @@
 $('#upload-item-form').on('submit', (evt) => {
     evt.preventDefault();
 
-    const formData = new FormData();
-    formData.append('item_name', $('#name-field').val());
-    formData.append('file', $('#image-field').prop('files')[0]);
-    formData.append('category', $('#category-field').val());
+    const form_data = new FormData();
+    form_data.append('item_name', $('#name-field').val());
+    form_data.append('file', $('#image-field').prop('files')[0]);
+    form_data.append('category', $('#category-field').val());
     console.log(formData)
-    alert(`Uploading ${formData.item_name} to your closet`);
+    alert(`Uploading ${form_data} to your closet`);
 
     $.ajax({
         type: 'POST',
         url: '/addnewitem',
-        data: formData,
+        data: form_data,
         contentType: false,
         cache: false,
         processData: false,
