@@ -142,6 +142,15 @@ def get_all_communities():
 
     return Community.query.all()
 
+def get_all_community_names():
+
+    community_names = []
+    communities = Community.query.all()
+    for community in communities:
+        community_names.append(community.community_name)
+        
+    return community_names
+
 
 def create_community_member(community_id, user_id):
     """Create and return members of community"""

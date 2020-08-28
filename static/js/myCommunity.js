@@ -2,7 +2,7 @@
 
 $('#community-button').on('click', (evt) => {
     evt.preventDefault();
-
+    console.log(evt)
     const formData = {
         'community': $('#community-field').val()
     };

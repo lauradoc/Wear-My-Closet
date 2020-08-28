@@ -12,19 +12,20 @@
 
 // )
 
-// const checkoutButton = document.getElementById('select-item');
+const checkoutButton = document.querySelector('#select-item');
+console.log('check1')
+checkoutButton.addEventListener('click', () => {
+    enableCheckoutButton;
+});
+console.log('check2')
 
-// checkoutButton.addEventListener('click', () => {
-//     document.getElementById('checkout-button').disabled = false;
-// });
-
-// function enableCheckoutButton() {
-//     let checkoutButton = document.getElementById('checkout-button');
-//     if (select-item.value = true) {
-//         checkoutButton.disabled = false;
-//     }
-//     else {
-//         checkoutButton.disabled = true;
-//     }
-// }
+function enableCheckoutButton() {
+    let checkoutButton = document.getElementById('checkout-button');
+    if (select-item.value == true) {
+        checkoutButton.disabled == false;
+    }
+    else {
+        checkoutButton.disabled == true;
+    }
+}
 

@@ -68,10 +68,15 @@ def handle_login():
 def view_home():
     """Load home page once user is logged in"""
 
-    email = session.get('email')
-    if email:
+    user_id = session.get('user_id')
+    if user_id:
+        user_communities = crud.get_community_by_user(user_id)
         communities = crud.get_all_communities()
-        return render_template('home.html', email=email, communities=communities)
+        available_communities = []
+        for community in communities:
+            if community.community_name not in user_communities:
+                available_communities.append(community)
+        return render_template('home.html', user=user_id, communities=available_communities)
     else:
         return redirect('/')
 
@@ -167,16 +172,6 @@ def checkout_item():
         return redirect('/mycommunity')
     
 
-# @app.route('/mycloset')
-# def my_closet():
-#     """View closet of user logged in. else return to login page"""
-    
-    
-
-#     else:
-#         flash(u'Need to be logged in to view this page', 'login-error')
-#         return redirect('/')
-
 @app.route('/mycloset')
 def get_closet_form():
 
@@ -199,15 +194,12 @@ def get_closet_data():
 def upload_item():
     """Upload new item to user's closet"""
 
-    # import pdb; pdb.set_trace()  
     item = request.files.get('file')
-    # closet = crud.get_image_urls_by_user(session['user_id'])
     if item:
         image_url = api.upload_closet_image(item)
         item_name = request.form.get('item_name')
         category_name = request.form.get('category') 
         user_id = session.get('user_id')
-        # closet.append(image_url)
         
         new_item = crud.create_item(user_id, item_name, image_url, category_name)
 

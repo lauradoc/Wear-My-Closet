@@ -9,7 +9,7 @@
     Select your community:
     {% for community in user_communities %}
     <input type="radio" name="community" value="{{ community }}" id="community-field">
-    <label>{{ community }}</label>
+    <label id="community-name-field">{{ community }}</label>
     {% endfor %}
     <br>
     <button type="submit" id="community-button">Select</button>
@@ -17,6 +17,7 @@
 </form>
 <!-- <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add item to checkout</button> -->
 <div id="community-items"></div>
+<script src="/static/js/myCheckout.js"></script>
 
 <!-- <script src="myCheckout.js"></script> -->
 

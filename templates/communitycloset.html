@@ -15,12 +15,12 @@
             <li>Category: {{ item.category_name }}</li>
             <li>Checkout status: </li>
             <input type="checkbox" name="community-item" id= "select-item" value="{{ item.item_name }}">
-            <label>Borrow this item!</label>
+            <label>Borrow item!</label>
             <br>
             <img src="{{ item.image_url }}">
             {% endfor %}
         {% endfor %}
-        <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add item to checkout</button>
+        <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add to checkout</button>
     </ul>
     </form>
 </p>
