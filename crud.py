@@ -1,6 +1,6 @@
 """CRUD operations. Utility functions for creating data"""
 
-from model import db, User, Category, Item, Checkout, Status, Community, CommunityMember, connect_to_db
+from model import db, User, Category, Item, Checkout, Cart, Status, Community, CommunityMember, connect_to_db
 
 
 def create_user(first_name, last_name, email, password, city, phone):
@@ -34,10 +34,10 @@ def create_category(category_name):
     return category_name
 
 
-def create_item(user_id, item_name, image_url, category_name):
+def create_item(user_id, item_name, item_description, image_url, category_name):
     """Create and return a new item."""
 
-    item = Item(user_id=user_id, item_name=item_name, image_url=image_url, category_name=category_name)
+    item = Item(user_id=user_id, item_name=item_name, item_description=item_description, image_url=image_url, category_name=category_name)
 
     db.session.add(item)
     db.session.commit()
@@ -51,6 +51,7 @@ def jsonify_item(item):
             "id": item.item_id,
             "user": item.user_id,
             "item_name": item.item_name,
+            "item_description": item.item_description,
             "image_url": item.image_url,
             "category": item.category_name,
         }
@@ -87,6 +88,7 @@ def get_items_by_user_json(user_id):
                 "id": item.item_id,
                 "user": item.user_id,
                 "item_name": item.item_name,
+                "item_description": item.item_description,
                 "image_url": item.image_url,
                 "category": item.category_name,
             }
@@ -105,20 +107,31 @@ def create_status(checkout_status):
 
     return checkout_status
 
-def create_checkout(item_id, user_id, checkout_date, due, return_date, checkout_status):
+def create_checkout(checkout_date, due_date, return_date, checkout_status):
     """Create and return checkout for item"""
 
-    checkout = Checkout(item_id=item_id, user_id=user_id, checkout_date=checkout_date, due=due, return_date=return_date, checkout_status=checkout_status)
+    checkout = Checkout(checkout_date=checkout_date, due_date=due_date, return_date=return_date, checkout_status=checkout_status)
 
     db.session.add(checkout)
     db.session.commit()
 
     return checkout
 
-def get_checkout_by_user(user_id):
+def create_cart(item_id, user_id):
+
+    cart = Cart(item_id=item_id, user_id=user_id)
+
+    db.session.add(cart)
+    db.session.commit()
+
+    return cart
+
+
+def get_cart_by_user(user_id):
     """Return all checkouts from user"""
 
-    return Checkout.query.filter(Checkout.user_id==user_id)
+    return Cart.query.filter(Cart.user_id==user_id)
+
 
 def create_community(community_name, location):
     """Create and return new community"""
@@ -205,6 +218,7 @@ def community_details_json(community_name, user_id):
                 "id": item.item_id,
                 "user": item.user_id,
                 "item_name": item.item_name,
+                "item_description": item.item_description,
                 "image_url": item.image_url,
                 "category": item.category_name,
             }

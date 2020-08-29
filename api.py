@@ -28,6 +28,11 @@ def upload_closet_image(item):
 
     return image_url
 
+# def get_image_thumbnail(item):
+
+#     image_thumbnail = CloudinaryImage(item).image(transformation=["media_lib_thumb"])
+
+#     return image_thumbnail
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

@@ -44,6 +44,7 @@ class Item(db.Model):
     item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     item_name = db.Column(db.String)
+    item_description = db.Column(db.String)
     image_url = db.Column(db.String)
     category_name = db.Column(db.String, db.ForeignKey('categories.category_name'))
 
@@ -59,19 +60,32 @@ class Checkout(db.Model):
     __tablename__ = 'checkouts'
 
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     checkout_date = db.Column(db.Date)
-    due = db.Column(db.Date)
+    due_date = db.Column(db.Date)
     return_date = db.Column(db.Date)
     checkout_status = db.Column(db.String, db.ForeignKey('statuses.checkout_status'))
 
-    item = db.relationship('Item', backref='checkouts')
-    user = db.relationship('User', backref='checkouts')
+    # item = db.relationship('Item', backref='checkouts')
+    # user = db.relationship('User', backref='checkouts')
     status = db.relationship('Status', backref='checkouts')
 
     def __repr__(self):
         return f'<Checkout checkout_id={self.checkout_id} user_id={self.user_id} item={self.item_id}>'
+
+class Cart(db.Model):
+
+    __tablename__ = 'carts'
+
+    cart_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+
+    item = db.relationship('Item', backref='carts')
+    user = db.relationship('User', backref='carts')
+
+    def __repr__(self):
+        return f'<Cart cart_id={self.cart_id} user_id={self.user_id} item={self.item_id}'
 
 class Status(db.Model):
     """The status of an item out for checkout"""

@@ -1,31 +1,45 @@
 "use strict";
 
 
+// document.addEventListener('DOMContentLoaded', () => {
+//     document.querySelector("input[name=checkbox]").addEventListener('click', () => {
+//      enable;
+//     }  ); 
+// });
 
-// $('#checkout-button').on('submit', (evt) => {
-//     evt.preventDefault();
+// var checkbox = document.querySelector("input[name=checkbox]");
+// console.log('check1')
 
-//     const formData = $('#checkout-item').serialize();
+// if (checkbox.checked) {
+//     checkbox.addEventListener('change', () => {
+//         if(checkbox.checked) {
+//             enable
+//         } else {
+//             disable
+//         }
+//     });
+// };
 
-    
+const checkbox = document.getElementById('select-item');
+if (checkbox.checked) {
+    checkbox.addEventListener('change', enable)}
+else {
+            disable}
+
+
+// var checkoutButton = document.getElementById('select-item');
+// console.log('check1')
+// if (document.getElementById("checkout-button").disabled == true) {
+//     checkoutButton.addEventListener('click', console.log('enable'));
 // }
 
-// )
-
-const checkoutButton = document.querySelector('#select-item');
-console.log('check1')
-checkoutButton.addEventListener('click', () => {
-    enableCheckoutButton;
-});
-console.log('check2')
-
-function enableCheckoutButton() {
-    let checkoutButton = document.getElementById('checkout-button');
-    if (select-item.value == true) {
-        checkoutButton.disabled == false;
-    }
-    else {
-        checkoutButton.disabled == true;
-    }
+function enable() {
+    document.getElementById("checkout-button").disabled == false;
 }
+
+function disable() {
+     document.getElementById("checkout-button").disabled= true;
+}
+
+// $("#select-item").on("click", enable);
 

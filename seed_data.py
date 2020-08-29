@@ -71,10 +71,11 @@ def seed_items():
     for item in items_data:
         user_id = item['user_id']
         item_name = item['item_name']
+        item_description = item["item_description"]
         image_url = item['image_url']
         category_name = item['category_name']
 
-        new_item = crud.create_item(user_id, item_name, image_url, category_name)
+        new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name)
 
 seed_items()
 
@@ -85,16 +86,27 @@ def seed_checkout():
         checkout_data = json.loads(f.read())
 
     for checkout in checkout_data:
-        item_id = checkout['item_id']
-        user_id = checkout['user_id']
         checkout_date = date.today()
-        due = date.today()
+        due_date = date.today()
         return_date = date.today()
         checkout_status = checkout['checkout_status']
 
-        new_checkout = crud.create_checkout(item_id, user_id, checkout_date, due, return_date, checkout_status)
+        new_checkout = crud.create_checkout(checkout_date, due_date, return_date, checkout_status)
 
 seed_checkout()
+
+def seed_cart():
+
+    with open('data/seed_cart.json') as f:
+        cart_data = json.loads(f.read())
+
+    for cart in cart_data:
+        item_id = cart['item_id']
+        user_id = cart['user_id']
+
+        new_cart = crud.create_cart(item_id, user_id)
+
+seed_cart()
 
 
 def seed_community():

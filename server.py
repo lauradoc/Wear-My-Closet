@@ -197,11 +197,13 @@ def upload_item():
     item = request.files.get('file')
     if item:
         image_url = api.upload_closet_image(item)
+        image_thumbnail = api.get_image_thumbnail(item)
         item_name = request.form.get('item_name')
+        item_description = request.form.get('item_description')
         category_name = request.form.get('category') 
         user_id = session.get('user_id')
         
-        new_item = crud.create_item(user_id, item_name, image_url, category_name)
+        new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name)
 
         return jsonify(crud.jsonify_item(new_item))
 
@@ -215,8 +217,10 @@ def account_details():
     email = user.email
     city = user.city
     phone = user.phone
+    # item = request.files.get('file')
+    # image_thumbnail = api.get_image_thumbnail(item)
     closet = crud.get_image_urls_by_user(session['user_id'])
-    checkouts = crud.get_checkout_by_user(session['user_id'])
+    checkouts = crud.get_cart_by_user(session['user_id'])
     communities = crud.get_community_by_user(session['user_id'])
 
     return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkouts=checkouts, communities=communities)

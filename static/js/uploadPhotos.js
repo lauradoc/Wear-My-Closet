@@ -6,6 +6,7 @@ $('#upload-item-form').on('submit', (evt) => {
     const form_data = new FormData();
     form_data.append('file', $('#image-field').prop('files')[0]);
     form_data.append('item_name', $('#name-field').val());
+    form_data.append('item_description', $('#description-field').val());
     form_data.append('category', $('#category-field').val());
     console.log(form_data)
     // alert(`Uploading ${form_data.item_name} to your closet`);
@@ -25,6 +26,7 @@ $('#upload-item-form').on('submit', (evt) => {
                     <form method="POST" id="upload-item">
                         <ul class="item-details">
                             <li><b>Item Name: </b>${item.item_name}</li>
+                            <li><b>Description: </b>${item.item_description}</li>
                             <li><b>Category: </b>${item.category}</li>
                             <br>
                             <img src="${item.image_url}">

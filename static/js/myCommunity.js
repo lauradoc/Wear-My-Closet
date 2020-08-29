@@ -20,16 +20,18 @@ $('#community-button').on('click', (evt) => {
                         <ul class="item-info">
                             <li><b>Owner: </b>${item.username}</li>
                             <li><b>Item Name: </b>${item.item_name}</li>
+                            <li><b>Description: </b>${item.item_description}</li>
                             <li><b>Category: </b>${item.category}</li>
-                            <input type="checkbox" name="community-item" value="{{ item.item_name }}">
-                            <label>Borrow this item!</label>
+                            <input type="checkbox" name="checkbox" id="select-item" value="{{ item.item_name }}">
+                            <label>Select</label>
                             <br>
                             <img src="${item.image_url}">
-                            <br>
-                            <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add item to checkout</button>
                         </ul>
                     </form>
-                </div>`
+                </div>
+                <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add to cart</button>
+                
+                <script src="/static/js/myCheckout.js"></script>`
             );
             $('#community-items').append(itemDetails);
         };
