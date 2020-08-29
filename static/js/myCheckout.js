@@ -20,9 +20,11 @@
 //     });
 // };
 
-const checkbox = document.getElementById('select-item');
-if (checkbox.checked) {
-    checkbox.addEventListener('change', enable)}
+console.log('check1')
+let selectedItem = document.getElementById('select-item');
+console.log(selectedItem)
+if (selectedItem.checked) {
+    selectedItem.addEventListener('change', enable)}
 else {
             disable}
 

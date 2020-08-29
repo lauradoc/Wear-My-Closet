@@ -1,17 +1,15 @@
 "use strict";
 
+
 $('#community-button').on('click', (evt) => {
     evt.preventDefault();
-    console.log(evt)
     const formData = {
         'community': $('#community-field').val()
     };
-    console.log(formData)
     alert(`Heading to ${formData.community} closet`);
 
     $.get('/communitycloset.json', formData, (community_items) => {
         for (const item of community_items) {
-            console.log(item);
             const itemDetails = (
                 `<div class="item-details">
                     <div class="item-thumbnail">
@@ -22,18 +20,27 @@ $('#community-button').on('click', (evt) => {
                             <li><b>Item Name: </b>${item.item_name}</li>
                             <li><b>Description: </b>${item.item_description}</li>
                             <li><b>Category: </b>${item.category}</li>
-                            <input type="checkbox" name="checkbox" id="select-item" value="{{ item.item_name }}">
+                            <input type="checkbox" name="checkbox" onchange="checkStatus(this)" id="${item.item_name}" value="${item.item_name }">
                             <label>Select</label>
                             <br>
                             <img src="${item.image_url}">
                         </ul>
                     </form>
-                </div>
-                <button disabled="true" type="button" id="checkout-button" name="checkout-item" action="/checkout">Add to cart</button>
-                
-                <script src="/static/js/myCheckout.js"></script>`
+                </div>`
             );
             $('#community-items').append(itemDetails);
         };
     });
 });
+
+function enable() {
+    document.getElementById("checkout-button").disabled == false;
+}
+
+function disable() {
+     document.getElementById("checkout-button").disabled= true;
+}
+
+function checkStatus(item) {
+    console.log(item)
+}
