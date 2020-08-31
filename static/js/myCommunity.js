@@ -14,6 +14,7 @@ $('#community-button').on('click', (evt) => {
             if (item.status == "Unavailable") {
                 button = `<input type="button" disabled=true onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">`
             };
+            // else if {already in cart}
             const itemDetails = (
                 `<div class="item-details">
                     <div class="item-thumbnail">
@@ -38,12 +39,6 @@ $('#community-button').on('click', (evt) => {
     });
 });
 
-// function enable() {
-//     document.getElementById("checkout-button").disabled == false;
-// }
-
-function disable() {
-}
 
 function addToCart(id) {
     console.log(id)
@@ -57,6 +52,6 @@ function addToCart(id) {
     document.getElementById(id).disabled= true;
 }
 
-
+function getCartItemByUser
 
 

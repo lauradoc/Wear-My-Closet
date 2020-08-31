@@ -165,23 +165,32 @@ def add_to_cart():
     return f'{item.item_name} has been added to your cart!'
 
 
-# @app.route('/cart')
-# def add_to_cart():
+@app.route('/cart')
+def go_to_cart():
 
-#     return render_template('cart.html')
+    return render_template('cart.html')
     
+# @app.route('/cart', methods=['DELETE'])
+    #hit this route when user selects remove button on cart.html
 
-# @app.route('/cart', methods=['POST'])
-# def checkout_item():
+# @app.route('/showcart')
+# def show_cart_items():
+    #get  request for all items that are on cart table for session user
+    #need crud function that pulls all items in cart by user
+    #cart.html to remove items
 
-#     checkout = crud.get_checkout_by_user(session['user_id'])
-#     item = request.form.get('checkout-items')
 
-#     if checkout:
-#         return render_template('cart.html', item=item)
-#     else:
-#         flash(u'No item in checkout')
-#         return redirect('/mycommunity')
+@app.route('/cart', methods=['POST'])
+def checkout_item():
+
+    checkout = crud.get_checkout_by_user(session['user_id'])
+    item = request.form.get('checkout-items')
+
+    if checkout:
+        return render_template('cart.html', item=item)
+    else:
+        flash(u'No item in checkout')
+        return redirect('/mycommunity')
     
 
 @app.route('/mycloset')
