@@ -140,19 +140,31 @@ def get_cart_by_user_json(user_id):
 
     for item in cart_items:
         item_dict = {
-            "username": user.first_name + ' ' + user.last_name,
+            # "username": user.first_name + ' ' + user.last_name,
             "id": item.item_id,
             "user": item.user_id,
-            "item_name": item.item_name,
-            "item_description": item.item_description,
-            "image_url": item.image_url,
-            "category": item.category_name,
-            "status": item.status
+            # "item_name": item.item_name,
+            # "item_description": item.item_description,
+            # "image_url": item.image_url,
+            # "category": item.category_name,
+            # "status": item.status
         }
         cart_items_json.append(item_dict)
 
     return cart_items_json
 
+
+def remove_item_from_cart(item_id):
+    
+    cart_items = Cart.query.filter(Cart.item_id==item_id)
+    remove_item = Cart.query.filter(Cart.item_id==item_id)
+
+    for item in cart_items:
+        if item == remove_item:
+            cart_items.remove(item)
+
+    return cart_items
+    
 
 def create_community(community_name, location):
     """Create and return new community"""

@@ -152,13 +152,23 @@ def add_to_cart():
     return f'{item.item_name} has been added to your cart!'
 
 
+@app.route('/removecartitem', methods=['POST'])
+def remove_from_cart():
+
+    item_id = request.form.get('item_id')
+    print(item_id)
+    remove_item = crud.remove_item_from_cart(item_id)
+    print('item removed', remove_item)
+    item = crud.get_item_by_id(item_id)
+
+    return f'{item.item_name} has been removed from your cart.'
+
+
 @app.route('/cart')
 def go_to_cart():
 
     return render_template('cart.html')
     
-# @app.route('/cart', methods=['DELETE'])
-    #hit this route when user selects remove button on cart.html
 
 @app.route('/cartjson')
 def show_cart_items():
@@ -171,6 +181,10 @@ def show_cart_items():
     #need crud function that pulls all items in cart by user
     #cart.html to remove items
 
+@app.route('/checkout')
+def checkout():
+
+    return render_template('checkout.html')
 
 # @app.route('/cart', methods=['POST'])
 # def checkout_item():
@@ -233,7 +247,7 @@ def account_details():
     # item = request.files.get('file')
     # image_thumbnail = api.get_image_thumbnail(item)
     closet = crud.get_image_urls_by_user(session['user_id'])
-    checkouts = crud.get_cart_by_user(session['user_id'])
+    checkouts = crud.get_cart_by_user_json(session['user_id'])
     communities = crud.get_community_by_user(session['user_id'])
 
     return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkouts=checkouts, communities=communities)
