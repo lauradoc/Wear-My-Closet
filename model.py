@@ -47,9 +47,11 @@ class Item(db.Model):
     item_description = db.Column(db.String)
     image_url = db.Column(db.String)
     category_name = db.Column(db.String, db.ForeignKey('categories.category_name'))
-
+    status = db.Column(db.String, db.ForeignKey('statuses.checkout_status'), default="Available")
+        
     user = db.relationship('User', backref='items')
     category = db.relationship('Category', backref='items')
+    # status = db.relationship('Status', backref='items')
 
     def __repr__(self):
         return f'<Item item_id={self.item_id} user_id={self.user_id} name={self.item_name}>'
@@ -60,15 +62,14 @@ class Checkout(db.Model):
     __tablename__ = 'checkouts'
 
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
+    user_borrowed_by = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     checkout_date = db.Column(db.Date)
     due_date = db.Column(db.Date)
     return_date = db.Column(db.Date)
-    checkout_status = db.Column(db.String, db.ForeignKey('statuses.checkout_status'))
 
-    # item = db.relationship('Item', backref='checkouts')
-    # user = db.relationship('User', backref='checkouts')
-    status = db.relationship('Status', backref='checkouts')
+    item = db.relationship('Item', backref='checkouts')
+    user = db.relationship('User', backref='checkouts')
 
     def __repr__(self):
         return f'<Checkout checkout_id={self.checkout_id} user_id={self.user_id} item={self.item_id}>'

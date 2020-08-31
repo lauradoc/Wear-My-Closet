@@ -37,7 +37,7 @@ def create_category(category_name):
 def create_item(user_id, item_name, item_description, image_url, category_name):
     """Create and return a new item."""
 
-    item = Item(user_id=user_id, item_name=item_name, item_description=item_description, image_url=image_url, category_name=category_name)
+    item = Item(user_id=user_id, item_name=item_name, item_description=item_description, image_url=image_url, category_name=category_name, status="Available")
 
     db.session.add(item)
     db.session.commit()
@@ -112,10 +112,10 @@ def create_status(checkout_status):
 
     return checkout_status
 
-def create_checkout(checkout_date, due_date, return_date, checkout_status):
+def create_checkout(checkout_date, due_date, return_date):
     """Create and return checkout for item"""
 
-    checkout = Checkout(checkout_date=checkout_date, due_date=due_date, return_date=return_date, checkout_status=checkout_status)
+    checkout = Checkout(checkout_date=checkout_date, due_date=due_date, return_date=return_date)
 
     db.session.add(checkout)
     db.session.commit()
@@ -226,6 +226,7 @@ def community_details_json(community_name, user_id):
                 "item_description": item.item_description,
                 "image_url": item.image_url,
                 "category": item.category_name,
+                "status": item.status
             }
             user_items_json.append(item_dict)
 

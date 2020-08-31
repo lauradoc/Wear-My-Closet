@@ -10,6 +10,10 @@ $('#community-button').on('click', (evt) => {
 
     $.get('/communitycloset.json', formData, (community_items) => {
         for (const item of community_items) {
+            const button = `<input type="button" onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">`
+            if (item.status == "Unavailable") {
+                button = `<input type="button" disabled=true onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">`
+            };
             const itemDetails = (
                 `<div class="item-details">
                     <div class="item-thumbnail">
@@ -20,7 +24,8 @@ $('#community-button').on('click', (evt) => {
                             <li><b>Item Name: </b>${item.item_name}</li>
                             <li><b>Description: </b>${item.item_description}</li>
                             <li><b>Category: </b>${item.category}</li>
-                            <input type="button" onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">
+                            <li><b>Status: </b>${item.status}</li>
+                            ${button}
                             <br>
                             <img src="${item.image_url}">
                         </ul>
@@ -37,9 +42,8 @@ $('#community-button').on('click', (evt) => {
 //     document.getElementById("checkout-button").disabled == false;
 // }
 
-// function disable() {
-//      document.getElementById("checkout-button").disabled= true;
-// }
+function disable() {
+}
 
 function addToCart(id) {
     console.log(id)
@@ -50,4 +54,9 @@ function addToCart(id) {
     $.post('/addtocart', itemInput, (res) => {
         alert(res);
     });
+    document.getElementById(id).disabled= true;
 }
+
+
+
+

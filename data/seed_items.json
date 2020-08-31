@@ -2,45 +2,51 @@
 [
     {
         "user_id": 1,
-        "item_name": "flowy-dress",
-        "item_description": "TBD",
+        "item_name": "Black & White Floral Dress",
+        "item_description": "Loose fitting, linen dress that hits above the ankle. Size M-L.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597787169/o2lriwdxjxcxxxhquczu.jpg",
-        "category_name": "dresses"
+        "category_name": "dresses",
+        "status": "Available"
     },
     {
         "user_id": 2,
-        "item_name": "bucket-purse",
-        "item_description": "TBD",
+        "item_name": "Green Bucket Purse",
+        "item_description": "Bucket style purse with shoulder straps and drawstring closure. S",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597876991/t8hjro6ehaalfnvvol5y.jpg",
-        "category_name": "accessories"
+        "category_name": "accessories",
+        "status": "Available"
     },
     {
         "user_id": 3,
         "item_name": "olive-raincoat",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598038546/zkpaplviftbqxga5buv5.jpg",
-        "category_name": "jackets & coats"
+        "category_name": "jackets & coats",
+        "status": "Available"
     },
     {
         "user_id": 4,
         "item_name": "patchwork-sweater",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598038724/afpscfglykjz3c2gvt55.jpg",
-        "category_name": "sweaters"
+        "category_name": "sweaters",
+        "status": "Available"
     },
     {
         "user_id": 5,
         "item_name": "pinterest_sandals",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597689897/fmt7irnj7u9kxcwl8svx.jpg",
-        "category_name": "shoes"
+        "category_name": "shoes",
+        "status": "Available"
     },
     {
         "user_id": 6,
         "item_name": "yellow_dress",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597343686/axubpvppdrxrb0crikt8.jpg",
-        "category_name": "dresses"
+        "category_name": "dresses",
+        "status": "Available"
     },
     {
         "user_id": 7,
@@ -54,20 +60,23 @@
         "item_name": "pinterest_dress",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539755/px0lvkqib72itzpok0uo.jpg",
-        "category_name": "dresses"
+        "category_name": "dresses",
+        "status": "Available"
     },
     {
         "user_id": 11,
         "item_name": "colorful_pants",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg",
-        "category_name": "bottoms"
+        "category_name": "bottoms",
+        "status": "Available"
     },
     {
         "user_id": 11,
         "item_name": "pinterest_jacket",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597706004/azag6omanmuh3t7rjz9v.jpg",
-        "category_name":"jackets & coats"
+        "category_name":"jackets & coats",
+        "status": "Available"
     }
 ]

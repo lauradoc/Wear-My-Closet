@@ -89,9 +89,8 @@ def seed_checkout():
         checkout_date = date.today()
         due_date = date.today()
         return_date = date.today()
-        checkout_status = checkout['checkout_status']
 
-        new_checkout = crud.create_checkout(checkout_date, due_date, return_date, checkout_status)
+        new_checkout = crud.create_checkout(checkout_date, due_date, return_date)
 
 seed_checkout()
 
