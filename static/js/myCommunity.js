@@ -6,7 +6,7 @@ $('#community-button').on('click', (evt) => {
     const formData = {
         'community': $('#community-field').val()
     };
-    alert(`Heading to ${formData.community} closet`);
+    // alert(`Heading to ${formData.community} closet`);
 
     $.get('/communitycloset.json', formData, (community_items) => {
         for (const item of community_items) {
@@ -20,8 +20,7 @@ $('#community-button').on('click', (evt) => {
                             <li><b>Item Name: </b>${item.item_name}</li>
                             <li><b>Description: </b>${item.item_description}</li>
                             <li><b>Category: </b>${item.category}</li>
-                            <input type="checkbox" name="checkbox" onchange="checkStatus(this)" id="${item.item_name}" value="${item.item_name }">
-                            <label>Select</label>
+                            <input type="button" onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">
                             <br>
                             <img src="${item.image_url}">
                         </ul>
@@ -29,18 +28,26 @@ $('#community-button').on('click', (evt) => {
                 </div>`
             );
             $('#community-items').append(itemDetails);
+            document.getElementById("{item.item_name}")
         };
     });
 });
 
-function enable() {
-    document.getElementById("checkout-button").disabled == false;
-}
+// function enable() {
+//     document.getElementById("checkout-button").disabled == false;
+// }
 
-function disable() {
-     document.getElementById("checkout-button").disabled= true;
-}
+// function disable() {
+//      document.getElementById("checkout-button").disabled= true;
+// }
 
-function checkStatus(item) {
-    console.log(item)
+function addToCart(id) {
+    console.log(id)
+    const itemInput = {
+        'item_id': id
+    };
+
+    $.post('/addtocart', itemInput, (res) => {
+        alert(res);
+    });
 }

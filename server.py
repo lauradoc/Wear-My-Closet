@@ -152,24 +152,36 @@ def get_items_by_community_json():
 
     return jsonify(community_items)
 
+@app.route('/addtocart', methods=['POST'])
+def add_to_cart():
+
+    user_id = session.get('user_id')
+    item_id = request.form.get('item_id')
+    print(item_id)
+    new_cart_item = crud.create_cart(item_id, user_id)
+    print('item added', new_cart_item.item_id)
+    item = crud.get_item_by_id(item_id)
+
+    return f'{item.item_name} has been added to your cart!'
+
+
+# @app.route('/cart')
+# def add_to_cart():
+
+#     return render_template('cart.html')
     
-@app.route('/checkout')
-def add_to_checkout():
 
-    return render_template('checkout.html')
-    
+# @app.route('/cart', methods=['POST'])
+# def checkout_item():
 
-@app.route('/checkout', methods=['POST'])
-def checkout_item():
+#     checkout = crud.get_checkout_by_user(session['user_id'])
+#     item = request.form.get('checkout-items')
 
-    checkout = crud.get_checkout_by_user(session['user_id'])
-    item = request.form.get('checkout-items')
-
-    if checkout:
-        return render_template('checkout.html', item=item)
-    else:
-        flash(u'No item in checkout')
-        return redirect('/mycommunity')
+#     if checkout:
+#         return render_template('cart.html', item=item)
+#     else:
+#         flash(u'No item in checkout')
+#         return redirect('/mycommunity')
     
 
 @app.route('/mycloset')

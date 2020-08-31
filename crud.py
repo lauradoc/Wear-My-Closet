@@ -63,7 +63,12 @@ def get_item_by_item_name(item_name):
     """takes in item name and return item if exists, otherwise returns none"""
 
     return Item.query.filter_by(item_name=item_name).first()
-    
+
+
+def get_item_by_id(item_id):
+
+    return Item.query.filter_by(item_id=item_id).first()
+
 
 def get_image_urls_by_user(user_id):
     """takes in user_id and returns urls of all items under that user"""
