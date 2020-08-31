@@ -132,10 +132,26 @@ def create_cart(item_id, user_id):
     return cart
 
 
-def get_cart_by_user(user_id):
+def get_cart_by_user_json(user_id):
     """Return all checkouts from user"""
 
-    return Cart.query.filter(Cart.user_id==user_id)
+    cart_items_json = []
+    cart_items = Cart.query.filter(Cart.user_id==user_id)
+
+    for item in cart_items:
+        item_dict = {
+            "username": user.first_name + ' ' + user.last_name,
+            "id": item.item_id,
+            "user": item.user_id,
+            "item_name": item.item_name,
+            "item_description": item.item_description,
+            "image_url": item.image_url,
+            "category": item.category_name,
+            "status": item.status
+        }
+        cart_items_json.append(item_dict)
+
+    return cart_items_json
 
 
 def create_community(community_name, location):

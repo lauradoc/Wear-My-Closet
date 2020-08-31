@@ -126,19 +126,6 @@ def view_my_community_json():
     return jsonify(user_communities_json)
     
 
-# @app.route('/communitycloset.json')
-# def view_community_closet():
-#     """Return all items of users within selected community"""
-
-#     community_name = request.args.get("community")
-#     community_users = crud.get_users_by_community(community_name)
-#     user_items = {}
-#     for user in community_users:
-#         closet = crud.get_items_by_user(user.user_id)
-#         user_items[user.user_id] = closet
-#     return render_template('communitycloset.html', community_name=community_name, community_users=community_users, user_items=user_items)
-
-
 @app.route('/communitycloset.json')
 def get_items_by_community_json():
     """Return items for users in selected community as json"""
@@ -173,24 +160,29 @@ def go_to_cart():
 # @app.route('/cart', methods=['DELETE'])
     #hit this route when user selects remove button on cart.html
 
-# @app.route('/showcart')
-# def show_cart_items():
+@app.route('/cartjson')
+def show_cart_items():
+
+    user_id = session.get('user_id')
+    cart = crud.get_cart_by_user_json(user_id)
+
+    return jsonify(cart)
     #get  request for all items that are on cart table for session user
     #need crud function that pulls all items in cart by user
     #cart.html to remove items
 
 
-@app.route('/cart', methods=['POST'])
-def checkout_item():
+# @app.route('/cart', methods=['POST'])
+# def checkout_item():
 
-    checkout = crud.get_checkout_by_user(session['user_id'])
-    item = request.form.get('checkout-items')
+#     checkout = crud.get_checkout_by_user(session['user_id'])
+#     item = request.form.get('checkout-items')
 
-    if checkout:
-        return render_template('cart.html', item=item)
-    else:
-        flash(u'No item in checkout')
-        return redirect('/mycommunity')
+#     if checkout:
+#         return render_template('cart.html', item=item)
+#     else:
+#         flash(u'No item in checkout')
+#         return redirect('/mycommunity')
     
 
 @app.route('/mycloset')
@@ -218,7 +210,7 @@ def upload_item():
     item = request.files.get('file')
     if item:
         image_url = api.upload_closet_image(item)
-        image_thumbnail = api.get_image_thumbnail(item)
+        # image_thumbnail = api.get_image_thumbnail(item)
         item_name = request.form.get('item_name')
         item_description = request.form.get('item_description')
         category_name = request.form.get('category') 
