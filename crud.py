@@ -155,7 +155,7 @@ def remove_item_from_cart(item_id, user_id):
     return Cart.query.filter(Cart.user_id==user_id)
 
 
-def create_checkout(checkout_date, due_date):
+def create_checkout(item_id, user_borrowed_by, checkout_date, due_date):
     """Create and return checkout for item"""
 
     checkout = Checkout(checkout_date=checkout_date, due_date=due_date)

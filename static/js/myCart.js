@@ -6,9 +6,9 @@ $.get('/cartjson', (cart) => {
         console.log(item)
         const cartDetails = (
             `<div class="cart-details">
-                <form method="POST" id="checkout-form">
+                <form method="POST" action="/checkout" id="checkout-form">
                     <ul>
-                        <li id="checkout-item">Item ID: ${item.id} </li>
+                        <li id="${item.id}">Item ID: ${item.id} </li>
                         <li>User ID: ${item.user} </li>
                         <li><label>Checkout Date: <input id="checkout-date" type="date" name="checkout-date"></label></li>
                         <li><label>Due Date: <input id="due-date" type="date" name="due-date"></label></li>
@@ -23,6 +23,15 @@ $.get('/cartjson', (cart) => {
         $('#cart-items').append(cartDetails);
     };
 });
+
+function makeCheckoutItem(id) {
+    console.log('check')
+    const formData = {
+        'item_id': id
+    };
+    console.log(formData)
+    $.post('/checkout', formData);
+};
 
 function removeFromCart(id) {
     const formInputs = {

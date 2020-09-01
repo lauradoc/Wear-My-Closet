@@ -7,7 +7,7 @@
 <h3>My Cart</h3>
 <div id="cart-items"></div>
 <form action="/checkout">
-    <button type="submit" name="checkout-form" action="/checkout">Complete Checkout</button>
+    <button type="submit" name="checkout-form" onclick="makeCheckoutItem(this.id)" action="/checkout">Complete Checkout</button>
 </form>
 
 {% endblock %}

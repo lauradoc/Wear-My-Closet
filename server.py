@@ -191,14 +191,17 @@ def checkout():
 @app.route('/checkout', methods=['POST'])
 def checkout_item():
 
-    checkout_date = request.form.get('checkout-date')
-    due_date = request.form.get('due-date')
-    new_checkout = crud.create_checkout(checkout_date, due_date)
-    item_id = request.form.get('checkout-item')
+    item_id = request.form.get('item_id')
     print(item_id)
-    checkout_item = crud.get_item_by_id(item_id)
+    user_borrowed_by = session.get['user_id']
+    checkout_date = request.form.get('checkout-date')
+    print(checkout_date)
+    due_date = request.form.get('due-date')
+    print(due_date)
+    new_checkout = crud.create_checkout(item_id, user_borrowed_by, checkout_date, due_date)
+    item = crud.get_item_by_id(item_id)
     
-    return render_template('checkout.html', new_checkout=new_checkout, checkout_item=checkout_item)
+    return render_template('checkout.html', new_checkout=new_checkout, item=item)
     # else:
     #     flash(u'No item in checkout')
     #     return redirect('/mycommunity')
