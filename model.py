@@ -64,9 +64,8 @@ class Checkout(db.Model):
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
     user_borrowed_by = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    checkout_date = db.Column(db.Date)
+    checkout_date = db.Column(db.Date, default=date.today())
     due_date = db.Column(db.Date)
-    return_date = db.Column(db.Date)
 
     item = db.relationship('Item', backref='checkouts')
     user = db.relationship('User', backref='checkouts')

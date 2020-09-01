@@ -8,11 +8,10 @@ $.get('/cartjson', (cart) => {
             `<div class="cart-details">
                 <form method="POST" id="checkout-form">
                     <ul>
-                        <li>Item ID: ${item.id} </li>
+                        <li id="checkout-item">Item ID: ${item.id} </li>
                         <li>User ID: ${item.user} </li>
-                        <li><label>Checkout Date: <input type="date" name="checkout-date"></label></li>
-                        <li><label>Due Date: <input type="date" name="due-date"></label></li>
-                        <li>Return Date</li>
+                        <li><label>Checkout Date: <input id="checkout-date" type="date" name="checkout-date"></label></li>
+                        <li><label>Due Date: <input id="due-date" type="date" name="due-date"></label></li>
                         <li>Checkout Status: ${item.status}</li>
                         <input type="radio" onclick="removeFromCart(this.id)" id="${item.id}" name="remove" value="Remove Item">
                         <label>Remove item</label>

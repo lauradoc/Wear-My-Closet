@@ -188,17 +188,20 @@ def checkout():
 
     return render_template('checkout.html')
 
-# @app.route('/cart', methods=['POST'])
-# def checkout_item():
+@app.route('/checkout', methods=['POST'])
+def checkout_item():
 
-#     checkout = crud.get_checkout_by_user(session['user_id'])
-#     item = request.form.get('checkout-items')
-
-#     if checkout:
-#         return render_template('cart.html', item=item)
-#     else:
-#         flash(u'No item in checkout')
-#         return redirect('/mycommunity')
+    checkout_date = request.form.get('checkout-date')
+    due_date = request.form.get('due-date')
+    new_checkout = crud.create_checkout(checkout_date, due_date)
+    item_id = request.form.get('checkout-item')
+    print(item_id)
+    checkout_item = crud.get_item_by_id(item_id)
+    
+    return render_template('checkout.html', new_checkout=new_checkout, checkout_item=checkout_item)
+    # else:
+    #     flash(u'No item in checkout')
+    #     return redirect('/mycommunity')
     
 
 @app.route('/mycloset')
@@ -246,11 +249,9 @@ def account_details():
     email = user.email
     city = user.city
     phone = user.phone
-    # item = request.files.get('file')
-    # image_thumbnail = api.get_image_thumbnail(item)
-    closet = crud.get_image_urls_by_user(session['user_id'])
-    checkouts = crud.get_cart_by_user_json(session['user_id'])
-    communities = crud.get_community_by_user(session['user_id'])
+    closet = crud.get_image_urls_by_user(user_id)
+    checkouts = crud.get_checkout_by_user(user_id)
+    communities = crud.get_community_by_user(user_id)
 
     return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkouts=checkouts, communities=communities)
 

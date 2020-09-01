@@ -28,7 +28,11 @@
     </ul>
 
 <h3> My checkouts </h3>
-    
+    <ul>
+        {% for checkout in checkouts %}
+        <li>{{ checkout }}</li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}
 

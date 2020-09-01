@@ -13,7 +13,7 @@ $('#community-button').on('click', (evt) => {
             if (item.status == "Unavailable") {
                 button = `<input type="button" disabled=true onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">`
             };
-            // else if ()
+            // else if (item in already in cart)
             const itemDetails = (
                 `<div class="item-details">
                     <div class="item-thumbnail">
