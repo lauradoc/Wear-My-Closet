@@ -5,7 +5,7 @@
 
 {% block body %}
 
-<form id="my-community-form">
+<form action="/cart" id="my-community-form">
     Select your community:
     {% for community in user_communities %}
     <input type="radio" name="community" value="{{ community }}" id="community-field">
@@ -14,8 +14,9 @@
     <br>
     <button type="submit" id="community-button">Select</button>
     <br> 
+    <div id="community-items"></div>
+    <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
 </form>
-<div id="community-items"></div>
-<button type="button" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
+
 
 {% endblock %}

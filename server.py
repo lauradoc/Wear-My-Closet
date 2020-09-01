@@ -156,12 +156,14 @@ def add_to_cart():
 def remove_from_cart():
 
     item_id = request.form.get('item_id')
+    user_id = session.get('user_id')
     print(item_id)
-    remove_item = crud.remove_item_from_cart(item_id)
+    remove_item = crud.remove_item_from_cart(item_id, user_id)
     print('item removed', remove_item)
     item = crud.get_item_by_id(item_id)
+    cart = crud.get_cart_by_user_json(user_id)
 
-    return f'{item.item_name} has been removed from your cart.'
+    return f'{item.item_name} has been removed. Refresh this page.'
 
 
 @app.route('/cart')

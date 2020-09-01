@@ -154,16 +154,14 @@ def get_cart_by_user_json(user_id):
     return cart_items_json
 
 
-def remove_item_from_cart(item_id):
+def remove_item_from_cart(item_id, user_id):
     
-    cart_items = Cart.query.filter(Cart.item_id==item_id)
-    remove_item = Cart.query.filter(Cart.item_id==item_id)
+    remove_item = Cart.query.filter(Cart.item_id==item_id).first()
 
-    for item in cart_items:
-        if item == remove_item:
-            cart_items.remove(item)
+    db.session.delete(remove_item)
+    db.session.commit()
 
-    return cart_items
+    return Cart.query.filter(Cart.user_id==user_id)
     
 
 def create_community(community_name, location):

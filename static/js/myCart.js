@@ -6,7 +6,7 @@ $.get('/cartjson', (cart) => {
         console.log(item)
         const cartDetails = (
             `<div class="cart-details">
-                <form method="POST" action="/checkout" id="checkout-form">
+                <form method="POST" id="checkout-form">
                     <ul>
                         <li>Item ID: ${item.id} </li>
                         <li>User ID: ${item.user} </li>
@@ -26,11 +26,9 @@ $.get('/cartjson', (cart) => {
 });
 
 function removeFromCart(id) {
-
     const formInputs = {
         'item_id': id
     };
-
     $.post('/removecartitem', formInputs, (res) => {
         alert(res);
     });
