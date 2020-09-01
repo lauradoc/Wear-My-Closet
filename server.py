@@ -76,7 +76,7 @@ def view_home():
         for community in communities:
             if community.community_name not in user_communities:
                 available_communities.append(community)
-        return render_template('home.html', user=user_id, communities=available_communities)
+        return render_template('home.html', user=user_id, communities=available_communities, user_communities=user_communities)
     else:
         return redirect('/')
 

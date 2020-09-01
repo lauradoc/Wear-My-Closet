@@ -23,7 +23,9 @@
   Select your community:
   <select name="join-community">
       {% for community in communities %}
-      <option name ="{{ community.community_name }}" value="{{ community.community_name }}">{{ community.community_name}}</option>
+        {% if community not in user_communities%}
+          <option name ="{{ community.community_name }}" value="{{ community.community_name }}">{{ community.community_name}}</option>
+        {% endif %}
       {% endfor %}
   </select>
   <br>
