@@ -71,7 +71,7 @@ class Checkout(db.Model):
     user = db.relationship('User', backref='checkouts')
 
     def __repr__(self):
-        return f'<Checkout checkout_id={self.checkout_id} user_id={self.user_id} item={self.item_id}>'
+        return f'<Checkout checkout_id={self.checkout_id} user_id={self.user_borrowed_by} item={self.item_id}>'
 
 class Cart(db.Model):
 

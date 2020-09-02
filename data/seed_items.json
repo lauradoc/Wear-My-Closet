@@ -18,46 +18,46 @@
     },
     {
         "user_id": 3,
-        "item_name": "olive-raincoat",
-        "item_description": "TBD",
+        "item_name": "Olive Raincoat",
+        "item_description": "Size Large. Water-resistant not waterproof.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598038546/zkpaplviftbqxga5buv5.jpg",
         "category_name": "jackets & coats",
         "status": "Available"
     },
     {
         "user_id": 4,
-        "item_name": "patchwork-sweater",
-        "item_description": "TBD",
+        "item_name": "Patchwork Sweater",
+        "item_description": "Fits like a Medium. Knitted by my grandma :)",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598038724/afpscfglykjz3c2gvt55.jpg",
         "category_name": "sweaters",
         "status": "Available"
     },
     {
         "user_id": 5,
-        "item_name": "pinterest_sandals",
-        "item_description": "TBD",
+        "item_name": "Chunky Tan Sandals",
+        "item_description": "Super comfy! Size 8.5.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597689897/fmt7irnj7u9kxcwl8svx.jpg",
         "category_name": "shoes",
         "status": "Available"
     },
     {
         "user_id": 6,
-        "item_name": "yellow_dress",
-        "item_description": "TBD",
+        "item_name": "Yellow Floor-Length Gown",
+        "item_description": "Size 4. Floor length, great condition.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597343686/axubpvppdrxrb0crikt8.jpg",
         "category_name": "dresses",
         "status": "Available"
     },
     {
         "user_id": 7,
-        "item_name": "pinterest_earrings",
-        "item_description": "TBD",
+        "item_name": "Beaded Earrings",
+        "item_description": "2in. in length",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597758473/gjqag3r1mjejh1wa4dlb.jpg",
         "category_name": "accessories"
     },
     {
         "user_id": 11,
-        "item_name": "pinterest_dress",
+        "item_name": "Multi-Colored Strappy Midi Dress",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539755/px0lvkqib72itzpok0uo.jpg",
         "category_name": "dresses",
@@ -65,7 +65,7 @@
     },
     {
         "user_id": 11,
-        "item_name": "colorful_pants",
+        "item_name": "Multi-Colored Pants",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg",
         "category_name": "bottoms",
@@ -73,7 +73,7 @@
     },
     {
         "user_id": 11,
-        "item_name": "pinterest_jacket",
+        "item_name": "Mod & Bright Colored Jacket",
         "item_description": "TBD",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597706004/azag6omanmuh3t7rjz9v.jpg",
         "category_name":"jackets & coats",

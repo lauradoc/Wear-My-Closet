@@ -199,7 +199,7 @@ def create_checkout_item():
     new_checkout = crud.create_checkout(item_id, user_borrowed_by, checkout_date, due_date)
     print(new_checkout)
     
-    return render_template('checkout.html')
+    return redirect('/checkout')
 
 @app.route('/checkoutjson')
 def checkout_items_json():

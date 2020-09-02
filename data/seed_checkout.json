@@ -1,12 +1,15 @@
 
 [
     {
-        "checkout_status": "Available"
+        "item_id": "1",
+        "user_borrowed_by": "11"
     },
     {
-        "checkout_status": "Unavailable"
+        "item_id": "2",
+        "user_borrowed_by": "11"
     },
     {
-        "checkout_status": "Late Return"
+        "item_id": "3",
+        "user_borrowed_by": "11"
     }
 ]

@@ -2,10 +2,11 @@
 
 
 $.get('/cartjson', (cart) => {
+    // debugger;
     for (const item of cart) {
         console.log(item)
         const cartDetails = (
-            `<div class="cart-details">
+            `<div class="cart-details" id="cart-details-id-${item.id}">
                 <ul class="item-details-table">
                     <input type="hidden" name="item-id" value="${item.id}">
                     <input type="hidden" value=${item.user} >
@@ -43,12 +44,16 @@ $('#complete-checkout').on('click', (evt) => {
     });
 });
 
+
 function removeFromCart(id) {
-    const formInputs = {
-        'item_id': id
-    };
     $.post('/removecartitem', formInputs, (res) => {
         alert(res);
     });
+    const removeItem = document.querySelector(`#cart-details-id-${id}`)
+    console.log(removeItem)
+    removeItem.innerHTML = ''
+    const formInputs = {
+        'item_id': id
+    };
 };
 

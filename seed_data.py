@@ -5,7 +5,7 @@ from faker import Faker
 import os
 import json
 from random import choice, randint
-from datetime import date
+from datetime import date, timedelta
 
 import crud
 import model
@@ -86,26 +86,28 @@ def seed_checkout():
         checkout_data = json.loads(f.read())
 
     for checkout in checkout_data:
+        item_id = checkout['item_id']
+        user_borrowed_by = checkout['user_borrowed_by']
         checkout_date = date.today()
-        due_date = date.today()
-        return_date = date.today()
+        dd = timedelta(days=14)
+        due_date = checkout_date + dd
 
-        new_checkout = crud.create_checkout(checkout_date, due_date, return_date)
+        new_checkout = crud.create_checkout(item_id, user_borrowed_by, checkout_date, due_date)
 
 seed_checkout()
 
-def seed_cart():
+# def seed_cart():
 
-    with open('data/seed_cart.json') as f:
-        cart_data = json.loads(f.read())
+#     with open('data/seed_cart.json') as f:
+#         cart_data = json.loads(f.read())
 
-    for cart in cart_data:
-        item_id = cart['item_id']
-        user_id = cart['user_id']
+#     for cart in cart_data:
+#         item_id = cart['item_id']
+#         user_id = cart['user_id']
 
-        new_cart = crud.create_cart(item_id, user_id)
+#         new_cart = crud.create_cart(item_id, user_id)
 
-seed_cart()
+# seed_cart()
 
 
 def seed_community():
