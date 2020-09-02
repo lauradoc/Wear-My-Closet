@@ -179,32 +179,37 @@ def show_cart_items():
     cart = crud.get_cart_by_user_json(user_id)
 
     return jsonify(cart)
-    #get  request for all items that are on cart table for session user
-    #need crud function that pulls all items in cart by user
-    #cart.html to remove items
 
 @app.route('/checkout')
 def checkout():
 
     return render_template('checkout.html')
 
-@app.route('/checkout', methods=['POST'])
-def checkout_item():
 
-    item_id = request.form.get('item_id')
+@app.route('/checkout', methods=['POST'])
+def create_checkout_item():
+
+    item_id = request.form.get('item-id')
     print(item_id)
-    user_borrowed_by = session.get['user_id']
+    user_borrowed_by = session.get('user_id')
     checkout_date = request.form.get('checkout-date')
     print(checkout_date)
     due_date = request.form.get('due-date')
     print(due_date)
     new_checkout = crud.create_checkout(item_id, user_borrowed_by, checkout_date, due_date)
-    item = crud.get_item_by_id(item_id)
+    print(new_checkout)
     
-    return render_template('checkout.html', new_checkout=new_checkout, item=item)
-    # else:
-    #     flash(u'No item in checkout')
-    #     return redirect('/mycommunity')
+    return render_template('checkout.html')
+
+@app.route('/checkoutjson')
+def checkout_items_json():
+    
+    user_borrowed_by = session.get('user_id')
+    print('**********', user_borrowed_by)
+    checkout = crud.get_checkout_by_user_json(user_borrowed_by)
+    print(checkout)
+
+    return jsonify(checkout)
     
 
 @app.route('/mycloset')

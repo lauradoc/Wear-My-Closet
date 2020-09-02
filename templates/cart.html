@@ -5,9 +5,9 @@
 {% block body %}
 
 <h3>My Cart</h3>
-<div id="cart-items"></div>
-<form action="/checkout">
-    <button type="submit" name="checkout-form" onclick="makeCheckoutItem(this.id)" action="/checkout">Complete Checkout</button>
+<form method="POST" action="/checkout">
+    <div id="cart-items"></div>
+    <button type="submit" name="checkout-form" id="complete-checkout" action="/checkout">Complete Checkout</button>
 </form>
 
 {% endblock %}
