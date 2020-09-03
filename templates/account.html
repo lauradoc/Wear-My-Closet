@@ -23,13 +23,13 @@
 <h3> My Items </h3>
     <ul>
         {% for item in closet%}
-        <li> {{ item }}</li>
+        <img src="{{ item.image_url }}">
         {% endfor %}
     </ul>
 
 <h3> My checkouts </h3>
     <ul>
-        {% for checkout in checkout %}
+        {% for checkout in checkouts %}
         <li>{{ checkout }}</li>
         {% endfor %}
     </ul>

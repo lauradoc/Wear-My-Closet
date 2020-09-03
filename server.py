@@ -90,7 +90,7 @@ def create_community():
     if community_name:
         new_community = crud.create_community(community_name, location)
 
-    return render_template('home.html')
+    return redirect('/home')
 
 
 @app.route('/joincommunity')
@@ -235,7 +235,7 @@ def checkout():
     return render_template('checkout.html')
 
 
-    
+
 @app.route('/mycloset')
 def get_closet_form():
 
@@ -281,7 +281,7 @@ def account_details():
     email = user.email
     city = user.city
     phone = user.phone
-    closet = crud.get_image_urls_by_user(user_id)
+    closet = crud.get_items_by_user(user_id)
     checkouts = crud.get_checkout_by_user(user_id)
     communities = crud.get_community_by_user(user_id)
 
