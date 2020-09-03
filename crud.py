@@ -100,6 +100,7 @@ def get_items_by_user_json(user_id):
                 "item_description": item.item_description,
                 "image_url": item.image_url,
                 "category": item.category_name,
+                "status": item.status_code
             }
         item_details_json.append(item_dict)
 
@@ -211,9 +212,33 @@ def create_checkout_item(checkout_id, item_id, due_date):
 
     return checkout_item
 
-def get_all_checkout_items_by_user(user_id):
+# def checkout_item_json(checkout_item_id):
 
-    return CheckoutItem.query.filter(CheckoutItem.user_id==user_id).all()
+#     checkout_item_json = []
+#     checkout_item = CheckoutItem.query.filter(CheckoutItem.checkout_item_id==checkout_item_id)
+
+#     for item in checkout_item
+
+# def get_all_checkout_items_by_user(user_id):
+
+#     return CheckoutItem.query.filter(CheckoutItem.user_id==user_id).all()
+
+# def get_checkout_items_by_user_json(user_id):
+
+#     checkout_item_json = []
+#     all_checkout_items = CheckoutItem.query.filter(CheckoutItem.checkout_id==checkout_id)
+
+#     for checkout_item in all_checkout_items:
+#         checkout_item_dict = {
+#             'checkout_id': checkout_item.checkout_id,
+#             'item_id': checkout_item.item_id,
+#             'item_name': checkout_item.item.item_name,
+#             'checkout_date': checkout_item.checkout.checkout_date,
+#             'due_date': checkout_item.due_date
+#         }
+#         checkout_item_json.append(checkout_item_dict)
+
+#     return checkout_item_json
 
 def get_checkout_items_by_checkout_id_json(checkout_id):
 

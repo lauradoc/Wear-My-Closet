@@ -11,7 +11,10 @@ $.get('/myclosetjson', (res) => {
             <br>
             <b>Category: </b>${item.category}
             <br>
-            <b>Item Status: </b><select name="select-status">
+            <b>Item Status: </b>${item.status}
+            <br>
+            <label for="update-status">Update Staus:</label>
+            <select name="select-status">
             <option name="Available" value= "Available">Available</option>
             <option name="Unavailable" value= "Unavailable">Unavailable</option></select>
             <br>
@@ -21,5 +24,15 @@ $.get('/myclosetjson', (res) => {
         $('#item-library').append(itemDetails);
     };
 });
+
+$('#item-status').on('click', (evt) => {
+    evt.preventDefault();
+    const formData = {
+        'status': $('#item-status').val()
+    };
+    console.log(formData)
+
+    $.post('/mycloset', formData)
+})
 
 

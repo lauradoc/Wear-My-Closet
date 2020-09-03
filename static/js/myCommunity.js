@@ -4,8 +4,9 @@
 $('#community-button').on('click', (evt) => {
     evt.preventDefault();
     const formData = {
-        'community': $('#community-name-field').val()
+        'community': $('#community-field').val()
     };
+    console.log(formData)
 
     $.get('/communitycloset.json', formData, (community_items) => {
         for (const item of community_items) {
