@@ -17,8 +17,8 @@ class User(db.Model):
     email = db.Column(db.String)
     password = db.Column(db.String)
     city = db.Column(db.String)
-    lat = db.Column(db.Integer, nullable=True)
-    lon = db.Column(db.Integer, nullable=True)
+    # lat = db.Column(db.Integer, nullable=True)
+    # lon = db.Column(db.Integer, nullable=True)
     phone = db.Column(db.String)
     community_member_id = db.Column(db.Integer, nullable=True)
 
@@ -47,11 +47,11 @@ class Item(db.Model):
     item_description = db.Column(db.String)
     image_url = db.Column(db.String)
     category_name = db.Column(db.String, db.ForeignKey('categories.category_name'))
-    status = db.Column(db.String, db.ForeignKey('statuses.checkout_status'), default="Available")
+    status_code = db.Column(db.String, db.ForeignKey('statuses.checkout_status'), default="Available")
         
     user = db.relationship('User', backref='items')
     category = db.relationship('Category', backref='items')
-    # status = db.relationship('Status', backref='items')
+    status = db.relationship('Status', backref='items')
 
     def __repr__(self):
         return f'<Item item_id={self.item_id} user_id={self.user_id} name={self.item_name}>'
@@ -62,16 +62,32 @@ class Checkout(db.Model):
     __tablename__ = 'checkouts'
 
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
+    # item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
     user_borrowed_by = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     checkout_date = db.Column(db.Date, default=date.today())
-    due_date = db.Column(db.Date)
+    # due_date = db.Column(db.Date)
 
-    item = db.relationship('Item', backref='checkouts')
+    # item = db.relationship('Item', backref='checkouts')
     user = db.relationship('User', backref='checkouts')
 
     def __repr__(self):
-        return f'<Checkout checkout_id={self.checkout_id} user_id={self.user_borrowed_by} item={self.item_id}>'
+        return f'<Checkout checkout_id={self.checkout_id} user_id={self.user_borrowed_by}>'
+
+class CheckoutItem(db.Model):
+
+    __tablename__ = 'checkout-items'
+
+    checkout_item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    checkout_id = db.Column(db.Integer, db.ForeignKey('checkouts.checkout_id'))
+    item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
+    due_date = db.Column(db.Date)
+
+    item = db.relationship('Item', backref='checkout-items')
+    checkout = db.relationship('Checkout', backref='checkout-items')
+
+    def __repr__(self):
+        return f'<CheckoutItem checkout_id={self.checkout_id} item_id={self.item_id}>'
+
 
 class Cart(db.Model):
 

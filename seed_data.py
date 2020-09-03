@@ -74,8 +74,9 @@ def seed_items():
         item_description = item["item_description"]
         image_url = item['image_url']
         category_name = item['category_name']
+        status_code = item['status']
 
-        new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name)
+        new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name, status_code)
 
 seed_items()
 
@@ -86,13 +87,10 @@ def seed_checkout():
         checkout_data = json.loads(f.read())
 
     for checkout in checkout_data:
-        item_id = checkout['item_id']
         user_borrowed_by = checkout['user_borrowed_by']
         checkout_date = date.today()
-        dd = timedelta(days=14)
-        due_date = checkout_date + dd
 
-        new_checkout = crud.create_checkout(item_id, user_borrowed_by, checkout_date, due_date)
+        new_checkout = crud.create_checkout(user_borrowed_by, checkout_date)
 
 seed_checkout()
 

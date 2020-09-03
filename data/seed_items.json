@@ -53,7 +53,8 @@
         "item_name": "Beaded Earrings",
         "item_description": "2in. in length",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597758473/gjqag3r1mjejh1wa4dlb.jpg",
-        "category_name": "accessories"
+        "category_name": "accessories",
+        "status": "Available"
     },
     {
         "user_id": 11,

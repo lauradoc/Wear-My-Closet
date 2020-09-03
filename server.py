@@ -6,6 +6,7 @@ import crud
 import api
 
 from jinja2 import StrictUndefined
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = "closet"
@@ -55,7 +56,6 @@ def handle_login():
         flash(u'Logged in!', 'email-success')
         session['email'] = user.email
         session['user_id'] = user.user_id
-        # communities = crud.get_community_by_user(session['user_id'])
 
         return redirect('/home')
 
@@ -141,6 +141,7 @@ def get_items_by_community_json():
 
 @app.route('/addtocart', methods=['POST'])
 def add_to_cart():
+    """New item added to cart"""
 
     user_id = session.get('user_id')
     item_id = request.form.get('item_id')
@@ -154,6 +155,7 @@ def add_to_cart():
 
 @app.route('/removecartitem', methods=['POST'])
 def remove_from_cart():
+    """Removes item from cart table"""
 
     item_id = request.form.get('item_id')
     user_id = session.get('user_id')
@@ -180,38 +182,60 @@ def show_cart_items():
 
     return jsonify(cart)
 
-@app.route('/checkout')
-def checkout():
+@app.route('/deletecartitem')
+def delete_cart_item_after_checkout():
 
-    return render_template('checkout.html')
+    #get cart items by user
+    #get checkoutitem id's
+    #if cart's item id is in checkoutitem item_id then delete item from cart
+    user_id = session.get('user_id')
+    user_cart_items = crud.get_cart_by_user(user_id)
+    checkout_item_ids = crud.get_all_checkout_ids()
+
+    if user_cart_items.item_id in checkout_item_ids:
+        crud.remove_item_from_cart(user_cart_items.item_id, user_id)
+
+    return user_cart_items
+
+# @app.route('/checkout')
+# def create_checkout():
+    
+#     print(new_checkout)  
+    
+#     return redirect('/checkout')
 
 
 @app.route('/checkout', methods=['POST'])
 def create_checkout_item():
-
-    item_id = request.form.get('item-id')
-    print(item_id)
+    
     user_borrowed_by = session.get('user_id')
-    checkout_date = request.form.get('checkout-date')
-    print(checkout_date)
-    due_date = request.form.get('due-date')
-    print(due_date)
-    new_checkout = crud.create_checkout(item_id, user_borrowed_by, checkout_date, due_date)
+    checkout_date = date.today()
+    new_checkout = crud.create_checkout(user_borrowed_by, checkout_date)
     print(new_checkout)
+    checkout_id = new_checkout.checkout_id
+    item_id = request.form.get('item-id')
+    due_date = request.form.get('due-date')
+    new_checkout_item = crud.create_checkout_item(checkout_id, item_id, due_date)
+    session['checkout_id'] = new_checkout_item.checkout_id
     
     return redirect('/checkout')
 
 @app.route('/checkoutjson')
 def checkout_items_json():
     
-    user_borrowed_by = session.get('user_id')
-    print('**********', user_borrowed_by)
-    checkout = crud.get_checkout_by_user_json(user_borrowed_by)
-    print(checkout)
+    checkout_id = session.get('checkout_id')
+    print(checkout_id)
+    checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
 
-    return jsonify(checkout)
+    return jsonify(checkout_items)
     
+@app.route('/checkout')
+def checkout():
 
+    return render_template('checkout.html')
+
+
+    
 @app.route('/mycloset')
 def get_closet_form():
 

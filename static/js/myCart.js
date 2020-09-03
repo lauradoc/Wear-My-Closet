@@ -10,7 +10,7 @@ $.get('/cartjson', (cart) => {
                 <ul class="item-details-table">
                     <input type="hidden" name="item-id" value="${item.id}">
                     <input type="hidden" value=${item.user} >
-                    <li><label>Checkout Date: <input id="checkout-date" type="date" name="checkout-date"></label></li>
+                    <li><label>Item Name: ${item.item_name}</li>
                     <li><label>Due Date: <input id="due-date" type="date" name="due-date"></label></li>
                     <li>Checkout Status: ${item.status}</li>
                     <input type="radio" onclick="removeFromCart(this.id)" id="${item.id}" name="remove" value="Remove Item">
@@ -25,10 +25,9 @@ $.get('/cartjson', (cart) => {
 
 
 $('#complete-checkout').on('click', (evt) => {
-    evt.preventDefault();
     console.log('check')
-    $.get('/checkoutjson', (checkout) => {
-        for (const item of checkout) {
+    $.get('/checkoutjson', (checkout_item) => {
+        for (const item of checkout_item) {
             console.log(item)
             const checkoutDetails = (
                 `<div class="checkout-details>
