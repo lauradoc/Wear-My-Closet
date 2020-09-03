@@ -127,11 +127,14 @@ def create_cart(item_id, user_id):
 
     return cart
 
-def get_cart_by_user(user_id):
+def get_cart_ids_by_user(user_id):
 
-    
-    return Cart.query.filter(Cart.user_id==user_id).all()
+    cart_ids = []
+    user_carts = Cart.query.filter(Cart.user_id==user_id).all()
+    for cart in user_carts:
+        cart_ids.append(cart.item_id)
 
+    return cart_ids
 
 def get_cart_by_user_json(user_id):
     """Return all cart items from user"""

@@ -182,28 +182,6 @@ def show_cart_items():
 
     return jsonify(cart)
 
-@app.route('/deletecartitem')
-def delete_cart_item_after_checkout():
-
-    #get cart items by user
-    #get checkoutitem id's
-    #if cart's item id is in checkoutitem item_id then delete item from cart
-    user_id = session.get('user_id')
-    user_cart_items = crud.get_cart_by_user(user_id)
-    checkout_item_ids = crud.get_all_checkout_ids()
-
-    if user_cart_items.item_id in checkout_item_ids:
-        crud.remove_item_from_cart(user_cart_items.item_id, user_id)
-
-    return user_cart_items
-
-# @app.route('/checkout')
-# def create_checkout():
-    
-#     print(new_checkout)  
-    
-#     return redirect('/checkout')
-
 
 @app.route('/checkout', methods=['POST'])
 def create_checkout_item():
@@ -213,27 +191,40 @@ def create_checkout_item():
     new_checkout = crud.create_checkout(user_borrowed_by, checkout_date)
     print(new_checkout)
     checkout_id = new_checkout.checkout_id
+    print('checkout_id from new checkout', checkout_id)
+
     item_id = request.form.get('item-id')
     due_date = request.form.get('due-date')
     new_checkout_item = crud.create_checkout_item(checkout_id, item_id, due_date)
-    session['checkout_id'] = new_checkout_item.checkout_id
-    
-    return redirect('/checkout')
+    # user_cart_items = crud.get_cart_by_user(user_id)
+    # print('*********', user_cart_items)
+    # checkout_item_ids = crud.get_all_checkout_ids()
+    # print('*********', checkout_item_ids)
 
-@app.route('/checkoutjson')
-def checkout_items_json():
+    # for item in user_cart_items
+    # if user_cart_items.item_id in checkout_item_ids:
+    #     crud.remove_item_from_cart(user_cart_items.item_id, user_id)
     
-    checkout_id = session.get('checkout_id')
-    print(checkout_id)
-    checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
+    return redirect('/checkout?checkout_id=' + checkout_id)
 
-    return jsonify(checkout_items)
+
+# @app.route('/checkoutjson')
+# def checkout_items_json():
     
-@app.route('/checkout')
+#     # checkout_id = session.get('checkout_id')
+#     print('checkout id from session', checkout_id)
+#     checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
+
+#     return jsonify(checkout_items)
+    
+
+@app.route('/checkout/<checkout_id>')
 def checkout():
 
-    return render_template('checkout.html')
+    checkout_id = request.args.get('checkout_id')
+    #make request for checkoutjson
 
+    return render_template('checkout.html', checkout_id=checkout_id)
 
 
 @app.route('/mycloset')
@@ -261,7 +252,6 @@ def upload_item():
     item = request.files.get('file')
     if item:
         image_url = api.upload_closet_image(item)
-        # image_thumbnail = api.get_image_thumbnail(item)
         item_name = request.form.get('item_name')
         item_description = request.form.get('item_description')
         category_name = request.form.get('category') 
