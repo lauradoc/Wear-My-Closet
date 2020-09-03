@@ -19,15 +19,15 @@ $.get('/cartjson', (cart) => {
             </div>`
         );
         $('#cart-items').append(cartDetails);
-    
     };
 });
 
 
 $('#complete-checkout').on('click', (evt) => {
     evt.preventDefault();
-    console.log('check')
-    $.post('/checkout', (checkout_items) => {
+
+    const formValues = $('#cart-details-form').serialize();
+    $.post('/checkout', formValues, (checkout_items) => {
         for (const item of checkout_items) {
             const checkoutItemDetails = (
                 `<div class="checkout-details>
@@ -38,21 +38,23 @@ $('#complete-checkout').on('click', (evt) => {
                 </ul>
                 </div>`
             );
-            $('#checkout-summary').append(checkoutItemDetails)
+            $('#cart-details').empty();
+            $('#checkout-summary').append(checkoutItemDetails);
+            console.log(checkoutItemDetails) 
         };
     });
 });
 
 
 function removeFromCart(id) {
+    const formInputs = {
+        'item_id': id
+    };
     $.post('/removecartitem', formInputs, (res) => {
         alert(res);
     });
     const removeItem = document.querySelector(`#cart-details-id-${id}`)
     console.log(removeItem)
     removeItem.innerHTML = ''
-    const formInputs = {
-        'item_id': id
-    };
 };
 

@@ -209,9 +209,9 @@ def create_checkout_item():
 
     # for item in user_cart_items
     # if user_cart_items.item_id in checkout_item_ids:
-    #     crud.remove_item_from_cart(user_cart_items.item_id, user_id)
+        remove_from_cart = crud.remove_item_from_cart(item_id, session['user_id'])
     
-        return jsonify(checkout_items)
+    return jsonify(checkout_items)
 
 
 # @app.route('/checkoutjson')
