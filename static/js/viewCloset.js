@@ -13,10 +13,13 @@ $.get('/myclosetjson', (res) => {
             <br>
             <b>Item Status: </b>${item.status}
             <br>
-            <label for="update-status">Update Staus:</label>
-            <select name="select-status">
-            <option name="Available" value= "Available">Available</option>
-            <option name="Unavailable" value= "Unavailable">Unavailable</option></select>
+            <form method="POST" action="/mycloset" id="status-change-form">
+                Update Staus:
+                <select name="select-status">
+                <option name="Available" value= "Available">Available</option>
+                <option name="Unavailable" value= "Unavailable">Unavailable</option></select>
+                <button type="submit" id="status-change">submit change</button>
+            </form>
             <br>
             <img src="${item.image_url}">  
             </p>`
@@ -25,14 +28,11 @@ $.get('/myclosetjson', (res) => {
     };
 });
 
-$('#item-status').on('click', (evt) => {
-    evt.preventDefault();
-    const formData = {
-        'status': $('#item-status').val()
-    };
-    console.log(formData)
-
+$('#status-change').on('click', (evt) => {
+    console.log('check')
+    const formData = $('#status-change-form').serialize();
     $.post('/mycloset', formData)
 })
+
 
 

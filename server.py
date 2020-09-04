@@ -202,14 +202,8 @@ def create_checkout_item():
         new_checkout_item = crud.create_checkout_item(checkout_id, item_id, item_due_date)
         print(new_checkout_item)
         checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
-    # user_cart_items = crud.get_cart_by_user(user_id)
-    # print('*********', user_cart_items)
-    # checkout_item_ids = crud.get_all_checkout_ids()
-    # print('*********', checkout_item_ids)
-
-    # for item in user_cart_items
-    # if user_cart_items.item_id in checkout_item_ids:
-        remove_from_cart = crud.remove_item_from_cart(item_id, session['user_id'])
+        remove_from_cart = crud.remove_item_from_cart(f'{item_id}', session['user_id'])
+        print(remove_from_cart)
     
     return jsonify(checkout_items)
 
@@ -246,8 +240,8 @@ def get_closet_form():
 @app.route('/mycloset', methods=['POST'])
 def update_item_status():
 
-    status = request.form.get('item-status')
-    print('status')
+    status = request.form.get('select-status')
+    #get item from crud, jsonify and pass back to viewCloset.js    
 
     return redirect('/mycloset')
 

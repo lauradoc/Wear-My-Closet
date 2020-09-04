@@ -162,12 +162,12 @@ def get_cart_by_user_json(user_id):
 def remove_item_from_cart(item_id, user_id):
     """Removes item from existing cart"""
     
-    remove_item = Cart.query.filter(Cart.item_id==item_id).first()
+    remove_item = Cart.query.filter(Cart.item_id==item_id, Cart.user_id==user_id).first()
 
     db.session.delete(remove_item)
     db.session.commit()
 
-    return Cart.query.filter(Cart.user_id==user_id)
+    return remove_item
 
 
 def create_checkout(user_borrowed_by, checkout_date):

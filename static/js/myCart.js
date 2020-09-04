@@ -28,19 +28,19 @@ $('#complete-checkout').on('click', (evt) => {
 
     const formValues = $('#cart-details-form').serialize();
     $.post('/checkout', formValues, (checkout_items) => {
+        console.log(checkout_items)
         for (const item of checkout_items) {
-            const checkoutItemDetails = (
-                `<div class="checkout-details>
+            const checkoutItemDetails = 
+                `<div class="checkout-details">
                 <ul>
                     <li>Item Name: ${item.item_name}</li>
                     <li>Checkout Date: ${item.checkout_date}</li>
                     <li>Due Date: ${item.due_date }</li>
                 </ul>
                 </div>`
-            );
-            $('#cart-details').empty();
+            ;
+            $('#cart-details-form').empty();
             $('#checkout-summary').append(checkoutItemDetails);
-            console.log(checkoutItemDetails) 
         };
     });
 });
@@ -54,7 +54,6 @@ function removeFromCart(id) {
         alert(res);
     });
     const removeItem = document.querySelector(`#cart-details-id-${id}`)
-    console.log(removeItem)
     removeItem.innerHTML = ''
 };
 
