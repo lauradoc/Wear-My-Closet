@@ -165,7 +165,7 @@ def remove_from_cart():
     item = crud.get_item_by_id(item_id)
     cart = crud.get_cart_by_user_json(user_id)
 
-    return f'{item.item_name} has been removed. Refresh this page.'
+    return f'{item.item_name} has been removed.'
 
 
 @app.route('/cart')
@@ -239,9 +239,11 @@ def get_closet_form():
 
 @app.route('/mycloset', methods=['POST'])
 def update_item_status():
-
+    
+    item_id = request.form.get('item-id')
     status = request.form.get('select-status')
-    #get item from crud, jsonify and pass back to viewCloset.js    
+    item_update = crud.change_item_status(item_id, status)
+    json_item = crud.jsonify_item(item_update)
 
     return redirect('/mycloset')
 
@@ -269,8 +271,9 @@ def upload_item():
         item_description = request.form.get('item_description')
         category_name = request.form.get('category') 
         user_id = session.get('user_id')
+        status = "Available"
         
-        new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name)
+        new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name, status)
 
         return jsonify(crud.jsonify_item(new_item))
 

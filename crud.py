@@ -55,9 +55,19 @@ def jsonify_item(item):
             "item_description": item.item_description,
             "image_url": item.image_url,
             "category": item.category_name,
+            "status": item.status_code
         }
 
     return json_item
+
+def change_item_status(item_id, status):
+
+    item = Item.query.filter(Item.item_id==item_id).first()
+    item.status_code = status
+
+    db.session.commit()
+
+    return item
 
 
 def get_item_by_item_name(item_name):

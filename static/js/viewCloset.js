@@ -11,10 +11,11 @@ $.get('/myclosetjson', (res) => {
             <br>
             <b>Category: </b>${item.category}
             <br>
-            <b>Item Status: </b>${item.status}
+            <b id="item-status">Item Status: </b>${item.status}
             <br>
-            <form method="POST" action="/mycloset" id="status-change-form">
-                Update Staus:
+            <form method="POST" id="status-change-form">
+                Update Status:
+                <input type="hidden" name="item-id" value="${item.id}">
                 <select name="select-status">
                 <option name="Available" value= "Available">Available</option>
                 <option name="Unavailable" value= "Unavailable">Unavailable</option></select>
@@ -28,11 +29,19 @@ $.get('/myclosetjson', (res) => {
     };
 });
 
-$('#status-change').on('click', (evt) => {
-    console.log('check')
+$('#status-change-form').on('submit', (evt) => {
+    evt.preventDefault();
+
     const formData = $('#status-change-form').serialize();
-    $.post('/mycloset', formData)
-})
+    console.log(formData)
+    $.post('/mycloset', formData, (json_item) => {
+        const item = json_item;
+        const statusUpdate = (
+            `<b id="item-status">Item Status: </b>${item.status}`
+        );
+        $('#item-status').replaceWith(statusUpdate)
+    });
+});
 
 
 
