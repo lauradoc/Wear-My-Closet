@@ -9,8 +9,9 @@ $('#community-button').on('click', (evt) => {
     console.log(formData)
 
     $.get('/communitycloset.json', formData, (community_items) => {
+        $('#community-items').empty();
         for (const item of community_items) {
-            const button = `<input type="button" onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">`
+            let button = `<input type="button" onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">`
             if (item.status == "Unavailable") {
                 button = `<input type="button" disabled=true onclick="addToCart(this.id)" name="add-to-cart" id="${item.id}" value="Add to cart">`
             };

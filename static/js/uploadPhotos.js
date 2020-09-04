@@ -28,6 +28,13 @@ $('#upload-item-form').on('submit', (evt) => {
                             <li><b>Item Name: </b>${item.item_name}</li>
                             <li><b>Description: </b>${item.item_description}</li>
                             <li><b>Category: </b>${item.category}</li>
+                            <li><b>Status: </b>${item.status}</li>
+                            <br>
+                            <input type="hidden" name="item-id" value="${item.id}">
+                            <select name="select-status">
+                            <option name="Available" value= "Available">Available</option>
+                            <option name="Unavailable" value= "Unavailable">Unavailable</option></select>
+                            <button type="submit" id="status-change">submit change</button>
                             <br>
                             <img src="${item.image_url}">
                             <br>
