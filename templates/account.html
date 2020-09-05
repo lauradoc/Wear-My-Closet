@@ -28,9 +28,12 @@
     </ul>
 
 <h3> My checkouts </h3>
-    <ul>
-        {% for checkout in checkouts %}
-        <li>{{ checkout }}</li>
+    {% for checkout in checkout_items %}
+    <p>Checkout Date: {{ checkout.checkout.checkout_date }}</p>
+        <li>Item Name: {{ checkout.item.item_name }}</li>
+        <li>Return Due Date: {{ checkout.due_date }}</li>
+        <li>Item Owner: {{ checkout.item.user.first_name + ' ' + checkout.item.user.last_name }}</li>
+        <!-- <li>{{ checkout.item.item_name }}</li> -->
         {% endfor %}
     </ul>
 

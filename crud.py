@@ -155,13 +155,10 @@ def get_cart_by_user_json(user_id):
 
     for cart_item in cart_items:
         cart_item_dict = {
-            # "username": user.first_name + ' ' + user.last_name,
             "id": cart_item.item_id,
             "user": cart_item.user_id,
             "item_name": cart_item.item.item_name,
-            # "item_description": item.item_description,
             "image_url": cart_item.item.image_url,
-            # "category": item.category_name,
             "status": cart_item.item.status_code
         }
         cart_items_json.append(cart_item_dict)
@@ -199,10 +196,8 @@ def get_checkout_by_user_json(user_borrowed_by):
 
     for checkout in checkout_items:
         checkout_dict = {
-            # 'item_id': checkout.item_id,
             'user_borrowed_by': checkout.user_borrowed_by,
             'checkout_date': checkout.checkout_date
-            # 'due_date': checkout.due_date
         }
         checkout_json.append(checkout_dict)
 
@@ -222,33 +217,28 @@ def create_checkout_item(checkout_id, item_id, due_date):
 
     return checkout_item
 
-# def checkout_item_json(checkout_item_id):
 
-#     checkout_item_json = []
-#     checkout_item = CheckoutItem.query.filter(CheckoutItem.checkout_item_id==checkout_item_id)
+def get_checkout_item_ids_by_user(user_id):
 
-#     for item in checkout_item
+    user_checkout_items = []
+    user_checkouts = Checkout.query.filter(Checkout.user_borrowed_by==user_id).all()
+    print(user_checkouts)
+    for checkout in user_checkouts:
+        checkout_id = checkout.checkout_id
+        checkout_item = CheckoutItem.query.filter(CheckoutItem.checkout_id==checkout_id).all()
+        for item in checkout_item:
+            user_checkout_items.append(item)
 
-# def get_all_checkout_items_by_user(user_id):
+    print(user_checkout_items)
 
-#     return CheckoutItem.query.filter(CheckoutItem.user_id==user_id).all()
+    return user_checkout_items
 
-# def get_checkout_items_by_user_json(user_id):
+# def get_checkout_items_by_id():
 
-#     checkout_item_json = []
-#     all_checkout_items = CheckoutItem.query.filter(CheckoutItem.checkout_id==checkout_id)
+#     user_checkout_ids = crud.get_checkout_item_ids_by_user
 
-#     for checkout_item in all_checkout_items:
-#         checkout_item_dict = {
-#             'checkout_id': checkout_item.checkout_id,
-#             'item_id': checkout_item.item_id,
-#             'item_name': checkout_item.item.item_name,
-#             'checkout_date': checkout_item.checkout.checkout_date,
-#             'due_date': checkout_item.due_date
-#         }
-#         checkout_item_json.append(checkout_item_dict)
+#     for item_id in user_checkout_ids:
 
-#     return checkout_item_json
 
 def get_checkout_items_by_checkout_id_json(checkout_id):
 

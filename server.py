@@ -4,9 +4,11 @@ from flask import (Flask, render_template, request, flash, session, redirect, js
 from model import connect_to_db
 import crud
 import api
+import send_sms
 
 from jinja2 import StrictUndefined
 from datetime import date
+
 
 app = Flask(__name__)
 app.secret_key = "closet"
@@ -208,34 +210,11 @@ def create_checkout_item():
     return jsonify(checkout_items)
 
 
-# @app.route('/checkoutjson')
-# def checkout_items_json():
-    
-#     # checkout_id = session.get('checkout_id')
-#     print('checkout id from session', checkout_id)
-#     checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
-
-#     return jsonify(checkout_items)
-    
-
-# @app.route('/checkoutitem')
-# def checkout():
-
-#     checkout_id = session.get('checkout_id')
-#     #make request for checkoutjson
-#     item_id = request.args.get()
-#     dute_date = request.args.get()
-#     print(new_checkout_item)
-    
-    # if 'checkout_id' in session:
-    #     session.pop('checkout_id', None)
-
-
-
 @app.route('/mycloset')
 def get_closet_form():
 
     return render_template('mycloset.html')
+
 
 @app.route('/mycloset', methods=['POST'])
 def update_item_status():
@@ -288,10 +267,11 @@ def account_details():
     city = user.city
     phone = user.phone
     closet = crud.get_items_by_user(user_id)
-    checkouts = crud.get_checkout_by_user(user_id)
+    checkout_items = crud.get_checkout_item_ids_by_user(user_id)
+    print(checkout_items)
     communities = crud.get_community_by_user(user_id)
 
-    return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkouts=checkouts, communities=communities)
+    return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkout_items=checkout_items, communities=communities)
 
 
 @app.route("/logout")

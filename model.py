@@ -17,8 +17,6 @@ class User(db.Model):
     email = db.Column(db.String)
     password = db.Column(db.String)
     city = db.Column(db.String)
-    # lat = db.Column(db.Integer, nullable=True)
-    # lon = db.Column(db.Integer, nullable=True)
     phone = db.Column(db.String)
     community_member_id = db.Column(db.Integer, nullable=True)
 
@@ -62,12 +60,9 @@ class Checkout(db.Model):
     __tablename__ = 'checkouts'
 
     checkout_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # item_id = db.Column(db.Integer, db.ForeignKey('items.item_id'))
     user_borrowed_by = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     checkout_date = db.Column(db.Date, default=date.today())
-    # due_date = db.Column(db.Date)
 
-    # item = db.relationship('Item', backref='checkouts')
     user = db.relationship('User', backref='checkouts')
 
     def __repr__(self):
