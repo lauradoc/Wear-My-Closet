@@ -2,14 +2,14 @@
 [
     {
         "community_name": "Derham Dollies",
-        "location": "MN"
+        "community_description": "CDH grads of '09! Members in MN, CO, TX, MI, and always growing."
     },
     {
         "community_name": "Track girls",
-        "location": "CA"
+        "community_description": "One-stop shop for track girls around the US looking to exchange running and non-running gear, connecting runners from all over!"
     },
     {
         "community_name": "College crew",
-        "location": "MN"
+        "community_description": "U of MN grads. Gophies for life. Ski-U-Mah!"
     }
 ]

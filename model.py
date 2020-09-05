@@ -115,7 +115,7 @@ class Community(db.Model):
 
     community_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     community_name = db.Column(db.String)
-    location = db.Column(db.String)
+    community_description = db.Column(db.String)
     members = db.relationship('User', secondary='community_members', backref='communities')
 
     def __repr__(self):

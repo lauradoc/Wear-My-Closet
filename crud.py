@@ -3,7 +3,7 @@
 from model import db, User, Category, Item, Checkout, CheckoutItem, Cart, Status, Community, CommunityMember, connect_to_db
 
 def create_user(first_name, last_name, email, password, city, phone):
-    """Create and return a new user."""
+    """Creates new user for login page"""
 
     user = User(first_name=first_name, last_name=last_name, email=email, password=password, city=city, phone=phone)
 
@@ -24,7 +24,7 @@ def get_user_by_user_id(user_id):
 
 
 def create_category(category_name):
-    """Create and return category name."""
+    """Create and return category name to seed data"""
 
     category_name = Category(category_name=category_name)
 
@@ -35,7 +35,7 @@ def create_category(category_name):
 
 
 def create_item(user_id, item_name, item_description, image_url, category_name, status_code):
-    """Create and return a new item."""
+    """Create and return a new item to seed data and for item upload page"""
 
     item = Item(user_id=user_id, item_name=item_name, item_description=item_description, image_url=image_url, category_name=category_name, status_code=status_code)
 
@@ -46,7 +46,7 @@ def create_item(user_id, item_name, item_description, image_url, category_name, 
 
 
 def jsonify_item(item):
-    """jsonify item data to use in js"""
+    """jsonify item data to use in js to view closet items"""
 
     json_item = {
             "id": item.item_id,
@@ -61,6 +61,7 @@ def jsonify_item(item):
     return json_item
 
 def change_item_status(item_id, status):
+    """update item status when there is a manual change by user or item as been added to cart"""
 
     item = Item.query.filter(Item.item_id==item_id).first()
     item.status_code = status
@@ -69,6 +70,22 @@ def change_item_status(item_id, status):
 
     return item
 
+
+def set_items_status(item_ids, new_status):
+
+    old_status = "available" if new_status == "checked_out" else "checked_out"
+
+    # db.session.query(Item).filter_by(status_code=old_status).update({"name": user.name})
+
+    rows_updated = db.session.query().filter(
+        Item.status_code == old_status, Item.item_id.in_(item_ids)
+    ).update(
+        {"status_code": new_status}, synchronize_session=False
+    )
+    import pdb; pdb.set_trace()
+    db.session.commit()
+
+    return rows_updated
 
 def get_item_by_item_name(item_name):
     """takes in item name and return item if exists, otherwise returns none"""
@@ -83,7 +100,7 @@ def get_item_by_id(item_id):
 
 
 def get_image_urls_by_user(user_id):
-    """takes in user_id and returns urls of all items under that user"""
+    """takes in user_id and returns iamge urls of all items under that user"""
 
     all_item_urls = db.session.query(Item.image_url)
     user_items = all_item_urls.filter(Item.user_id==user_id)
@@ -128,6 +145,7 @@ def create_status(checkout_status):
     return checkout_status
 
 
+
 def create_cart(item_id, user_id):
     """Create and return item that has been added to cart by session user"""
 
@@ -139,6 +157,7 @@ def create_cart(item_id, user_id):
     return cart
 
 def get_cart_ids_by_user(user_id):
+    """find all items that have been added to cart by session user, but not yet transitioned to checkout or been removed from cart"""
 
     cart_ids = []
     user_carts = Cart.query.filter(Cart.user_id==user_id).all()
@@ -218,6 +237,16 @@ def create_checkout_item(checkout_id, item_id, due_date):
     return checkout_item
 
 
+def get_all_checkout_item_ids():
+
+    checkout_item_ids = []
+    all_checkout_items = CheckoutItem.query.all()
+    for item in all_checkout_items:
+        checkout_item_ids.append(item.item_id)
+
+    return checkout_item_ids
+
+
 def get_checkout_item_ids_by_user(user_id):
 
     user_checkout_items = []
@@ -229,15 +258,7 @@ def get_checkout_item_ids_by_user(user_id):
         for item in checkout_item:
             user_checkout_items.append(item)
 
-    print(user_checkout_items)
-
     return user_checkout_items
-
-# def get_checkout_items_by_id():
-
-#     user_checkout_ids = crud.get_checkout_item_ids_by_user
-
-#     for item_id in user_checkout_ids:
 
 
 def get_checkout_items_by_checkout_id_json(checkout_id):
@@ -266,10 +287,10 @@ def get_all_checkout_ids():
 
     return checkout_item_ids
 
-def create_community(community_name, location):
+def create_community(community_name, community_description):
     """Create and return new community"""
 
-    community = Community(community_name=community_name, location=location)
+    community = Community(community_name=community_name, community_description=community_description)
 
     db.session.add(community)
     db.session.commit()
@@ -310,24 +331,8 @@ def create_community_member(community_id, user_id):
 
 def get_community_by_user(user_id):
 
-    user_communities = []
-    communities = db.session.query(CommunityMember, Community).join(Community)
-    for commem, com in communities:
-        if commem.user_id == user_id:
-            user_communities.append(com.community_name)
+    return CommunityMember.query.filter(CommunityMember.user_id==user_id).all() 
 
-    return user_communities
-
-
-def get_community_by_user_json(user_id):
-
-    user_communities_json = []
-    communities = db.session.query(CommunityMember, Community).join(Community)
-    for commem, com in communities:
-        if commem.user_id == user_id:
-            user_communities_json.append(com.community_name)
-
-    return user_communities_json
 
 def get_users_by_community(community_name):
 #could change to community_id

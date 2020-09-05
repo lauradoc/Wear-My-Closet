@@ -5,19 +5,6 @@
   <h1>Welcome </h1>
   <p>About</p>
 
-<h2>Create a community here:</h2>
-  <form action="/createcommunity" method="POST">
-    <p>
-      Community Name <input type="text" name="community_name">
-    </p>
-    <p>
-      Location <input type="text" name="location">
-    </p>
-    <p>
-      <input type="submit">
-    </p>
-  </form>
-
 <h2>Join a community:</h2>
 <form action="/joincommunity" id="my-community-form">
   Select your community:
@@ -32,4 +19,17 @@
   <button type="submit" action="/community">Select</button>
   <br> 
 </form>
+
+<h2>Create a community here:</h2>
+  <form action="/createcommunity" method="POST">
+    <p>
+      Community Name <input type="text" name="community_name">
+    </p>
+    <p>
+      Description <input type="text" name="community_description">
+    </p>
+    <p>
+      <input type="submit">
+    </p>
+  </form>
  {% endblock %}

@@ -25,7 +25,7 @@
   <br>
   <a type="button" id="logout-button" href="/logout">Logout</a>
   <p>
-  {% with errors = get_flashed_messages(category_filter=["password-error"]) %}
+  {% with errors = get_flashed_messages(category_filter=["error-message"]) %}
       {% if errors %}
       <div class="alert-message block-message error">
         {%- for msg in errors %}

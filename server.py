@@ -35,13 +35,13 @@ def create_account():
     user = crud.get_user_by_email(email)
 
     if user:
-        flash(u'Email already exists. Please make an account with a different email')
+        flash(u'Email already exists. Please make an account with a different email', 'error-message')
 
     else:
         user = crud.create_user(first_name, last_name, email, password, city, phone)
         session['email'] = user.email
         session['user_id'] = user.user_id
-        flash('Your account was created successfully! You can now log in.')
+        flash(u'Your account was created successfully! You can now log in.', 'error-message')
 
     return redirect('/')
 
@@ -62,7 +62,7 @@ def handle_login():
         return redirect('/home')
 
     else:        
-        flash(u'Log in failed. Try again.', 'password-error')
+        flash(u'Log in failed. Try again.', 'error-message')
         return redirect('/')
 
 
@@ -80,6 +80,7 @@ def view_home():
                 available_communities.append(community)
         return render_template('home.html', user=user_id, communities=available_communities, user_communities=user_communities)
     else:
+        flash(u'Must be logged in to view this page.', 'error-message')
         return redirect('/')
 
 
@@ -88,9 +89,9 @@ def create_community():
     """Form to create a new community"""
 
     community_name = request.form.get('community_name')
-    location = request.form.get('location')
+    community_description = request.form.get('community_description')
     if community_name:
-        new_community = crud.create_community(community_name, location)
+        new_community = crud.create_community(community_name, community_description=community_description)
 
     return redirect('/home')
 
@@ -113,33 +114,30 @@ def view_my_community():
     """View communities based on user logged in"""
 
     user_id = session.get('user_id')
-    user_communities = crud.get_community_by_user(user_id) 
-
-    return render_template('community.html', user_communities=user_communities)
-
-
-@app.route('/community.json')
-def view_my_community_json():
-    """View communities based on user logged in using json"""
-
-    user_id = session.get('user_id')
-    user_communities_json = crud.get_community_by_user_json(user_id)
-
-    return jsonify(user_communities_json)
+    if user_id:
+        user_communities = crud.get_community_by_user(user_id) 
+        return render_template('community.html', user_communities=user_communities)
+    
+    else:
+        flash(u'Must be logged in to view this page.', 'error-message')
+        return redirect('/')
     
 
 @app.route('/communitycloset.json')
 def get_items_by_community_json():
     """Return items for users in selected community as json"""
 
-    community_name = request.args.get("community")
-    print(request.args)
     user_id = session.get('user_id')
-    print(session)
-    community_items = crud.community_details_json(community_name, user_id)
-    print(community_items)
 
-    return jsonify(community_items)
+    if user_id:
+        community_name = request.args.get("community")
+        community_items = crud.community_details_json(community_name, user_id)
+
+        return jsonify(community_items)
+
+    else:
+        flash(u'Must be logged in to view this page.', 'error-message')
+        return redirect('/')
 
 @app.route('/addtocart', methods=['POST'])
 def add_to_cart():
@@ -161,9 +159,7 @@ def remove_from_cart():
 
     item_id = request.form.get('item_id')
     user_id = session.get('user_id')
-    print(item_id)
     remove_item = crud.remove_item_from_cart(item_id, user_id)
-    print('item removed', remove_item)
     item = crud.get_item_by_id(item_id)
     cart = crud.get_cart_by_user_json(user_id)
 
@@ -173,7 +169,14 @@ def remove_from_cart():
 @app.route('/cart')
 def go_to_cart():
 
-    return render_template('cart.html')
+    user_id = session.get('user_id')
+
+    if user_id:
+        return render_template('cart.html')
+    
+    else:
+        flash(u'Must be logged in to view this page.', 'error-message')
+        return redirect('/')
     
 
 @app.route('/cartjson')
@@ -191,21 +194,15 @@ def create_checkout_item():
     user_borrowed_by = session.get('user_id')
     checkout_date = date.today()
     new_checkout = crud.create_checkout(user_borrowed_by, checkout_date)
-    print(new_checkout)
     session['checkout_id'] = new_checkout.checkout_id
-    print('checkout_id from new checkout', session['checkout_id'])
 
     checkout_id = session.get('checkout_id')
     item_ids = request.form.getlist('item-id')
-    print(item_ids)
     for item_id in item_ids:
         item_due_date = request.form.get(f'due-date-{item_id}')
-        print(item_due_date)
         new_checkout_item = crud.create_checkout_item(checkout_id, item_id, item_due_date)
-        print(new_checkout_item)
         checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
         remove_from_cart = crud.remove_item_from_cart(f'{item_id}', session['user_id'])
-        print(remove_from_cart)
     
     return jsonify(checkout_items)
 
@@ -213,7 +210,17 @@ def create_checkout_item():
 @app.route('/mycloset')
 def get_closet_form():
 
-    return render_template('mycloset.html')
+    user_id = session.get('user_id')
+    if user_id:
+        # import pdb; pdb.set_trace()
+        # crud.set_items_status([1,2], "Unavailable")
+        # crud.set_items_status([1,2], "Available")
+
+        return render_template('mycloset.html')
+
+    else:
+        flash(u'Must be logged in to view this page.', 'error-message')
+        return redirect('/')
 
 
 @app.route('/mycloset', methods=['POST'])
@@ -235,7 +242,7 @@ def get_closet_data():
         return jsonify(closet)
 
     else:
-        flash(u'Need to be logged in to view this page', 'login-error')
+        flash(u'Need to be logged in to view this page', 'error-message')
         return redirect('/')
 
 
@@ -261,18 +268,22 @@ def upload_item():
 def account_details():
     """View user's account details"""
 
-    user = crud.get_user_by_email(session['email'])
-    user_id = user.user_id
-    email = user.email
-    city = user.city
-    phone = user.phone
-    closet = crud.get_items_by_user(user_id)
-    checkout_items = crud.get_checkout_item_ids_by_user(user_id)
-    print(checkout_items)
-    communities = crud.get_community_by_user(user_id)
+    email = session.get('email')
 
-    return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkout_items=checkout_items, communities=communities)
+    if email:
+        user = crud.get_user_by_email(session['email'])
+        user_id = user.user_id
+        city = user.city
+        phone = user.phone
+        closet = crud.get_items_by_user(user_id)
+        checkout_items = crud.get_checkout_item_ids_by_user(user_id)
+        communities = crud.get_community_by_user(user_id)
 
+        return render_template('account.html', user_id=user_id, email=email, city=city, phone=phone, closet=closet, checkout_items=checkout_items, communities=communities)
+
+    else:
+        flash(u'Must be logged in to view this page.', 'error-message')
+        return redirect('/')
 
 @app.route("/logout")
 def logout_user():

@@ -115,9 +115,9 @@ def seed_community():
 
     for community in community_data:
         community_name = community['community_name']
-        location = community['location']
+        community_description = community['community_description']
 
-        new_community = crud.create_community(community_name, location)
+        new_community = crud.create_community(community_name, community_description)
 
 seed_community()
 
