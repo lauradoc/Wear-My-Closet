@@ -203,6 +203,7 @@ def create_checkout_item():
         new_checkout_item = crud.create_checkout_item(checkout_id, item_id, item_due_date)
         checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
         remove_from_cart = crud.remove_item_from_cart(f'{item_id}', session['user_id'])
+        send_message = send_sms.send_message_to_user(new_checkout_item)
     
     return jsonify(checkout_items)
 

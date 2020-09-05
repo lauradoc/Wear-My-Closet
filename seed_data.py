@@ -81,18 +81,18 @@ def seed_items():
 seed_items()
 
 
-def seed_checkout():
+# def seed_checkout():
 
-    with open('data/seed_checkout.json') as f:
-        checkout_data = json.loads(f.read())
+#     with open('data/seed_checkout.json') as f:
+#         checkout_data = json.loads(f.read())
 
-    for checkout in checkout_data:
-        user_borrowed_by = checkout['user_borrowed_by']
-        checkout_date = date.today()
+#     for checkout in checkout_data:
+#         user_borrowed_by = checkout['user_borrowed_by']
+#         checkout_date = date.today()
 
-        new_checkout = crud.create_checkout(user_borrowed_by, checkout_date)
+#         new_checkout = crud.create_checkout(user_borrowed_by, checkout_date)
 
-seed_checkout()
+# seed_checkout()
 
 # def seed_cart():
 

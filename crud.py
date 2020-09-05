@@ -145,7 +145,6 @@ def create_status(checkout_status):
     return checkout_status
 
 
-
 def create_cart(item_id, user_id):
     """Create and return item that has been added to cart by session user"""
 
@@ -335,7 +334,7 @@ def get_community_by_user(user_id):
 
 
 def get_users_by_community(community_name):
-#could change to community_id
+
     community = Community.query.filter(Community.community_name==community_name).first()
     if community:
         return community.members

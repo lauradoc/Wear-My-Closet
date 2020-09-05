@@ -9,7 +9,7 @@
     <label for="community-field">Select your community:</label>
     <select name="community" id="community-field">
         {% for community in user_communities %}
-            <option value="{{ community }}">{{ community }}</option>
+            <option value="{{ community.community.community_name }}">{{ community.community.community_name }}</option>
         {% endfor %}
     </select>
     <br>
