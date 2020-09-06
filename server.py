@@ -204,6 +204,7 @@ def create_checkout_item():
         checkout_items = crud.get_checkout_items_by_checkout_id_json(checkout_id)
         remove_from_cart = crud.remove_item_from_cart(f'{item_id}', session['user_id'])
         send_message = send_sms.send_message_to_user(new_checkout_item)
+        new_status = crud.change_item_status(item_id)
     
     return jsonify(checkout_items)
 
@@ -228,8 +229,7 @@ def get_closet_form():
 def update_item_status():
     
     item_id = request.form.get('item-id')
-    status = request.form.get('select-status')
-    item_update = crud.change_item_status(item_id, status)
+    item_update = crud.change_item_status(item_id)
     json_item = crud.jsonify_item(item_update)
 
     return redirect('/mycloset')

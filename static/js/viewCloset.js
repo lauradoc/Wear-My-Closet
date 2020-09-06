@@ -3,6 +3,10 @@
 $.get('/myclosetjson', (res) => {
     const closet = res;
     for (const item of closet) {
+        let button = `<button type="submit" id="status-change">submit</button>`
+        if (item.status == "Available") {
+            button = `<button type="submit" disabled=true id="status-change">submit</button>`
+        };
         const itemDetails = (
         `<p>
             <b>Item Name: </b>${item.item_name}
@@ -14,13 +18,11 @@ $.get('/myclosetjson', (res) => {
             <b id="item-status">Item Status: </b>${item.status}
             <br>
             <form method="POST" id="status-change-form">
-                Update Status:
                 <input type="hidden" name="item-id" value="${item.id}">
-                <select name="select-status">
-                <option name="Available" value= "Available">Available</option>
-                <option name="Unavailable" value= "Unavailable">Unavailable</option></select>
-                <button type="submit" id="status-change">submit change</button>
-            </form>
+                <input type="radio" id"${item.id}" name="item-return" value="Item Returned">
+                <label>Item Returned</label>
+                ${button}
+                </form>
             <br>
             <img src="${item.image_url}">  
             </p>`
@@ -28,6 +30,7 @@ $.get('/myclosetjson', (res) => {
         $('#item-library').append(itemDetails);
     };
 });
+
 
 $('#status-change-form').on('submit', (evt) => {
     evt.preventDefault();
@@ -42,6 +45,4 @@ $('#status-change-form').on('submit', (evt) => {
         $('#item-status').replaceWith(statusUpdate)
     });
 });
-
-
 

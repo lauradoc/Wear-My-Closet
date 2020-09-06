@@ -60,32 +60,38 @@ def jsonify_item(item):
 
     return json_item
 
-def change_item_status(item_id, status):
+def change_item_status(item_id):
     """update item status when there is a manual change by user or item as been added to cart"""
 
     item = Item.query.filter(Item.item_id==item_id).first()
-    item.status_code = status
+    status = item.status_code
+
+    if status == "Unavailable":
+        item.status_code = "Available"
+
+    else:
+        item.status_code = "Unavailable"
 
     db.session.commit()
 
     return item
 
 
-def set_items_status(item_ids, new_status):
+# def set_items_status(item_ids, new_status):
 
-    old_status = "available" if new_status == "checked_out" else "checked_out"
+#     old_status = "available" if new_status == "checked_out" else "checked_out"
 
-    # db.session.query(Item).filter_by(status_code=old_status).update({"name": user.name})
+#     # db.session.query(Item).filter_by(status_code=old_status).update({"name": user.name})
 
-    rows_updated = db.session.query().filter(
-        Item.status_code == old_status, Item.item_id.in_(item_ids)
-    ).update(
-        {"status_code": new_status}, synchronize_session=False
-    )
-    import pdb; pdb.set_trace()
-    db.session.commit()
+#     rows_updated = db.session.query().filter(
+#         Item.status_code == old_status, Item.item_id.in_(item_ids)
+#     ).update(
+#         {"status_code": new_status}, synchronize_session=False
+#     )
+#     import pdb; pdb.set_trace()
+#     db.session.commit()
 
-    return rows_updated
+#     return rows_updated
 
 def get_item_by_item_name(item_name):
     """takes in item name and return item if exists, otherwise returns none"""
