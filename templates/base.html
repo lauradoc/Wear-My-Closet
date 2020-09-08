@@ -7,17 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Playfair+Display&display=swap" rel="stylesheet">  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link href="/static/css" rel="stylesheet">
-
-  <nav class="navbar fixed-top navbar-light" style="font-family: 'Playfair Display', serif;">
-    <img src="/static/img/wear-my-closet-logo.png" width="200" height="185" alt="" loading="lazy"class="navbar-brand mb-0 h1" >
-      <a class="nav-link" style="font-family: 'Playfair Display', serif; color: black; font-weight: bold;" href="/home">Home</a>
-      <a class="nav-link" style="font-family: 'Playfair Display', serif; color: black;;" href="/community">My Community</a>
-      <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/mycloset">My Closet</a>
-      <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/cart">My Cart</a>
-      <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/myaccount">My Account</a>
-      <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/logout">Logout</a>
+  <nav class="navbar fixed-top navbar-light" style="font-family: 'Playfair Display', serif; justify-content: stretch; padding: 0;">
+    <div class="container" style="padding: 0; margin:0;">
+        <a class="nav-brand" style="font-family: 'Playfair Display', serif; color: black; font-weight: bold;" href="/home"><img src="/static/img/wear my closet.png" style="width: 250px;"> </a>
+        <a class="nav-link" style="font-family: 'Playfair Display', serif; color: black;;" href="/community">My Community</a>
+        <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/mycloset">My Closet</a>
+        <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/cart">My Cart</a>
+        <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/myaccount">My Account</a>
+        <a class="nav-link" style="font-family: 'Playfair Display', serif;color: black;" href="/logout">Logout</a>
+    </div>
   </nav>
-
   <title>{% block title %}Wear my Closet{% endblock %}</title>
 </head>
 <body class="mx-3" style="text-align: center; margin-left: 5rem!important; margin-top: 12rem!important; font-family: 'Montserrat', sans-serif;">
