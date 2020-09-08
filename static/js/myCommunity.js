@@ -1,6 +1,5 @@
 "use strict";
 
-
 $('#community-button').on('click', (evt) => {
     evt.preventDefault();
     const formData = {
