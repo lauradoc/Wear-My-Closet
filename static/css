@@ -1,7 +1,12 @@
 
-h1, h2, h3, h4, h5, h6 { font-family: 'Old Standard TT', serif; !important }
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; !important }
 
-body { font-family: 'Open Sans', sans-serif; !important}
+body { font-family: 'Playfair Display', serif; !important}
+
+.ml-5, .mx-5 {
+    margin-left: 3rem!important;
+    margin-top: 10rem!important;
+}
 
 /* CSS HEX */
 --rich-black-fogra-39: #050609ff;

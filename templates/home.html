@@ -2,35 +2,51 @@
 
 {% block title %}{% endblock %}
 {% block body %}
-  <h1>Welcome </h1>
-  <p>About</p>
-  
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><b>Welcome to Wear My Closet!</b></h5>
+    <p class="card-text">Your newest space to expand your closet while also expanding the life span of your clothes. We are taking a look at our consumption and finding ways to give new life to our clothes by sharing wtih friends in our community and we are so excited for you to be joining us!</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+  <img src="..." class="card-img-bottom" alt="...">
+</div>
 
-<h2>Join a community:</h2>
-<form action="/joincommunity" id="my-community-form">
-  Select your community:
-  <select name="join-community">
-      {% for community in communities %}
-        {% if community not in user_communities%}
-          <option name ="{{ community.community_name }}" value="{{ community.community_name }}">{{ community.community_name}}</option>
-        {% endif %}
-      {% endfor %}
-  </select>
-  <br>
-  <button type="submit" action="/community">Select</button>
-  <br> 
-</form>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card-body">
+      <h5 class="card-header">Join a community:</h5>
+        <form action="/joincommunity" id="my-community-form">
+          Select a community:
+          <select name="join-community">
+              {% for community in communities %}
+                {% if community not in user_communities%}
+                <option name ="{{ community.community_name }}" value="{{ community.community_name }}">{{ community.community_name}}</option>
+                {% endif %}
+              {% endfor %}
+          </select>
+          <br>
+          <br>
+          <button type="submit" action="/community">Select</button>
+          <br> 
+        </form>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card-body">
+      <h5 class="card-header">Create a community:</h5>
+        <form action="/createcommunity" method="POST">
+          <p>
+            Community Name <input type="text" name="community_name">
+          </p>
+          <p>
+            Description <input type="text" name="community_description">
+          </p>
+          <p>
+            <input type="submit">
+          </p>
+        </form>
+    </div>
+  </div>
+</div>
 
-<h2>Create a community here:</h2>
-  <form action="/createcommunity" method="POST">
-    <p>
-      Community Name <input type="text" name="community_name">
-    </p>
-    <p>
-      Description <input type="text" name="community_description">
-    </p>
-    <p>
-      <input type="submit">
-    </p>
-  </form>
  {% endblock %}
