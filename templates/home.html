@@ -8,7 +8,11 @@
     <p class="card-text">Your newest space to expand your closet while also expanding the life span of your clothes. We are taking a look at our consumption and finding ways to give new life to our clothes by sharing wtih friends in our community and we are so excited for you to be joining us!</p>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
-  <img src="..." class="card-img-bottom" alt="...">
+  <div class="row">
+    <div class="col-4"><img src="/static/img/wear my closet-border-2.png" class="card-img-bottom"></div>
+    <div class="col-4"><img src="/static/img/wear-my-closet-border-1.png" class="card-img-bottom"></div>
+    <div class="col-4"><img src="/static/img/wear-my-closet-border-3.png" class="card-img-bottom"></div>
+  </div>
 </div>
 
 <div class="row">
@@ -20,7 +24,7 @@
           <select name="join-community">
               {% for community in communities %}
                 {% if community not in user_communities%}
-                <option name ="{{ community.community_name }}" value="{{ community.community_name }}">{{ community.community_name}}</option>
+                  <option name ="{{ community.community_name }}" value="{{ community.community_name }}">{{ community.community_name}}</option>
                 {% endif %}
               {% endfor %}
           </select>

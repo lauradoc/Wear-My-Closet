@@ -72,11 +72,14 @@ def view_home():
 
     user_id = session.get('user_id')
     if user_id:
+        user_community_names = []
         user_communities = crud.get_community_by_user(user_id)
+        for community in user_communities:
+            user_community_names.append(community.community.community_name)
         communities = crud.get_all_communities()
         available_communities = []
         for community in communities:
-            if community.community_name not in user_communities:
+            if community.community_name not in user_community_names:
                 available_communities.append(community)
         return render_template('home.html', user=user_id, communities=available_communities, user_communities=user_communities)
     else:

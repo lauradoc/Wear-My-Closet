@@ -4,6 +4,22 @@
 {% block title %}Wear my Closet{% endblock %}
 
 {% block body %}
+<!-- <form action="/cart" id="my-community-form">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Select your community
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <select name="community" id="community-field">
+                {% for community in user_communities %}
+                    <button value="{{ community.community.community_name }}"class="dropdown-item" type="button">{{ community.community.community_name }}</button>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div id="community-items"></div>
+    <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
+</form> -->
 
 <form action="/cart" id="my-community-form">
     <label for="community-field">Select your community:</label>
@@ -19,4 +35,4 @@
     <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
 </form>
 
-{% endblock %}
+{% endblock %} -->

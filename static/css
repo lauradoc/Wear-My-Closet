@@ -3,6 +3,10 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; !important }
 
 body { font-family: 'Playfair Display', serif;!important}
 
+
+font-family: 'Roboto Slab', serif;
+font-family: 'Spartan', sans-serif;
+
 .container {
       padding:0!important;
       margin:0!important;
