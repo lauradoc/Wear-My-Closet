@@ -4,38 +4,55 @@
 {% block title %}Wear my Closet{% endblock %}
 
 {% block body %}
-
-<h2> My Account </h2>
-    <ul>
-        <li>User ID: {{ user_id }}</li>
-        <li>Email: {{ email }}</li>
-        <li>City: {{ city }}</li>
-        <li>Phone: {{ phone }}</li>
-    </ul>
-
-<h3> My Communities </h3>
-    <ul>
-    {% for community in communities%}
-    <li> {{ community.community.community_name }}</li>
-    <li> {{ community.community.community_description }}</li>
-    {% endfor %}
-</ul>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">My Account</h5>
+        <p class="card-text" style="text-align: left;">
+            User ID: {{ user_id }} <br>
+            Email: {{ email }} <br>
+            City: {{ city }}<br>
+            Phone: {{ phone }}
+        </p>
+    </div>
+</div>
+<div class="card" style="max-width: 40%;">
+    <div class="card-body" style="text-align: left;">
+        <h5 class="card-title">My Communities</h5>
+        {% for community in communities%}
+        <h6 class="card-subtitle mb-2">{{ community.community.community_name }}<h6>
+            <p class="card-text" style="text-align: left;">{{ community.community.community_description }}</p><br>
+            {% endfor %}
+    </div>
+</div>
+<div class="card" style="max-width: 40%;">
+    <div class="card-body" style="text-align: left;">
+        <h5 class="card-title">My Checkouts</h5>
+        <p class="card-text" style="text-align: left;">
+            {% for checkout in checkout_items %}
+                Checkout Date: {{ checkout.checkout.checkout_date }}<br>
+                Item Name: {{ checkout.item.item_name }}<br>
+                Return Due Date: {{ checkout.due_date }}<br>
+                Item Owner: {{ checkout.item.user.first_name + ' ' + checkout.item.user.last_name }}<br>
+            {% endfor %}
+        </p>
+    </div>
+</div>
 
 <h3> My Items </h3>
     <ul>
         {% for item in closet%}
-        <img src="{{ item.image_url }}" class="img-thumbnail">
+        <img src="{{ item.image_url }}" class="img-thumbnail" style="max-width: 25%;">
         {% endfor %}
     </ul>
 
-<h3> My checkouts </h3>
+<!-- <h3> My checkouts </h3>
     {% for checkout in checkout_items %}
     <p>Checkout Date: {{ checkout.checkout.checkout_date }}</p>
         <li>Item Name: {{ checkout.item.item_name }}</li>
         <li>Return Due Date: {{ checkout.due_date }}</li>
         <li>Item Owner: {{ checkout.item.user.first_name + ' ' + checkout.item.user.last_name }}</li>
         {% endfor %}
-    </ul>
+    </ul> -->
 
 {% endblock %}
 
