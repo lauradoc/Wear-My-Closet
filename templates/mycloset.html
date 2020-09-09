@@ -4,30 +4,32 @@
 
 {% block body %}
 
-  <h3> Upload your clothes</h3>
+  <h3 style="text-align: left;"> Upload your clothes</h3>
 
-  <div class="container-form-share">
-    <form method="POST" id="upload-item-form" enctype="multipart/form-data">
-      <input type=file name="file" class="form-control" id="image-field">
-      <br>
-      <input type=text name="item_name" id="name-field">Item Name
-      <br>
-      <input type=text name="item_description" id="description-field">Description
-      <br>
-      Select a category:
-      <select name="category" id="category-field">
-        <option value="tops">Tops</option>
-        <option value="bottoms">Bottoms</option>
-        <option value="dresses">Dresses</option>
-        <option value="jackets & coats">Jackets & Coats</option>
-        <option value="sweaters">Sweaters</option>
-        <option value="shoes">Shoes</option>
-        <option value="accessories">Accessories</option>
-      </select>
-      <br>
-      <button type="submit" id="submit-new-item">Upload</button>
-      <br> 
-    </form>
+  <div class="container-form-share" class="row" style="text-align: left;">
+    <div class="col-md-6">
+      <form method="POST" id="upload-item-form" enctype="multipart/form-data">
+        <input type=file name="file" class="form-control" id="image-field" style="border: none;">
+        <br>
+        <input type=text name="item_name" id="name-field">Item Name
+        <br>
+        <input type=text name="item_description" id="description-field">Description
+        <br>
+        Select a category:
+        <select name="category" id="category-field">
+          <option value="tops">Tops</option>
+          <option value="bottoms">Bottoms</option>
+          <option value="dresses">Dresses</option>
+          <option value="jackets & coats">Jackets & Coats</option>
+          <option value="sweaters">Sweaters</option>
+          <option value="shoes">Shoes</option>
+          <option value="accessories">Accessories</option>
+        </select>
+        <br>
+        <button type="submit" id="submit-new-item">Upload</button>
+        <br> 
+      </form>
+    </div>
   </div>
   <h3> What's in your closet: </h3>
   <div id="item-library"></div>

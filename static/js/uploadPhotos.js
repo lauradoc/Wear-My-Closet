@@ -20,28 +20,31 @@ $('#upload-item-form').on('submit', (evt) => {
         processData: false,
         success: (res) => {
             const item = res;
-            console.log('*************', item)
-            const new_item = (`
-                <div>
-                    <form method="POST" id="upload-item">
-                        <ul class="item-details">
-                            <li><b>Item Name: </b>${item.item_name}</li>
-                            <li><b>Description: </b>${item.item_description}</li>
-                            <li><b>Category: </b>${item.category}</li>
-                            <li><b>Status: </b>${item.status}</li>
-                            <br>
-                            <input type="hidden" name="item-id" value="${item.id}">
-                            <select name="select-status">
-                            <option name="Available" value= "Available">Available</option>
-                            <option name="Unavailable" value= "Unavailable">Unavailable</option></select>
-                            <button type="submit" id="status-change">submit change</button>
-                            <br>
-                            <img src="${item.image_url}">
-                            <br>
-                        </ul>
+            const new_item = (
+                `<div class="card-group" style="width: 18rem;">
+                    <form method="POST" id="upload-item" >
+                        <img src="${item.image_url}" class="card-img-top">
+                        <div class="card-body">
+                        <p class="card-text">
+                            <ul class="item-details">
+                                <b>Item Name: </b>${item.item_name}
+                                <b>Description: </b>${item.item_description}
+                                <b>Category: </b>${item.category}
+                                <b>Status: </b>${item.status}
+                                <br>
+                                <form method="POST" id="status-change-form">
+                                    <input type="hidden" name="item-id" value="${item.id}">
+                                    <input type="radio" id"${item.id}" name="item-return" value="Item Returned">
+                                    <label>Item Returned</label>
+                                    <button type="submit" id="status-change">submit</button>
+                                <br>
+                                <br>
+                            </ul>
+                        </p>
+                        </div>
                     </form>
-                </div>
-            `);
+                </div>`
+            );
             $('#item-library').prepend(new_item)
         },
     });

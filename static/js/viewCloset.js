@@ -8,24 +8,33 @@ $.get('/myclosetjson', (res) => {
             button = `<button type="submit" disabled=true id="status-change">submit</button>`
         };
         const itemDetails = (
-        `<p>
-            <b>Item Name: </b>${item.item_name}
-            <br>
-            <b>Description: </b>${item.item_description}
-            <br>
-            <b>Category: </b>${item.category}
-            <br>
-            <b id="item-status">Item Status: </b>${item.status}
-            <br>
-            <form method="POST" id="status-change-form">
-                <input type="hidden" name="item-id" value="${item.id}">
-                <input type="radio" id"${item.id}" name="item-return" value="Item Returned">
-                <label>Item Returned</label>
-                ${button}
-                </form>
-            <br>
-            <img src="${item.image_url}">  
-            </p>`
+        `<div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <img src="${item.image_url}" class="card-img-top">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>Item Name: </b>${item.item_name}
+                            <br>
+                            <b>Description: </b>${item.item_description}
+                            <br>
+                            <b>Category: </b>${item.category}
+                            <br>
+                            <b id="item-status">Status: </b>${item.status}
+                            <br>
+                            <form method="POST" id="status-change-form">
+                                <input type="hidden" name="item-id" value="${item.id}">
+                                <input type="radio" id"${item.id}" name="item-return" value="Item Returned">
+                                <label>Item Returned</label>
+                                ${button}
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>`
         );
         $('#item-library').append(itemDetails);
     };
