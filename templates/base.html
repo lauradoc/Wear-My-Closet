@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <nav class="navbar fixed-top navbar-light" style="font-family: 'Spartan', serif; justify-content: stretch; padding: 0;">
+  <nav class="navbar fixed-top navbar-light" style="font-family: 'Spartan', serif; justify-content: stretch; height: 150px; padding: 0;">
     <div class="container" style="padding: 0; margin:0;">
         <a class="nav-brand" style="font-family: 'Spartan', serif; color: black; font-weight: bold;" href="/home"><img src="/static/img/wear my closet.png" style="width: 250px;"> </a>
         <a class="nav-link" style="font-family: 'Spartan', serif; color: black;;" href="/community">My Community</a>
@@ -19,10 +19,10 @@
   <title>{% block title %}Wear my Closet{% endblock %}</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Spartan:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="/static/css" rel="stylesheet">
+  <link href="/static/styles.css" rel="stylesheet">
 </head>
 
-<body class="mx-3" style="text-align: center; margin-left: 5rem!important; margin-top: 12rem!important; font-family: 'Roboto Slab', sans-serif;">
+<body>
   <p>
   {% with errors = get_flashed_messages(category_filter=["error-message"]) %}
       {% if errors %}
@@ -44,3 +44,5 @@
   <script src="/static/js/myCart.js"></script>
 </body>
 </html>
+
+<!-- class="mx-3" style="text-align: center; margin-left: 5rem!important; margin-top: 12rem!important; font-family: 'Roboto Slab', sans-serif; background-color: #fcfcfc;" -->

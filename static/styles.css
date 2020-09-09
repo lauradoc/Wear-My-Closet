@@ -1,0 +1,29 @@
+body {font-family: 'Roboto Slab', serif;}
+h1, h2, h3, h4, h5, h6 {font-family: 'Spartan', sans-serif;}
+
+.container {
+  padding:0!important;
+  margin:0!important;
+}
+
+.dropdown {
+  
+}
+
+body {
+  text-align: center; 
+  margin-left: 5rem!important; 
+  margin-top: 12rem!important;
+  padding:0;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom:0;
+}
+
+.ml-5, .mx-5 {
+  margin-left: 3rem!important;
+  margin-top: 10rem!important;
+}

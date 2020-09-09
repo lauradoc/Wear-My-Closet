@@ -5,34 +5,19 @@
 
 {% block body %}
 <form action="/cart" id="my-community-form">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Select your community
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <select name="community" id="community-field">
+    <div class="form-group">
+        <div class="dropdown">
+            <label for="community-field">Select your commmunity</label>
+            <select name="community" id="community-field" class="form-control">
                 {% for community in user_communities %}
-                    <button value="{{ community.community.community_name }}"class="dropdown-item" type="button">{{ community.community.community_name }}</button>
+                    <option value="{{ community.community.community_name }}" >{{ community.community.community_name }}</option>
                 {% endfor %}
             </select>
+            <button type="submit" id="community-button">Select</button>
         </div>
+        <div id="community-items"></div>
+        <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
     </div>
-    <div id="community-items"></div>
-    <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
-</form>
-
-<form action="/cart" id="my-community-form">
-    <label for="community-field">Select your community:</label>
-    <select name="community" id="community-field">
-        {% for community in user_communities %}
-            <option value="{{ community.community.community_name }}">{{ community.community.community_name }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <button type="submit" id="community-button">Select</button>
-    <br> 
-    <div id="community-items"></div>
-    <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
 </form>
 
 {% endblock %} -->
