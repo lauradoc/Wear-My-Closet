@@ -1,4 +1,4 @@
-body {font-family: 'Roboto Slab', serif;}
+body {font-family: 'Open Sans', serif;}
 h1, h2, h3, h4, h5, h6 {font-family: 'Spartan', sans-serif;}
 
 .container {
@@ -15,6 +15,7 @@ body {
   margin-left: 5rem!important; 
   margin-top: 12rem!important;
   padding:0;
+  background-image:url("dot-grid/dot-grid.png");
 }
 
 .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
@@ -26,4 +27,20 @@ body {
 .ml-5, .mx-5 {
   margin-left: 3rem!important;
   margin-top: 10rem!important;
+}
+
+.btn, .btn-primary {
+  background-color: #e9ccbd;
+  color: black;
+  border: none;
+}
+
+.card-header {
+  background-color: #e9ccbd;
+  color: black;
+  border: none;
+}
+
+.file-input {
+  text-align: center;
 }

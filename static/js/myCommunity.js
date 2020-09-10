@@ -16,21 +16,29 @@ $('#community-button').on('click', (evt) => {
             };
             // else if (item in already in cart)
             const itemDetails = (
-                `<div class="item-details">
-                    <div class="item-thumbnail">
+                `<div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <img src="${item.image_url}" class="card-img-top">
+                        </div>
+                        <form method="POST" action="/cart" id="checkout-item">
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <ul class="item-info">
+                                        <li id="username-field"><b>Owner: </b>${item.username}</li>
+                                        <li id="item_name-field"><b>Item Name: </b>${item.item_name}</li>
+                                        <li><b>Description: </b>${item.item_description}</li>
+                                        <li><b>Category: </b>${item.category}</li>
+                                        <li id="status-field"><b>Status: </b>${item.status}</li>
+                                        ${button}
+                                        <br>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                        </form>
                     </div>
-                    <form method="POST" action="/cart" id="checkout-item">
-                        <ul class="item-info">
-                            <li id="username-field"><b>Owner: </b>${item.username}</li>
-                            <li id="item_name-field"><b>Item Name: </b>${item.item_name}</li>
-                            <li><b>Description: </b>${item.item_description}</li>
-                            <li><b>Category: </b>${item.category}</li>
-                            <li id="status-field"><b>Status: </b>${item.status}</li>
-                            ${button}
-                            <br>
-                            <img src="${item.image_url}">
-                        </ul>
-                    </form>
                 </div>`
             );
             $('#community-items').append(itemDetails);
@@ -51,4 +59,19 @@ function addToCart(id) {
     document.getElementById(id).disabled= true;
 }
 
-// function getCartItemByUser
+// `<div class="item-details">
+//                     <div class="item-thumbnail">
+//                     </div>
+//                     <form method="POST" action="/cart" id="checkout-item">
+//                         <ul class="item-info">
+//                             <li id="username-field"><b>Owner: </b>${item.username}</li>
+//                             <li id="item_name-field"><b>Item Name: </b>${item.item_name}</li>
+//                             <li><b>Description: </b>${item.item_description}</li>
+//                             <li><b>Category: </b>${item.category}</li>
+//                             <li id="status-field"><b>Status: </b>${item.status}</li>
+//                             ${button}
+//                             <br>
+//                             <img src="${item.image_url}">
+//                         </ul>
+//                     </form>
+//                 </div>`
