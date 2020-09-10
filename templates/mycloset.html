@@ -6,7 +6,7 @@
 
   <h3 style="text-align: center;"> Upload your clothes</h3>
 
-  <div class="container">
+  <div class="d-flex justify-content-center">
     <form method="POST" id="upload-item-form" enctype="multipart/form-data" >
       <div class="row">
         <div col-6></div>
@@ -14,21 +14,24 @@
           <input type=file name="file" class="form-control" id="image-field" style="border: none;">
         </div>
       </div>
-      <input type=text name="item_name" id="name-field">Item Name
-      <br>
-      <input type=text name="item_description" id="description-field">Description
-      <br>
-      Select a category:
-      <select name="category" id="category-field">
-        <option value="tops">Tops</option>
-        <option value="bottoms">Bottoms</option>
-        <option value="dresses">Dresses</option>
-        <option value="jackets & coats">Jackets & Coats</option>
-        <option value="sweaters">Sweaters</option>
-        <option value="shoes">Shoes</option>
-        <option value="accessories">Accessories</option>
-      </select>
-      <br>
+      <div class="row">
+        <input type=text name="item_name" id="name-field">Item Name
+      </div>
+      <div class="row">
+        <input type=text name="item_description" id="description-field">Description
+      </div>
+      <div class="row">
+        Select a category:
+        <select name="category" id="category-field">
+          <option value="tops">Tops</option>
+          <option value="bottoms">Bottoms</option>
+          <option value="dresses">Dresses</option>
+          <option value="jackets & coats">Jackets & Coats</option>
+          <option value="sweaters">Sweaters</option>
+          <option value="shoes">Shoes</option>
+          <option value="accessories">Accessories</option>
+        </select>
+      </div>
       <button type="submit" id="submit-new-item">Upload</button>
       <br> 
     </form>

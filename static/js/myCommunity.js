@@ -16,13 +16,12 @@ $('#community-button').on('click', (evt) => {
             };
             // else if (item in already in cart)
             const itemDetails = (
-                `<div class="card mb-3">
+                `<div class="card">
                     <div class="row no-gutters">
                         <div class="col-md-6">
                             <img src="${item.image_url}" class="card-img-top">
                         </div>
-                        <form method="POST" action="/cart" id="checkout-item">
-                        <div class="col-md-6">
+                        <form method="POST" action="/cart" id="checkout-item" class="col-md-6">
                             <div class="card-body">
                                 <p class="card-text">
                                     <p id="username-field"><b>Owner: </b>${item.username}</p>
@@ -34,7 +33,6 @@ $('#community-button').on('click', (evt) => {
                                     <br>
                                 </p>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>`
