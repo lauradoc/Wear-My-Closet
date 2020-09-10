@@ -5,17 +5,26 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  <nav class="navbar fixed-top navbar-light" style="font-family: 'Spartan', serif; justify-content: stretch; height: 150px; padding: 0;">
-    <div class="container" style="padding: 0; margin:0;">
-        <a class="nav-brand" style="font-family: 'Spartan', serif; color: black; font-weight: bold;" href="/home"><img src="/static/img/wear my closet.png" style="width: 250px;"> </a>
-        <a class="nav-link" style="font-family: 'Spartan', serif; color: black;;" href="/community">My Community</a>
-        <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/mycloset">My Closet</a>
-        <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/cart">My Cart</a>
-        <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/myaccount">My Account</a>
-        <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/logout">Logout</a>
-    </div>
-  </nav>
+  <ul class="nav nav-pills nav-fill" style="font-family: 'Spartan', serif; height: 100px; padding: 0;">
+    <li class="nav-item">
+      <a class="nav-brand" style="font-family: 'Spartan', serif; color: black; font-weight: bold;" href="/home"><img src="/static/img/wear my closet.png" style="max-width: 250px;"></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="font-family: 'Spartan', serif; color: black;;" href="/community">My Community</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/mycloset">My Closet</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/cart">My Cart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/myaccount">My Account</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" style="font-family: 'Spartan', serif;color: black;" href="/logout">Logout</a>
+    </li>
+  </ul>
   <title>{% block title %}Wear my Closet{% endblock %}</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Spartan:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
