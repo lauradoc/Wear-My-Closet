@@ -11,7 +11,7 @@ $.get('/cartjson', (cart) => {
                     <input type="hidden" name="item-id" value="${item.id}">
                     <input type="hidden" value=${item.user} >
                     <li><label>Item Name: ${item.item_name}</li>
-                    <li><label>Due Date: <input id="due-date-${item.id}" type="date" name="due-date-${item.id}"></label></li>
+                    <li><label>Return Date: <input id="due-date-${item.id}" type="date" name="due-date-${item.id}"></label></li>
                     <li>Checkout Status: ${item.status}</li>
                     <input type="radio" onclick="removeFromCart(this.id)" id="${item.id}" name="remove" value="Remove Item">
                     <label>Remove item</label>

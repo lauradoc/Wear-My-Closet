@@ -16,7 +16,7 @@ $('#community-button').on('click', (evt) => {
             };
             // else if (item in already in cart)
             const itemDetails = (
-                `<div class="card mb-3" style="max-width: 540px;">
+                `<div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-6">
                             <img src="${item.image_url}" class="card-img-top">
@@ -25,15 +25,13 @@ $('#community-button').on('click', (evt) => {
                         <div class="col-md-6">
                             <div class="card-body">
                                 <p class="card-text">
-                                    <ul class="item-info">
-                                        <li id="username-field"><b>Owner: </b>${item.username}</li>
-                                        <li id="item_name-field"><b>Item Name: </b>${item.item_name}</li>
-                                        <li><b>Description: </b>${item.item_description}</li>
-                                        <li><b>Category: </b>${item.category}</li>
-                                        <li id="status-field"><b>Status: </b>${item.status}</li>
-                                        ${button}
-                                        <br>
-                                    </ul>
+                                    <p id="username-field"><b>Owner: </b>${item.username}</p>
+                                    <p id="item_name-field"><b>Item Name: </b>${item.item_name}</p>
+                                    <p><b>Description: </b>${item.item_description}</p>
+                                    <p><b>Category: </b>${item.category}</p>
+                                    <p id="status-field"><b>Status: </b>${item.status}</p>
+                                    ${button}
+                                    <br>
                                 </p>
                             </div>
                         </div>

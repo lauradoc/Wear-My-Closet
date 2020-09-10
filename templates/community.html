@@ -4,20 +4,28 @@
 {% block title %}Wear my Closet{% endblock %}
 
 {% block body %}
-<form action="/cart" id="my-community-form">
-    <div class="form-group">
-        <div class="dropdown">
-            <label for="community-field">Select your commmunity</label>
-            <select name="community" id="community-field" class="form-control">
-                {% for community in user_communities %}
-                    <option value="{{ community.community.community_name }}" >{{ community.community.community_name }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit" id="community-button">Select</button>
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+        <form action="/cart" id="my-community-form">
+            <div class="form-group">
+                <div class="dropdown">
+                    <label for="community-field">Select your commmunity</label>
+                    <select name="community" id="community-field" class="form-control">
+                        {% for community in user_communities %}
+                            <option value="{{ community.community.community_name }}" >{{ community.community.community_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" id="community-button">Select</button>
+
+                </div>
+            </div>
         </div>
-        <div id="community-items"></div>
-        <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
+        <div class="card-columns" id="community-items"></div>
     </div>
-</form>
+    <button type="submit" id="cart-button" name="go-to-cart" action="/cart">Go to cart</button>
+    </form>
+</div>
 
 {% endblock %} -->
