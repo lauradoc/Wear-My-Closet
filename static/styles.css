@@ -59,4 +59,13 @@ body {
   margin-right: 8rem;
 }
 
+#my-community-form, #community-form-margin {
+  margin-top: 2rem;
+
+}
+
+#small-text {
+  font-size: x-small;
+}
+
 

@@ -3,23 +3,39 @@
     {
         "user_id": 1,
         "item_name": "Black & White Floral Dress",
-        "item_description": "Loose fitting, linen dress that hits above the ankle. Size M-L.",
+        "item_description": "Size M-L. Loose fitting, linen dress that hits above the ankle. Small grass stain on bottom from wear.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597787169/o2lriwdxjxcxxxhquczu.jpg",
         "category_name": "dresses",
         "status": "Available"
     },
     {
+        "user_id": 1,
+        "item_name": "Flowy Nautical Collared Blouse",
+        "item_description": "Size M-L. Loose fitting, half button-down. Great condition. Perfect for spring/summer!",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598048954/ak4cwk0ygr1dfc8jws8g.jpg",
+        "category_name": "tops",
+        "status": "Available"
+    },
+    {
         "user_id": 2,
         "item_name": "Green Bucket Purse",
-        "item_description": "Bucket style purse with shoulder straps and drawstring closure. S",
+        "item_description": "Bucket style purse with shoulder straps and drawstring closure. About 1 ft in height, 1/2 ft width. Slightly worn on straps.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597876991/t8hjro6ehaalfnvvol5y.jpg",
         "category_name": "accessories",
         "status": "Available"
     },
     {
+        "user_id": 2,
+        "item_name": "Large Pocket Button Down Jacket",
+        "item_description": "Size XS. Close to cropped fit. Fall jacket. Not super warm. Good condition - no stains!",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598404074/gylibiaekd5cuzlx9h8h.jpg",
+        "category_name": "jackets & coats",
+        "status": "Available"
+    },
+    {
         "user_id": 3,
         "item_name": "Olive Raincoat",
-        "item_description": "Size Large. Water-resistant not waterproof.",
+        "item_description": "Size Large. Water-resistant not waterproof. Good condition.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598038546/zkpaplviftbqxga5buv5.jpg",
         "category_name": "jackets & coats",
         "status": "Available"
@@ -34,6 +50,30 @@
     },
     {
         "user_id": 5,
+        "item_name": "Mauve, Dark Brown Wood Heels",
+        "item_description": "Size 6.5. Slightly worn - fading suede, but overall good condition.",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598047331/ohumazb2rma4fcui22l9.jpg",
+        "category_name": "shoes",
+        "status": "Available"
+    },
+    {
+        "user_id": 6,
+        "item_name": "Gold Tri-Circle Hoops",
+        "item_description": "Large hoops! About 4in in length. Like new!",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598047918/i7aq8jhxt9szm81utoyu.jpg",
+        "category_name": "accessories",
+        "status": "Available"
+    },
+    {
+        "user_id": 7,
+        "item_name": "Red Rouched Floral Crop Top",
+        "item_description": "Size 4. Good condition. Bright red with small floral print. Hits just above waistline. Sheer material. Ruffled capped sleeves.",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597779475/zgq1ayaose4yji3c6b4j.jpg",
+        "category_name": "tops",
+        "status": "Available"
+    },
+    {
+        "user_id": 8,
         "item_name": "Chunky Tan Sandals",
         "item_description": "Super comfy! Size 8.5.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597689897/fmt7irnj7u9kxcwl8svx.jpg",
@@ -41,43 +81,60 @@
         "status": "Available"
     },
     {
-        "user_id": 6,
-        "item_name": "Yellow Floor-Length Gown",
-        "item_description": "Size 4. Floor length, great condition.",
-        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597343686/axubpvppdrxrb0crikt8.jpg",
-        "category_name": "dresses",
-        "status": "Available"
-    },
-    {
-        "user_id": 7,
-        "item_name": "Beaded Earrings",
-        "item_description": "2in. in length",
+        "user_id": 9,
+        "item_name": "Gold, red, jade Chandelier Earrings",
+        "item_description": "2in. in length. Good condition,",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597758473/gjqag3r1mjejh1wa4dlb.jpg",
         "category_name": "accessories",
         "status": "Available"
     },
     {
+        "user_id": 10,
+        "item_name": "Mod & Bright Color Jacket",
+        "item_description": "Size Large - hits at knees or below. Good condition. Pink furry sleeves shed slightly. Don't wear in snow or rain conditions to preserve quality!",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597706004/azag6omanmuh3t7rjz9v.jpg",
+        "category_name":"jackets & coats",
+        "status": "Available"
+    },
+    {
+        "user_id": 10,
+        "item_name": "Burnt Orange Linen Goucho Pants",
+        "item_description": "Size Small. Perfect fall pants. Made of linen so not super warm. Cinches at waist with no zipper, buttons, etc.",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598489825/hluf4vipnbkhxbqzumrf.jpg",
+        "category_name":"bottoms",
+        "status": "Unavailable"
+    },
+    {
         "user_id": 11,
-        "item_name": "Multi-Colored Strappy Midi Dress",
-        "item_description": "TBD",
+        "item_name": "Mustard Figure Sweater",
+        "item_description": "Size Medium but can  be worn snug or loose! Great condition.",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598484916/oukmg2xuuyun0vm6fge7.jpg",
+        "category_name": "sweaters",
+        "status": "Unavailable"
+    },
+    {
+        "user_id": 11,
+        "item_name": "Multi-Color Pleated Midi Dress",
+        "item_description": "Size 2. Pleated midi dress with tie at waist for further cinching. Good condition - crisp pleats.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539755/px0lvkqib72itzpok0uo.jpg",
         "category_name": "dresses",
         "status": "Available"
     },
     {
         "user_id": 11,
-        "item_name": "Multi-Colored Pants",
-        "item_description": "TBD",
-        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg",
-        "category_name": "bottoms",
+        "item_name": "White Floral Sweater",
+        "item_description": "Size Large. Knitted sweater with large black flowers stitched across front and back. Very thick and great for cold weather. Good condition. Slight discolored inside of neckline.",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598483847/dktiecxeqwhhjeilhxl8.jpg",
+        "category_name": "sweaters",
         "status": "Available"
     },
     {
         "user_id": 11,
-        "item_name": "Mod & Bright Colored Jacket",
-        "item_description": "TBD",
-        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597706004/azag6omanmuh3t7rjz9v.jpg",
-        "category_name":"jackets & coats",
+        "item_name": "Multi-Colored Patchwork Pants",
+        "item_description": "Size 4. High waisted, pockets, straight-legged/loose fit. Zipper on side. Materials - Cotton, poly, linen blend. Good condition.",
+        "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg",
+        "category_name": "bottoms",
         "status": "Available"
     }
+    
 ]
