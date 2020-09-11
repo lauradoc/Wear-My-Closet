@@ -48,4 +48,15 @@ body {
   text-align: left;
 }
 
-.card, .mb-3
+.homepage-description, #homepage-overview, #homepage-text {
+  margin-left: 15rem;
+  margin-right: 15rem;
+  font-size: 110%;
+}
+
+#join-community-header, #create-community-header {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
+

@@ -5,33 +5,36 @@
 
 {% block body %}
 
+<h3>My Communities</h3>
+
+{% for community in communities%}
 <div class="card">
     <div class="card-body">
-        <h3 class="card-title">My Communities</h3>
         <div class="card-columns">
-        {% for community in communities%}
         <h5 class="card-title">{{ community.community.community_name }}</h5>
             <p class="card-text">{{ community.community.community_description }}
             </p>
-        {% endfor %}
         </div>
     </div>
 </div>
+{% endfor %}
+
+<h3>My Checkouts</h3>
+
+{% for checkout in checkout_items %}
 <div class="card">
     <div class="card-body">
-        <h3 class="card-title">My Checkouts</h3>
         <div class="card-columns">
-        {% for checkout in checkout_items %}
         <h5 class="card-title">Checkout Date: {{ checkout.checkout.checkout_date }}</h5>
             <p class="card-text">
                 Item Name: {{ checkout.item.item_name }}<br>
                 Return Due Date: {{ checkout.due_date }}<br>
                 Item Owner: {{ checkout.item.user.first_name + ' ' + checkout.item.user.last_name }}<br>
             </p>
-        {% endfor %}
         </div>
     </div>
 </div>
+{% endfor %}
 
 <h3> My Items </h3>
     <ul>
