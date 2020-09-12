@@ -21,28 +21,34 @@ $('#upload-item-form').on('submit', (evt) => {
         success: (res) => {
             const item = res;
             const new_item = (
-                `<div class="card-group" style="width: 18rem;">
-                    <form method="POST" id="upload-item" >
-                        <img src="${item.image_url}" class="card-img-top">
-                        <div class="card-body">
-                        <p class="card-text">
-                            <ul class="item-details">
-                                <b>Item Name: </b>${item.item_name}
-                                <b>Description: </b>${item.item_description}
-                                <b>Category: </b>${item.category}
-                                <b>Status: </b>${item.status}
-                                <br>
-                                <form method="POST" id="status-change-form">
-                                    <input type="hidden" name="item-id" value="${item.id}">
-                                    <input type="radio" id"${item.id}" name="item-return" value="Item Returned">
-                                    <label>Item Returned</label>
-                                    <button type="submit" id="status-change">submit</button>
-                                <br>
-                                <br>
-                            </ul>
-                        </p>
-                        </div>
-                    </form>
+                `<div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <form method="POST" id="upload-item" >
+                            <div class="col-md-6">
+                                <img src="${item.image_url}" class="card-img-top">
+                            </div>
+                            <div class="col">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <p class="item-details">
+                                            <b>Item Name: </b>${item.item_name}
+                                            <b>Description: </b>${item.item_description}
+                                            <b>Category: </b>${item.category}
+                                            <b>Status: </b>${item.status}
+                                            <br>
+                                            <form method="POST" id="status-change-form">
+                                                <input type="hidden" name="item-id" value="${item.id}">
+                                                <input type="radio" id"${item.id}" name="item-return" value="Item Returned">
+                                                <label>Item Returned</label>
+                                                <button type="submit" id="status-change">submit</button>
+                                            <br>
+                                            <br>
+                                        </p>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>`
             );
             $('#item-library').prepend(new_item)

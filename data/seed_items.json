@@ -17,7 +17,7 @@
         "status": "Available"
     },
     {
-        "user_id": 2,
+        "user_id": 11,
         "item_name": "Green Bucket Purse",
         "item_description": "Bucket style purse with shoulder straps and drawstring closure. About 1 ft in height, 1/2 ft width. Slightly worn on straps.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597876991/t8hjro6ehaalfnvvol5y.jpg",
@@ -49,7 +49,7 @@
         "status": "Available"
     },
     {
-        "user_id": 5,
+        "user_id": 11,
         "item_name": "Mauve, Dark Brown Wood Heels",
         "item_description": "Size 6.5. Slightly worn - fading suede, but overall good condition.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598047331/ohumazb2rma4fcui22l9.jpg",
@@ -89,7 +89,7 @@
         "status": "Available"
     },
     {
-        "user_id": 10,
+        "user_id": 9,
         "item_name": "Mod & Bright Color Jacket",
         "item_description": "Size Large - hits at knees or below. Good condition. Pink furry sleeves shed slightly. Don't wear in snow or rain conditions to preserve quality!",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597706004/azag6omanmuh3t7rjz9v.jpg",
@@ -97,7 +97,7 @@
         "status": "Available"
     },
     {
-        "user_id": 10,
+        "user_id": 2,
         "item_name": "Burnt Orange Linen Goucho Pants",
         "item_description": "Size Small. Perfect fall pants. Made of linen so not super warm. Cinches at waist with no zipper, buttons, etc.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1598489825/hluf4vipnbkhxbqzumrf.jpg",
@@ -113,7 +113,7 @@
         "status": "Unavailable"
     },
     {
-        "user_id": 11,
+        "user_id": 10,
         "item_name": "Multi-Color Pleated Midi Dress",
         "item_description": "Size 2. Pleated midi dress with tie at waist for further cinching. Good condition - crisp pleats.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539755/px0lvkqib72itzpok0uo.jpg",
@@ -129,7 +129,7 @@
         "status": "Available"
     },
     {
-        "user_id": 11,
+        "user_id": 5,
         "item_name": "Multi-Colored Patchwork Pants",
         "item_description": "Size 4. High waisted, pockets, straight-legged/loose fit. Zipper on side. Materials - Cotton, poly, linen blend. Good condition.",
         "image_url": "https://res.cloudinary.com/lowdock/image/upload/v1597539642/mouhdz2rivsvqs7rrnyh.jpg",
