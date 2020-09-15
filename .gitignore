@@ -3,3 +3,4 @@ secrets.sh
 __pycache__/*
 ngrok-stable-darwin-amd64.zip
 twilio-php-main/
+.DS_Store
