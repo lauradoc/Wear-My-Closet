@@ -1,5 +1,4 @@
 ![](https://github.com/lauradoc/Wear-My-Closet/blob/master/static/img/wear%20my%20closet.png)
-
 ###### Wear My Closet is a web application designed for virtual closet sharing among friends in an effort to reduce material consumption and extend the life span of our clothes. I came up with a virtual way to loan and/or borrow items in your own closet by using python as the main backend language and javascript to amplify the front end experience.
 
 
@@ -12,25 +11,29 @@
 ## <a name="tech-stack"></a>Technologies
 
 * Tech Stack: Python, JavaScript (AJAX, JSON), HTML, CSS, SQL, Flask, jQuery, Bootstrap, Jinja, PostgreSQL
-* APIs: Cloudinary Upload API (Python), Twilio Messaging API (Python)
+* APIs: Cloudinary Upload API, Twilio Messaging API
 
 ## <a name="features"></a>Features
 
 ### Login Page
 Users must login or create an account before viewing any features of Wear My Closet. 
-
+![](https://res.cloudinary.com/lowdock/image/upload/v1600221374/Screen_Shot_2020-09-15_at_7.59.44_PM_noxhqh.png)
 
 ### Homepage
 After login a user is automatically sent to the homepage where they can join an existing community that they are not currently a member of or create a new community by providing a name and brief description. Otherwise they can continue on to the following features.
+![](https://res.cloudinary.com/lowdock/video/upload/v1600221823/Homepage_wj70h0.mp4)
 
 ### My Community
 A user can be a member of several communities so they first select the one they'd like to view. Upon selection all items from all members of the community will load onto the page. A user will be able to see what items are available to borrow or unavailable according to the item status and the 'Add to Cart' button disabled. If they select an item to add to their cart an alert will confirm. They can continue to browse or move their cart.
+![](https://res.cloudinary.com/lowdock/video/upload/v1600221868/My_Community_aimatl.mp4)
 
 ### My Closet
 This is a user's item inventory. They can check in items that have been returned and can also upload new items to their closet through Cloudinary.
+![](https://res.cloudinary.com/lowdock/video/upload/v1600221979/My_Closet_acjohb.mp4)
 
 ### My Cart
 To complete the checkout process a user selects their return date or removes the item. Once they submit their order the order summary appears and a text notification is sent to the item owner to initiate the exchange.
+![](https://res.cloudinary.com/lowdock/video/upload/v1600221924/My_Cart_tu2ldm.mp4)
 
 ### My Account
 The summary page includes a list of community memberships, checkout items, and items in their inventory.
@@ -50,22 +53,23 @@ Using Wear My Closet on your own:
 Required:
 - Python3
 - PostgreSQL
-- ![Cloudinary Account](https://cloudinary.com/documentation)
-- ![Twilio Messaging API](https://www.twilio.com/docs/api)
+- [Cloudinary Account](https://cloudinary.com/documentation)
+- [Twilio Messaging API](https://www.twilio.com/docs/api)
 
 Clone or fork this repo:
 ```
-https://github.com/lauradoc/Wear-My-Closet
+$ https://github.com/lauradoc/Wear-My-Closet
 ```
 
 Create and activate a virtual environment inside Wear My Closet Directory:
-```virtualenv env
-source env/bin/activate
+```
+$ virtualenv env
+$ source env/bin/activate
 ```
 
 Install the requirements:
 ```
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 Create a ```secrets.sh``` file and add your API keys:
@@ -80,12 +84,17 @@ export auth_token="YOUR_TOKEN_HERE"
 
 Activate secrets file in your virtual environment:
 ```
-source.secrets.sh
+$ source.secrets.sh
+```
+
+Set up database:
+```
+$ createdb closets
 ```
 
 Run the server:
 ```
-python3 server.py
+$ python3 server.py
 ```
 
 ## About Laura Docherty
