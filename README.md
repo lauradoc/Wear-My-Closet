@@ -21,19 +21,19 @@ Users must login or create an account before viewing any features of Wear My Clo
 
 ### Homepage
 After login a user is automatically sent to the homepage where they can join an existing community that they are not currently a member of or create a new community by providing a name and brief description. Otherwise they can continue on to the following features.
-![](https://res.cloudinary.com/lowdock/video/upload/v1600221823/Homepage_wj70h0.mp4)
+![](https://github.com/lauradoc/Wear-My-Closet/blob/master/static/img/homepage.gif)
 
 ### My Community
 A user can be a member of several communities so they first select the one they'd like to view. Upon selection all items from all members of the community will load onto the page. A user will be able to see what items are available to borrow or unavailable according to the item status and the 'Add to Cart' button disabled. If they select an item to add to their cart an alert will confirm. They can continue to browse or move their cart.
-![](https://res.cloudinary.com/lowdock/video/upload/v1600221868/My_Community_aimatl.mp4)
+![](https://github.com/lauradoc/Wear-My-Closet/blob/master/static/img/my-community.gif)
 
 ### My Closet
 This is a user's item inventory. They can check in items that have been returned and can also upload new items to their closet through Cloudinary.
-![](https://res.cloudinary.com/lowdock/video/upload/v1600221979/My_Closet_acjohb.mp4)
+![](https://github.com/lauradoc/Wear-My-Closet/blob/master/static/img/my-closet.gif)
 
 ### My Cart
 To complete the checkout process a user selects their return date or removes the item. Once they submit their order the order summary appears and a text notification is sent to the item owner to initiate the exchange.
-![](static/img/mycart.gif)
+![](https://github.com/lauradoc/Wear-My-Closet/blob/master/static/img/mycart.gif)
 
 ### My Account
 The summary page includes a list of community memberships, checkout items, and items in their inventory.
