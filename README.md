@@ -21,7 +21,9 @@ Users must login or create an account before viewing any features of Wear My Clo
 
 ### Homepage
 After login a user is automatically sent to the homepage where they can join an existing community that they are not currently a member of or create a new community by providing a name and brief description. Otherwise they can continue on to the following features.
-![](https://res.cloudinary.com/lowdock/video/upload/v1600221823/Homepage_wj70h0.mp4)
+<figure class="video_container">
+  <iframe src="https://res.cloudinary.com/lowdock/video/upload/v1600221823/Homepage_wj70h0.mp4" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
 
 ### My Community
 A user can be a member of several communities so they first select the one they'd like to view. Upon selection all items from all members of the community will load onto the page. A user will be able to see what items are available to borrow or unavailable according to the item status and the 'Add to Cart' button disabled. If they select an item to add to their cart an alert will confirm. They can continue to browse or move their cart.
