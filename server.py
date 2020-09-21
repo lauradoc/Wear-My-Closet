@@ -52,13 +52,16 @@ def handle_login():
 
     email = request.form.get('email')
     password = request.form.get('password')
+    print(password)
     user = crud.get_user_by_email(email)
 
+    if password == '' or email == '':
+        flash(u'Log in failed. Try again.', 'error-message')
+        return redirect('/')
+
     if password in user.password:
-        flash(u'Logged in!', 'email-success')
         session['email'] = user.email
         session['user_id'] = user.user_id
-
         return redirect('/home')
 
     else:        
