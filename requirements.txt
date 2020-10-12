@@ -1,9 +1,13 @@
 certifi==2020.6.20
 chardet==3.0.4
+cli-helpers==2.1.0
 click==7.1.2
 cloudinary==1.22.0
+configobj==5.0.6
 Faker==4.9.0
 Flask==1.1.2
+Flask-SQLAlchemy==2.4.4
+gunicorn==20.0.4
 idna==2.10
 itsdangerous==1.1.0
 Jinja2==2.11.2
@@ -14,7 +18,11 @@ python-dateutil==2.8.1
 pytz==2020.1
 requests==2.24.0
 six==1.15.0
+SQLAlchemy==1.3.19
+tabulate==0.8.7
+terminaltables==3.1.0
 text-unidecode==1.3
 twilio==6.45.4
 urllib3==1.25.10
+wcwidth==0.2.5
 Werkzeug==1.0.1
