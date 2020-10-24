@@ -24,14 +24,14 @@ def send_message_to_user(new_checkout_item):
 
     return message.sid
 
-def send_return_reminder(new_checkout_item):
+# def send_return_reminder(new_checkout_item):
 
-    message = client.messages \
-                    .create(
-                        body=f'Reminder to return {new_checkout_item.item.item_name} to {new_checkout_item.item.user.first_name} in 3 days. You selected {new_checkout_item.due_date} as the return date.'
-                        from_='+14158776117',
-                        to=
-                    )
+#     message = client.messages \
+#                     .create(
+#                         body=f'Reminder to return {new_checkout_item.item.item_name} to {new_checkout_item.item.user.first_name} in 3 days. You selected {new_checkout_item.due_date} as the return date.'
+#                         from_='+14158776117',
+#                         to=
+#                     )
 
 
 
