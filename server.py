@@ -271,6 +271,18 @@ def upload_item():
         return jsonify(crud.jsonify_item(new_item))
 
 
+@app.route('/removeitem', methods=['POST'])
+def remove_item_from_closet():
+    """Remove item from user's closet"""
+
+    item_id = request.form.get('item_id')
+    user_id = session.get('user_id')
+    remove_item = crud.remove_item_from_closet(item_id, user_id)
+    item = crud.get_item_by_id(item_id)
+
+    return f'{item.item_name} has been removed from your closet.'
+
+
 @app.route('/myaccount')
 def account_details():
     """View user's account details"""

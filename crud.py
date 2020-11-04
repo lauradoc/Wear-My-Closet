@@ -201,6 +201,17 @@ def remove_item_from_cart(item_id, user_id):
     return remove_item
 
 
+def remove_item_from_closet(item_id, user_id):
+    """Removes item from user's closet"""
+
+    remove_item = Item.query.filter(Item.item_id==item_id, Item.user_id==user_id).first()
+
+    db.session.delete(remove_item)
+    db.session.commit()
+
+    return remove_item
+
+
 def create_checkout(user_borrowed_by, checkout_date):
     """Create and return checkout for item"""
 

@@ -30,6 +30,12 @@ $.get('/myclosetjson', (res) => {
                                 <label>Item Returned</label>
                                 ${button}
                             </form>
+                            <form method="POST" id="remove-item-form">
+                                <input type="hidden" name="item-id" value="${item.id}">
+                                <input type="radio" id"${item.id}" name="item-remove" value="Remove Item">
+                                <label>Remove Item</label>
+                                ${button}
+                            </form>
                         </p>
                     </div>
                 </div>
@@ -54,4 +60,15 @@ $('#status-change-form').on('submit', (evt) => {
         $('#item-status').replaceWith(statusUpdate)
     });
 });
+
+function removeFromCloset(id) {
+    const formInputs = {
+        'item_id': id
+    };
+    $.post('/removeitem', formInputs, (res) => {
+        alert(res);
+    });
+    const removeItem = document.querySelector(`#cart-details-id-${id}`)
+    removeItem.innerHTML = ''
+};
 
