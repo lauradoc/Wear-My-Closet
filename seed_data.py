@@ -19,22 +19,22 @@ model.db.create_all()
 
 fake = Faker()
 
-def seed_users():
+# def seed_users():
 
-    for n in range(10):
-        first_name = fake.first_name()
-        last_name = fake.last_name()
-        name = f'{first_name + last_name}'
-        email = f'{name}@test.com'
-        password = 'test'
-        phone = '6517264495'
-        city = 'Saint Paul'
+#     for n in range(10):
+#         first_name = fake.first_name()
+#         last_name = fake.last_name()
+#         name = f'{first_name + last_name}'
+#         email = f'{name}@test.com'
+#         password = 'test'
+#         phone = '6517264495'
+#         city = 'Saint Paul'
 
-        new_user = crud.create_user(first_name, last_name, email, password, city, phone)
+#         new_user = crud.create_user(first_name, last_name, email, password, city, phone)
     
-    crud.create_user('Laura', 'Docherty', 'laurahdocherty@gmail.com', 'test', 'STP', '6517264495')
+#     crud.create_user('Laura', 'Docherty', 'laurahdocherty@gmail.com', 'test', 'STP', '6517264495')
 
-seed_users()
+# seed_users()
 
 
 def seed_category():
@@ -50,35 +50,35 @@ def seed_category():
 seed_category()
 
 
-def seed_status():
+# def seed_status():
 
-    with open('data/seed_status.json') as f:
-        status_data = json.loads(f.read())
+#     with open('data/seed_status.json') as f:
+#         status_data = json.loads(f.read())
 
-    for status in status_data:
-        checkout_status = status['checkout_status']
+#     for status in status_data:
+#         checkout_status = status['checkout_status']
 
-        new_status = crud.create_status(checkout_status)
+#         new_status = crud.create_status(checkout_status)
 
-seed_status()
+# seed_status()
 
 
-def seed_items():
+# def seed_items():
 
-    with open('data/seed_items.json') as f:
-        items_data = json.loads(f.read())
+#     with open('data/seed_items.json') as f:
+#         items_data = json.loads(f.read())
 
-    for item in items_data:
-        user_id = item['user_id']
-        item_name = item['item_name']
-        item_description = item["item_description"]
-        image_url = item['image_url']
-        category_name = item['category_name']
-        status_code = item['status']
+#     for item in items_data:
+#         user_id = item['user_id']
+#         item_name = item['item_name']
+#         item_description = item["item_description"]
+#         image_url = item['image_url']
+#         category_name = item['category_name']
+#         status_code = item['status']
 
-        new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name, status_code)
+#         new_item = crud.create_item(user_id, item_name, item_description, image_url, category_name, status_code)
 
-seed_items()
+# seed_items()
 
 
 def seed_community():
@@ -95,18 +95,18 @@ def seed_community():
 seed_community()
 
 
-def seed_community_member():
+# def seed_community_member():
 
-    with open('data/seed_community_member.json') as f:
-        community_member_data = json.loads(f.read())
+#     with open('data/seed_community_member.json') as f:
+#         community_member_data = json.loads(f.read())
 
-    for community_member in community_member_data:
-        community_id = community_member['community_id']
-        user_id = community_member['user_id']
+#     for community_member in community_member_data:
+#         community_id = community_member['community_id']
+#         user_id = community_member['user_id']
 
-        new_community_member = crud.create_community_member(community_id, user_id)
+#         new_community_member = crud.create_community_member(community_id, user_id)
 
-seed_community_member()
+# seed_community_member()
 
 
 

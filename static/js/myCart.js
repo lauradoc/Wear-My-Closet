@@ -4,7 +4,7 @@
 $.get('/cartjson', (cart) => {
     // debugger;
     for (const item of cart) {
-        console.log(item)
+        // console.log(item)
         const cartDetails = (
             `<div class="card">
                 <div class="row no-gutters" id="cart-details-id-${item.id}">
