@@ -1,6 +1,6 @@
 """creating fake db"""
 
-from faker import Faker
+# from faker import Faker
 
 import os
 import json
@@ -11,13 +11,13 @@ import crud
 import model
 import server
 
-os.system('dropdb closets')
-os.system('createdb closets')
+# os.system('dropdb closets')
+# os.system('createdb closets')
 
 model.connect_to_db(server.app)
 model.db.create_all()
 
-fake = Faker()
+# fake = Faker()
 
 # def seed_users():
 
