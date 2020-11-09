@@ -314,7 +314,7 @@ def logout_user():
     return redirect("/")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     connect_to_db(app)
-    app.run()
+    app.run(debug=False, host='0.0.0.0')
 
